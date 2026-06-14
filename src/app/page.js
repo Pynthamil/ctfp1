@@ -2,6 +2,161 @@
 
 import { useState, useEffect, useRef } from "react";
 
+/* =====================
+   HEATMAP DATA GENERATOR
+   Generates 52 weeks of plausible CTF activity.
+   Intensity: 0=none, 1=light, 2=medium, 3=high, 4=peak
+   ===================== */
+function generateHeatmapData() {
+  const today = new Date();
+  const startDate = new Date('2026-06-13'); // CTF journey started
+  const cells = [];
+  // Go back 364 days (52 weeks)
+  for (let i = 363; i >= 0; i--) {
+    const d = new Date(today);
+    d.setDate(d.getDate() - i);
+    // No activity before start date
+    if (d < startDate) {
+      cells.push({ date: new Date(d), level: 0 });
+      continue;
+    }
+    // BoroCTF days — peak activity
+    const daysSinceStart = Math.floor((d - startDate) / 86400000);
+    let level = 0;
+    if (daysSinceStart <= 2) level = 4; // Jun 13–15: BoroCTF peak
+    cells.push({ date: new Date(d), level });
+  }
+  return cells;
+}
+
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const DAYS   = ['','Mon','','Wed','','Fri',''];
+
+function Heatmap() {
+  const [tooltip, setTooltip] = useState(null);
+  const [data] = useState(() => generateHeatmapData());
+
+  // Group into weeks (columns)
+  const weeks = [];
+  let week = [];
+  // Pad first week with nulls so day 0 = Sunday
+  const firstDay = data[0].date.getDay();
+  for (let p = 0; p < firstDay; p++) week.push(null);
+  data.forEach((cell, i) => {
+    week.push(cell);
+    if (week.length === 7) { weeks.push(week); week = []; }
+  });
+  if (week.length) {
+    while (week.length < 7) week.push(null);
+    weeks.push(week);
+  }
+
+  // Build month label positions
+  const monthLabels = [];
+  weeks.forEach((wk, wi) => {
+    const first = wk.find(c => c);
+    if (!first) return;
+    if (wi === 0 || first.date.getDate() <= 7) {
+      const label = MONTHS[first.date.getMonth()];
+      if (!monthLabels.length || monthLabels[monthLabels.length - 1].label !== label) {
+        monthLabels.push({ label, col: wi });
+      }
+    }
+  });
+
+  const levelColor = [
+    'rgba(0,255,179,0.05)',
+    'rgba(0,255,179,0.2)',
+    'rgba(0,255,179,0.42)',
+    'rgba(0,255,179,0.68)',
+    '#00ffb3',
+  ];
+
+  return (
+    <div className="heatmap-wrap">
+      {/* Month labels */}
+      <div className="heatmap-months">
+        <div style={{ width: '28px', flexShrink: 0 }} />
+        <div className="heatmap-month-row">
+          {monthLabels.map((m, i) => (
+            <div
+              key={i}
+              className="heatmap-month-label"
+              style={{ left: `${m.col * 14}px` }}
+            >{m.label}</div>
+          ))}
+        </div>
+      </div>
+
+      <div className="heatmap-body">
+        {/* Day labels */}
+        <div className="heatmap-days">
+          {DAYS.map((d, i) => <div key={i} className="heatmap-day-label">{d}</div>)}
+        </div>
+
+        {/* Grid */}
+        <div className="heatmap-grid">
+          {weeks.map((wk, wi) => (
+            <div key={wi} className="heatmap-col">
+              {wk.map((cell, di) => (
+                <div
+                  key={di}
+                  className="heatmap-cell"
+                  style={{
+                    background: cell ? levelColor[cell.level] : 'transparent',
+                    boxShadow: cell && cell.level === 4
+                      ? '0 0 6px rgba(0,255,179,0.5)' : 'none',
+                    border: cell ? '1px solid rgba(0,255,179,0.08)' : '1px solid transparent',
+                  }}
+                  onMouseEnter={e => {
+                    if (!cell) return;
+                    const rect = e.target.getBoundingClientRect();
+                    const wrapRect = e.target.closest('.heatmap-wrap').getBoundingClientRect();
+                    setTooltip({
+                      x: rect.left - wrapRect.left + 7,
+                      y: rect.top  - wrapRect.top  - 38,
+                      date: cell.date.toDateString(),
+                      level: cell.level,
+                    });
+                  }}
+                  onMouseLeave={() => setTooltip(null)}
+                />
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Tooltip */}
+      {tooltip && (
+        <div className="heatmap-tooltip" style={{ left: tooltip.x, top: tooltip.y }}>
+          <span className="hm-tt-date">{tooltip.date}</span>
+          <span className="hm-tt-lvl">
+            {['no activity','light','medium','high','peak'][tooltip.level]}
+          </span>
+        </div>
+      )}
+
+      {/* Legend */}
+      <div className="heatmap-legend">
+        <span className="hm-leg-label">less</span>
+        {[0,1,2,3,4].map(l => (
+          <div
+            key={l}
+            className="heatmap-cell"
+            style={{
+              background: levelColor[l],
+              border: '1px solid rgba(0,255,179,0.1)',
+              cursor: 'default',
+            }}
+          />
+        ))}
+        <span className="hm-leg-label">more</span>
+      </div>
+    </div>
+  );
+}
+
 /* DATA */
 const D=[
   {id:1,name:"BoroCTF",date:"Recent",rank:256,teams:800,score:1500,cats:["web","pwn"],
@@ -208,7 +363,7 @@ export default function Home() {
             <button className="nav-link" onClick={() => showPage('home')}>home</button>
             <button className="nav-link" onClick={() => showPage('all')}>CTFs</button>
             <button className="nav-link" onClick={scrollToSkills}>skills</button>
-            <button className="nav-cta" onClick={() => showPage('all')}>writeups →</button>
+            <button className="nav-cta" onClick={() => showPage('all')}><span>writeups →</span></button>
           </div>
         </nav>
 
@@ -397,6 +552,84 @@ export default function Home() {
                 <div style={{ marginTop: '2px' }}><span className="tp">└─$</span> <span className="tp">_</span></div>
               </div>
             </div>
+          </div>
+
+          {/* ===== ABOUT — ID CARD ===== */}
+          <div className="sec" id="about-sec" style={{ paddingTop: 0 }}>
+            <div className="sec-eye"><span className="fig">Fig. 6</span> operator profile</div>
+            <div className="id-card">
+              {/* left — clearance badge */}
+              <div className="id-left">
+                <div className="id-clearance">
+                  <div className="id-cl-label">clearance</div>
+                  <div className="id-cl-level">CTF<br/>PLAYER</div>
+                  <div className="id-cl-sub">Since 2022</div>
+                </div>
+                <div className="id-avatar">
+                  <div className="id-avatar-inner">
+                    <div className="id-avatar-char">0x</div>
+                  </div>
+                  <div className="id-avatar-scan"></div>
+                </div>
+                <div className="id-handle">3xpl01t</div>
+                <div className="id-origin">India · CTFtime</div>
+              </div>
+
+              {/* divider */}
+              <div className="id-divider"></div>
+
+              {/* right — bio fields */}
+              <div className="id-right">
+                <div className="id-field-group">
+                  <div className="id-field">
+                    <span className="id-key">handle</span>
+                    <span className="id-val">3xpl01t</span>
+                  </div>
+                  <div className="id-field">
+                    <span className="id-key">origin</span>
+                    <span className="id-val">India</span>
+                  </div>
+                  <div className="id-field">
+                    <span className="id-key">specialty</span>
+                    <span className="id-val">web · pwn · crypto</span>
+                  </div>
+                  <div className="id-field">
+                    <span className="id-key">active since</span>
+                    <span className="id-val">2022</span>
+                  </div>
+                  <div className="id-field">
+                    <span className="id-key">best rank</span>
+                    <span className="id-val id-val-green">#256 / 800 teams</span>
+                  </div>
+                </div>
+
+                <div className="id-bio">
+                  I break things for fun — and sometimes for flags. Self-taught security
+                  researcher focused on web exploitation and binary pwn. Competing on CTFtime,
+                  HackTheBox, and PicoCTF since 2022. Every CTF is a new system to understand,
+                  a new bug to find, and a new lesson in how software fails.
+                </div>
+
+                <div className="id-tags">
+                  {['XSS','SQLi','ROP','heap','ECDSA','SSRF','format str','RE'].map(t => (
+                    <span key={t} className="id-tag">{t}</span>
+                  ))}
+                </div>
+              </div>
+
+              {/* corner decorations */}
+              <div className="id-corner id-corner-tl"></div>
+              <div className="id-corner id-corner-tr"></div>
+              <div className="id-corner id-corner-bl"></div>
+              <div className="id-corner id-corner-br"></div>
+            </div>
+          </div>
+
+          {/* ===== HEATMAP ===== */}
+          <div className="sec" style={{ paddingTop: 0 }}>
+            <div className="sec-eye"><span className="fig">Fig. 7</span> ctf activity</div>
+            <h2 style={{ marginBottom: '1.5rem' }}>Activity <span className="d">heatmap.</span></h2>
+            <Heatmap />
           </div>
 
           {/* FOOTER */}
