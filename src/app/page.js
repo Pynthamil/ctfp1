@@ -288,22 +288,16 @@ Append a flag to learn more about me:
         toolUse = { name: 'FetchProjects', desc: `Retrieve portfolio items (\${args[1] || 'all'})` };
         
         if (args[1] === '--dev') {
-          responseContent = `**Development Projects:**
+          const devProjects = [
+            { title: "Terminal Browser", desc: "A command-line web browser", img: "/project-banners/terminal-browser.svg" },
+            { title: "Semantic Email", desc: "AI-powered semantic email client", img: "/project-banners/semantic-email.svg" },
+            { title: "GitPerson", desc: "AI developer profile generator", img: "/project-banners/gitperson.svg" },
+            { title: "ReadmeFlier", desc: "Automated README generator", img: "/project-banners/readmeflier.svg" },
+            { title: "Resume Roaster", desc: "AI-based brutally honest resume reviewer", img: "/project-banners/resume-roaster.svg" }
+          ];
 
-1. **Terminal Browser** - A command-line web browser
-![Terminal Browser](/project-banners/terminal-browser.svg)
-
-2. **Semantic Email** - AI-powered semantic email client
-![Semantic Email](/project-banners/semantic-email.svg)
-
-3. **GitPerson** - AI developer profile generator
-![GitPerson](/project-banners/gitperson.svg)
-
-4. **ReadmeFlier** - Automated README generator
-![ReadmeFlier](/project-banners/readmeflier.svg)
-
-5. **Resume Roaster** - AI-based brutally honest resume reviewer
-![Resume Roaster](/project-banners/resume-roaster.svg)`;
+          const scrollHtml = devProjects.map((p, i) => `<div style="flex: 0 0 350px; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px;"><strong>${i+1}. ${p.title}</strong> - ${p.desc}<img src="${p.img}" style="width: 100%; height: auto; border-radius: 6px; margin-top: 10px;" /></div>`).join('');
+          responseContent = `**Development Projects:**\n<div style="display: flex; gap: 20px; overflow-x: auto; padding-bottom: 15px; margin-top: 15px; scrollbar-width: none; -ms-overflow-style: none;">${scrollHtml}</div>`;
         } else if (args[1] === '--design') {
           responseContent = `**Design Projects:**
 1. **Brand Identity** - Logo and brand guidelines for a local tech startup
@@ -372,6 +366,39 @@ Append a flag to learn more about me:
 **[📄 Click to view Resume](/resume.pdf)**
 
 *(Make sure you have placed your \`resume.pdf\` inside the \`public/\` folder of this project!)*`;
+        break;
+      case 'sudo':
+        responseContent = `visitor is not in the sudoers file. This incident will be reported.`;
+        break;
+      case 'pwd':
+        responseContent = `/home/visitor`;
+        break;
+      case 'whoami':
+        responseContent = `guest`;
+        break;
+      case 'cd':
+        responseContent = `cd: permission denied: ${args[1] || '~'}`;
+        break;
+      case 'ls':
+        if (args[1] === '-la' || args[1] === '-al' || args[1] === '-a') {
+          responseContent = `drwxr-xr-x   1 visitor  staff   4096 Jun 16 10:00 .
+drwxr-xr-x   1 root     staff   4096 Jun 16 10:00 ..
+-rw-r--r--   1 visitor  staff    220 Jun 16 10:00 .bash_logout
+-rw-r--r--   1 visitor  staff   3526 Jun 16 10:00 .bashrc
+-rw-r--r--   1 visitor  staff    807 Jun 16 10:00 .profile
+-rw-------   1 visitor  staff     42 Jun 16 10:00 .secret_passwords.txt`;
+        } else {
+          responseContent = `profile.md  projects/  resume.pdf`;
+        }
+        break;
+      case 'cat':
+        if (args[1] === '.secret_passwords.txt') {
+          responseContent = `Nice try! But since you're here, have a 🍪 and a [Rickroll](https://www.youtube.com/watch?v=dQw4w9WgXcQ)`;
+        } else if (args[1]) {
+          responseContent = `cat: ${args[1]}: Permission denied`;
+        } else {
+          responseContent = `Meow! 🐈`;
+        }
         break;
       default:
         responseContent = `Command not found: ${trimmed}. Type 'help' or 'man' for a list of available commands.`;
