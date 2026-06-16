@@ -192,6 +192,19 @@ export default function TerminalPortfolio() {
 **FLAGS**
     **--all**    Read all older posts instead of just recent ones`;
               break;
+            case 'blog':
+              responseContent = `**NAME**
+    blog - Read my personal blog
+
+**SYNOPSIS**
+    blog [FLAG]
+
+**DESCRIPTION**
+    Displays information about my blog and latest posts.
+
+**FLAGS**
+    **--latest**    Fetch and read the most recent blog post`;
+              break;
             case 'about':
               responseContent = `**NAME**
     about - Learn more about my background and personality
@@ -229,6 +242,7 @@ export default function TerminalPortfolio() {
 **projects** : Browse my recent work (try **projects --dev**)
 **ctfs**     : View Capture The Flag history
 **writeups** : Read my security writeups
+**blog**     : View my blog posts (try **blog --latest**)
 **resume**   : Download or view my resume
 **contact**  : Get my contact information
 **theme**    : Toggle dark/light mode (or use **light** / **dark**)
@@ -327,9 +341,9 @@ Append a flag to learn more about me:
           {
             category: 'dev',
             title: "My Blog",
-            desc: "Personal tech blog and portfolio",
-            img: "/project-banners/blog.svg",
-            details: "A personal blog built to share my technical writeups, thoughts on software engineering, and tutorials. It features a fully responsive design, seamless Light/Dark mode toggling, and an integrated tagging system to easily navigate through various topics. Built using Next.js and TailwindCSS, the blog parses MDX files allowing for rich, interactive content embedded directly within the markdown. I aimed for a minimalist, developer-focused aesthetic that prioritizes readability and speed.\n\n<div style=\"display: flex; flex-direction: column; gap: 24px; margin-top: 15px;\"><div><strong style=\"display: block; margin-bottom: 8px; color: var(--accent);\">Light Mode Theme</strong><img src=\"/my-blog/LightMode.webp\" style=\"width: 100%; height: auto; border-radius: 4px;\" /></div><div><strong style=\"display: block; margin-bottom: 8px; color: var(--accent);\">Dark Mode Theme</strong><img src=\"/my-blog/DarkMode.webp\" style=\"width: 100%; height: auto; border-radius: 4px;\" /></div><div><strong style=\"display: block; margin-bottom: 8px; color: var(--accent);\">Post Feed Layout</strong><img src=\"/my-blog/AllPosts.webp\" style=\"width: 100%; height: auto; border-radius: 4px;\" /></div><div><strong style=\"display: block; margin-bottom: 8px; color: var(--accent);\">MDX Blog Details</strong><img src=\"/my-blog/BlogDetails.webp\" style=\"width: 100%; height: auto; border-radius: 4px;\" /></div><div><strong style=\"display: block; margin-bottom: 8px; color: var(--accent);\">Tag Categorization</strong><img src=\"/my-blog/Tags.webp\" style=\"width: 100%; height: auto; border-radius: 4px;\" /></div></div>",
+            desc: "I wanted a space that felt personal — somewhere I could write about things I'm learning, projects I'm building, and ideas I'm exploring. Most blogging platforms felt too generic, so I built my own from scratch with a focus on reading experience and minimal design.",
+            img: "/project-banners/my-blog.svg",
+            details: "<div style=\"display: flex; flex-direction: column; gap: 24px; margin-top: 15px;\"><div><strong style=\"display: block; margin-bottom: 8px; color: var(--accent);\">Light Mode Theme</strong><img src=\"/my-blog/LightMode.webp\" style=\"width: 100%; height: auto; border-radius: 4px;\" /></div><div><strong style=\"display: block; margin-bottom: 8px; color: var(--accent);\">Dark Mode Theme</strong><img src=\"/my-blog/DarkMode.webp\" style=\"width: 100%; height: auto; border-radius: 4px;\" /></div><div><strong style=\"display: block; margin-bottom: 8px; color: var(--accent);\">Post Feed Layout</strong><img src=\"/my-blog/AllPosts.webp\" style=\"width: 100%; height: auto; border-radius: 4px;\" /></div><div><strong style=\"display: block; margin-bottom: 8px; color: var(--accent);\">MDX Blog Details</strong><img src=\"/my-blog/BlogDetails.webp\" style=\"width: 100%; height: auto; border-radius: 4px;\" /></div><div><strong style=\"display: block; margin-bottom: 8px; color: var(--accent);\">Tag Categorization</strong><img src=\"/my-blog/Tags.webp\" style=\"width: 100%; height: auto; border-radius: 4px;\" /></div></div>",
             tech: ["Next.js", "TailwindCSS", "MDX"],
             link: "https://github.com/Pynthamil/my-blog",
             live: "https://my-blog-tan-tau.vercel.app"
@@ -338,7 +352,7 @@ Append a flag to learn more about me:
             category: 'dev',
             title: "GitPerson",
             desc: "AI developer profile generator",
-            img: "/project-banners/gitperson.svg",
+            img: "/project-banners/git-person.svg",
             details: "A tool that analyzes a GitHub user's commit history, repositories, and languages to generate a beautiful, AI-narrated profile and summary of their coding style.",
             tech: ["Next.js", "GitHub API", "OpenAI"],
             link: "https://github.com/Pynthamil/gitperson"
@@ -467,6 +481,13 @@ ${p.tech.map(t => '\`' + t + '\`').join('  ')}
 *Use **writeups --all** to read older posts.*`;
         }
         break;
+      case 'blog':
+        if (args[1] === '--latest') {
+          responseContent = `**Latest Blog Post:**\n\n**print('Hello World') was not enough, so I built a blog.**\n*A little bit on why this blog, and why I started writing.*\n\n[Read it on My Blog](https://my-blog-tan-tau.vercel.app) 🚀`;
+        } else {
+          responseContent = `Usage: **blog --latest** to fetch the most recent blog post, or visit [My Blog](https://my-blog-tan-tau.vercel.app).`;
+        }
+        break;
       case 'contact':
         responseContent = `You can reach me at:
 **Email**: [pavendanpynthamil@gmail.com](mailto:pavendanpynthamil@gmail.com)
@@ -576,6 +597,7 @@ drwxr-xr-x   1 root     staff   4096 Jun 16 10:00 ..
   const formatMarkdown = (text) => {
     return text.split('\n').map((line, i) => {
       let formattedLine = line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      formattedLine = formattedLine.replace(/\*(.*?)\*/g, '<em>$1</em>');
       formattedLine = formattedLine.replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1" style="max-width: 100%; height: auto; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; margin: 12px 0; display: block;" />');
       formattedLine = formattedLine.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: underline;">$1</a>');
       return <div key={i} dangerouslySetInnerHTML={{ __html: formattedLine || '&nbsp;' }} />;
