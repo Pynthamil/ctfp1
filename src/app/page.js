@@ -118,7 +118,7 @@ export default function TerminalPortfolio() {
     let newPose = 'default';
     const mainCommandBase = trimmed.split(' ').filter(Boolean)[0].toLowerCase().replace(/^\//, '');
     
-    if (mainCommandBase === 'projects' || mainCommandBase === 'resume' || mainCommandBase === 'writeups') {
+    if (mainCommandBase === 'project' || mainCommandBase === 'resume' || mainCommandBase === 'writeups') {
       newPose = 'working';
     } else if (mainCommandBase === 'clear') {
       newPose = 'sleeping';
@@ -151,12 +151,12 @@ export default function TerminalPortfolio() {
         
         if (args[1]) {
           switch (args[1].toLowerCase()) {
-            case 'projects':
+            case 'project':
               responseContent = `**NAME**
-    projects - Browse my recent work
+    project - Browse my recent work
 
 **SYNOPSIS**
-    projects [FLAG]
+    project [FLAG]
 
 **DESCRIPTION**
     Lists portfolio items. If no flag is provided, displays project categories.
@@ -166,18 +166,19 @@ export default function TerminalPortfolio() {
     **--design** Show UI/UX, graphic design, and pixel art projects
     **--social** Show community initiatives and open source projects`;
               break;
-            case 'ctfs':
+            case 'ctf':
               responseContent = `**NAME**
-    ctfs - View Capture The Flag history
+    ctf - View Capture The Flag history
 
 **SYNOPSIS**
-    ctfs [FLAG]
+    ctf [FLAG]
 
 **DESCRIPTION**
     Displays my recent Capture The Flag competition results.
 
 **FLAGS**
-    **--all**    View the complete competition history instead of just recent ones`;
+    **--all**    View the complete competition history instead of just recent ones
+    **--stats**  View global player statistics and rankings`;
               break;
             case 'writeups':
               responseContent = `**NAME**
@@ -239,8 +240,8 @@ export default function TerminalPortfolio() {
           responseContent = `Here are the available commands:
 **about**    : Learn more about my background
 **skills**   : View my technical expertise
-**projects** : Browse my recent work (try **projects --dev**)
-**ctfs**     : View Capture The Flag history
+**projects** : Browse my recent work (try **project --dev**)
+**ctf**      : View Capture The Flag history
 **writeups** : Read my security writeups
 **blog**     : View my blog posts (try **blog --latest**)
 **resume**   : Download or view my resume
@@ -249,7 +250,7 @@ export default function TerminalPortfolio() {
 **clear**    : Clear the terminal output
 **help**     : Show this help message
 
-*(Tip: Type **man <command>** for detailed usage, e.g., **man projects**)*`;
+*(Tip: Type **man <command>** for detailed usage, e.g., **man project**)*`;
         }
         break;
       case 'about':
@@ -334,7 +335,7 @@ Append a flag to learn more about me:
 **Security**: Penetration Testing, CTFs, Web Security
 **Tools**: Git, Docker, Linux, Bash`;
         break;
-      case 'projects':
+      case 'project':
         toolUse = { name: 'FetchProjects', desc: `Retrieve portfolio items (${args[1] || 'all'})` };
         
         const allProjects = [
@@ -408,7 +409,7 @@ Append a flag to learn more about me:
           const category = args[1].substring(2);
           const filteredHtml = allProjects.map((p, i) => {
             if (p.category === category) {
-              return `<div style="flex: 0 0 350px; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px;"><strong>${i+1}. ${p.title}</strong> - ${p.desc}<br/><span style="color: var(--accent); font-size: 0.9em; display: inline-block; margin-top: 5px;">Type <strong>projects ${i+1}</strong> for details</span><img src="${p.img}" style="width: 100%; height: auto; border-radius: 6px; margin-top: 10px;" /></div>`;
+              return `<div style="flex: 0 0 350px; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px;"><strong>${i+1}. ${p.title}</strong><br/><span style="color: var(--accent); font-size: 0.9em; display: inline-block; margin-top: 5px;">Type <strong>project ${i+1}</strong> for details</span><img src="${p.img}" style="width: 100%; height: auto; border-radius: 6px; margin-top: 10px;" /></div>`;
             }
             return '';
           }).join('');
@@ -430,7 +431,7 @@ ${p.tech.map(t => '\`' + t + '\`').join('  ')}
 **Link${p.live ? 's' : ''}:**
 [View on GitHub](${p.link})${p.live ? `\n[View Live Site](${p.live})` : ''}`;
           } else {
-            responseContent = `Project ID ${args[1]} not found. Try running **projects --dev** to see available projects.`;
+            responseContent = `Project ID ${args[1]} not found. Try running **project --dev** to see available projects.`;
           }
         } else if (args[1] === '--social') {
           responseContent = `**Social & Community Projects:**
@@ -440,14 +441,14 @@ ${p.tech.map(t => '\`' + t + '\`').join('  ')}
         } else {
           responseContent = `Here are my project categories. Append a flag to view specific projects:
 
-**projects --dev**    : Software engineering & security projects
-**projects --design** : UI/UX, graphic design, and pixel art
-**projects --social** : Community initiatives and open source
+**project --dev**    : Software engineering & security projects
+**project --design** : UI/UX, graphic design, and pixel art
+**project --social** : Community initiatives and open source
 
-*(Try typing: **projects --dev**)*`;
+*(Try typing: **project --dev**)*`;
         }
         break;
-      case 'ctfs':
+      case 'ctf':
         toolUse = { name: 'QueryDatabase', desc: `Fetch CTF history (${args[1] === '--all' ? 'all' : 'recent'})` };
         const ctfContent = `**Team / Player**: 3xpl01t
 
@@ -457,10 +458,12 @@ ${p.tech.map(t => '\`' + t + '\`').join('  ')}
 
 *(More to come soon!)*`;
 
-        if (args[1] === '--all') {
+        if (args[1] === '--stats') {
+          responseContent = `**CTF Player Stats:**\n*Team / Player*: 3xpl01t\n\n<div style="color: var(--accent); font-family: var(--font-mono); font-size: 14px; white-space: pre; line-height: 1.1; margin-top: 20px; margin-bottom: 30px; text-align: center;">       ⢀⣠⣴⣶⣾⣿⣶⣄⡀<br/>      ⣴⣿⣿⣿⣿⣿⣿⣿⣿⣦<br/>⢀⣤⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣤⡀  <span style="font-size: 8px;">TM</span><br/>⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋<br/>   ⠈⠛⠿⣿⣿⣿⣿⣿⣿⠿⠛⠁<br/>      ⠈⠉⠉⠉⠉⠉</div>\n\n<!-- Points Over Time Area Chart -->\n<div style="background: rgba(255,255,255,0.02); border: 1px solid var(--accent-muted); border-radius: 12px; padding: 25px 20px; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center;"><div style="font-weight: bold; margin-bottom: 25px; color: var(--text); font-size: 15px; width: 100%;">Points Accumulation (2026)</div><svg viewBox="0 0 400 150" style="width: 100%; max-width: 600px; height: auto; overflow: visible;"><line x1="0" y1="150" x2="400" y2="150" stroke="var(--accent-muted)" stroke-width="1" stroke-dasharray="4,4"/><line x1="0" y1="100" x2="400" y2="100" stroke="var(--accent-muted)" stroke-width="1" stroke-dasharray="4,4"/><line x1="0" y1="50" x2="400" y2="50" stroke="var(--accent-muted)" stroke-width="1" stroke-dasharray="4,4"/><line x1="0" y1="0" x2="400" y2="0" stroke="var(--accent-muted)" stroke-width="1" stroke-dasharray="4,4"/><polygon points="20,150 20,150 80,137.5 140,120 200,87.5 260,70 380,17.5 380,150" fill="var(--accent)" opacity="0.2"/><polyline points="20,150 80,137.5 140,120 200,87.5 260,70 380,17.5" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="150" r="4" fill="var(--accent)" stroke="var(--bg)" stroke-width="1.5"/><circle cx="80" cy="137.5" r="4" fill="var(--accent)" stroke="var(--bg)" stroke-width="1.5"/><circle cx="140" cy="120" r="4" fill="var(--accent)" stroke="var(--bg)" stroke-width="1.5"/><circle cx="200" cy="87.5" r="4" fill="var(--accent)" stroke="var(--bg)" stroke-width="1.5"/><circle cx="260" cy="70" r="4" fill="var(--accent)" stroke="var(--bg)" stroke-width="1.5"/><circle cx="380" cy="17.5" r="4" fill="var(--accent)" stroke="var(--bg)" stroke-width="1.5"/><text x="20" y="170" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)" text-anchor="middle">Jan</text><text x="80" y="170" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)" text-anchor="middle">Feb</text><text x="140" y="170" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)" text-anchor="middle">Mar</text><text x="200" y="170" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)" text-anchor="middle">Apr</text><text x="260" y="170" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)" text-anchor="middle">May</text><text x="380" y="170" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)" text-anchor="middle">Jun</text><text x="-10" y="153" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)" text-anchor="end">0</text><text x="-10" y="103" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)" text-anchor="end">2k</text><text x="-10" y="53" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)" text-anchor="end">4k</text><text x="-10" y="3" fill="var(--text-muted)" font-size="10" font-family="var(--font-mono)" text-anchor="end">6k</text></svg></div>\n\n<div style="display: flex; gap: 20px; margin-top: 10px; margin-bottom: 20px; flex-wrap: wrap;"><div style="flex: 1; min-width: 280px; background: rgba(255,255,255,0.02); border: 1px solid var(--accent-muted); border-radius: 12px; padding: 25px 20px; display: flex; flex-direction: column; align-items: center;"><div style="font-weight: bold; margin-bottom: 25px; color: var(--text); font-size: 15px;">Category Proficiency Radar</div><svg viewBox="0 0 100 100" style="width: 180px; height: 180px; overflow: visible;"><circle cx="50" cy="50" r="10" fill="none" stroke="var(--text-muted)" stroke-width="0.5" opacity="0.3"/><circle cx="50" cy="50" r="20" fill="none" stroke="var(--text-muted)" stroke-width="0.5" opacity="0.3"/><circle cx="50" cy="50" r="30" fill="none" stroke="var(--text-muted)" stroke-width="0.5" opacity="0.3"/><circle cx="50" cy="50" r="40" fill="none" stroke="var(--text-muted)" stroke-width="0.5" opacity="0.3"/><line x1="50" y1="50" x2="50" y2="10" stroke="var(--text-muted)" stroke-width="0.5" opacity="0.5"/><line x1="50" y1="50" x2="88" y2="37.6" stroke="var(--text-muted)" stroke-width="0.5" opacity="0.5"/><line x1="50" y1="50" x2="73.4" y2="82.3" stroke="var(--text-muted)" stroke-width="0.5" opacity="0.5"/><line x1="50" y1="50" x2="26.5" y2="82.3" stroke="var(--text-muted)" stroke-width="0.5" opacity="0.5"/><line x1="50" y1="50" x2="11.9" y2="37.6" stroke="var(--text-muted)" stroke-width="0.5" opacity="0.5"/><polygon points="50,35 64.2,45.3 58.8,62.1 41.2,62.1 35.7,45.3" fill="var(--text-muted)" fill-opacity="0.2" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2"/><polygon points="50,16 80.4,40.1 65.2,71 38.2,66.1 34.7,45" fill="var(--accent)" fill-opacity="0.5" stroke="var(--accent)" stroke-width="1.5" stroke-linejoin="round"/><text x="50" y="5" font-size="6" fill="var(--text)" text-anchor="middle" font-family="var(--font-mono)">Web</text><text x="92" y="39" font-size="6" fill="var(--text)" text-anchor="start" font-family="var(--font-mono)">OSINT</text><text x="75" y="88" font-size="6" fill="var(--text)" text-anchor="start" font-family="var(--font-mono)">Crypto</text><text x="24" y="88" font-size="6" fill="var(--text)" text-anchor="end" font-family="var(--font-mono)">Pwn</text><text x="8" y="39" font-size="6" fill="var(--text)" text-anchor="end" font-family="var(--font-mono)">Rev</text></svg></div><div style="flex: 1; min-width: 280px; background: rgba(255,255,255,0.02); border: 1px solid var(--accent-muted); border-radius: 12px; padding: 25px 20px; display: flex; flex-direction: column; align-items: center;"><div style="font-weight: bold; margin-bottom: 25px; color: var(--text); font-size: 15px;">Solve Time vs. Points (Scatter)</div><svg viewBox="0 0 200 150" style="width: 100%; max-width: 280px; height: auto; overflow: visible; margin-top: 10px;"><line x1="0" y1="150" x2="200" y2="150" stroke="var(--text-muted)" stroke-width="1"/><line x1="0" y1="150" x2="0" y2="0" stroke="var(--text-muted)" stroke-width="1"/><circle cx="20" cy="140" r="3" fill="var(--accent)" opacity="0.4"/><circle cx="35" cy="130" r="3.5" fill="var(--accent)" opacity="0.5"/><circle cx="45" cy="145" r="2" fill="var(--accent)" opacity="0.3"/><circle cx="60" cy="110" r="4" fill="var(--accent)" opacity="0.6"/><circle cx="80" cy="120" r="3" fill="var(--accent)" opacity="0.5"/><circle cx="100" cy="90" r="4.5" fill="var(--accent)" opacity="0.7"/><circle cx="120" cy="70" r="5" fill="var(--accent)" opacity="0.8"/><circle cx="150" cy="50" r="4" fill="var(--accent)" opacity="0.7"/><circle cx="180" cy="20" r="6" fill="var(--accent)" opacity="0.9"/><line x1="10" y1="145" x2="190" y2="15" stroke="var(--text)" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.8"/><text x="100" y="170" fill="var(--text-muted)" font-size="8" font-family="var(--font-mono)" text-anchor="middle">Challenge Points</text><text x="-75" y="-15" fill="var(--text-muted)" font-size="8" font-family="var(--font-mono)" text-anchor="middle" transform="rotate(-90)">Solve Time (hrs)</text></svg></div></div><div style="display: flex; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;"><div style="flex: 1; min-width: 200px; background: rgba(255,255,255,0.02); border: 1px solid var(--accent-muted); border-radius: 12px; padding: 25px 20px; text-align: center;"><div style="font-size: 52px; font-weight: bold; color: var(--accent); line-height: 1; font-family: sans-serif;">5,300</div><div style="font-size: 14px; color: var(--text-muted); margin-top: 10px; font-weight: 500;">Total Points Earned</div></div><div style="flex: 1; min-width: 200px; background: rgba(255,255,255,0.02); border: 1px solid var(--accent-muted); border-radius: 12px; padding: 25px 20px; text-align: center;"><div style="font-size: 52px; font-weight: bold; color: var(--accent); line-height: 1; font-family: sans-serif;">1</div><div style="font-size: 14px; color: var(--text-muted); margin-top: 10px; font-weight: 500;">Events Played</div></div><div style="flex: 1; min-width: 200px; background: rgba(255,255,255,0.02); border: 1px solid var(--accent-muted); border-radius: 12px; padding: 25px 20px; display: flex; flex-direction: column; align-items: center; justify-content: center;"><div style="font-weight: bold; margin-bottom: 10px; color: var(--text); font-size: 15px;">Global Ranking</div><div style="width: 80px; height: 80px; border-radius: 50%; background: conic-gradient(var(--accent) 0% 31%, rgba(255,255,255,0.05) 31% 100%); display: flex; align-items: center; justify-content: center; margin-bottom: 10px;"><div style="width: 60px; height: 60px; border-radius: 50%; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center;"><span style="font-size: 14px; font-weight: bold; color: var(--accent);">31%</span></div></div><div style="font-size: 12px; color: var(--text-muted);">261st / 831</div></div></div><div style="display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.02); border: 1px solid var(--accent-muted); border-radius: 12px; padding: 25px 20px; margin-bottom: 20px;"><div style="font-weight: bold; margin-bottom: 20px; color: var(--text); font-size: 15px;">Challenges Completed (Pictograph)</div><div style="font-size: 18px; line-height: 1.5; letter-spacing: 6px; width: 240px; text-align: center;"><span style="color: var(--accent);">👤👤👤👤👤👤👤👤👤👤</span><br/><span style="color: var(--accent);">👤👤👤👤👤👤👤👤👤👤</span><br/><span style="color: var(--accent);">👤👤👤👤👤👤👤👤👤👤</span><br/><span style="color: var(--accent);">👤👤👤👤👤👤👤👤👤👤</span><br/><span style="color: var(--accent);">👤👤👤👤👤👤👤👤👤👤</span><br/><span style="color: var(--accent);">👤👤👤👤👤👤👤👤👤👤</span><br/><span style="color: var(--accent);">👤👤👤👤</span><span style="color: var(--text-muted); opacity: 0.3;">👤👤👤👤👤👤</span><br/><span style="color: var(--text-muted); opacity: 0.3;">👤👤👤👤👤👤👤👤👤👤</span><br/><span style="color: var(--text-muted); opacity: 0.3;">👤👤👤👤👤👤👤👤👤👤</span><br/><span style="color: var(--text-muted); opacity: 0.3;">👤👤👤👤👤👤👤👤👤👤</span></div><div style="display: flex; gap: 30px; margin-top: 15px; font-size: 13px;"><div style="display: flex; align-items: center; gap: 8px;"><span style="color: var(--accent);">👤</span> Solved (64)</div><div style="display: flex; align-items: center; gap: 8px;"><span style="color: var(--text-muted); opacity: 0.3;">👤</span> Unsolved/Attempted (36)</div></div></div>`;
+        } else if (args[1] === '--all') {
           responseContent = `**All CTF Participations:**\n\n${ctfContent}`;
         } else {
-          responseContent = `**Recent CTFs:**\n\n${ctfContent}`;
+          responseContent = `**Recent CTFs:**\n\n${ctfContent}\n\n*(Tip: Try typing **ctfs --stats**)*`;
         }
         break;
       case 'writeups':
