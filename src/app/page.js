@@ -20,73 +20,19 @@ const FOX_POSES = {
     "RRDRRDRRDRRDRRDRR",
     "  OOFFFFFOOFFOO  ",
     "   OOOO   OOOO   "
-  ],
-  sleeping: [
-    "       Z         ",
-    "         Z       ",
-    "  OOO   Z   OOO  ",
-    " OFFFO     OFFFO ",
-    " OFFFO     OFFFO ",
-    " OFFFOOOOOOOFFFO ",
-    " OFFFFFFFFFFFFFO ",
-    " OFFFFFFFFFFFFFO ",
-    " OPPOOFFFFFOOPPO ",
-    " OWWWFFFFFFFWWWO ",
-    " OWWWWWFFFWWWWWO ",
-    " OWWWWWWOWWWWWWO ",
-    " RRRRRRRRRRRRRRR ",
-    "RRDRRDRRDRRDRRDRR",
-    "  OOFFFFFOOFFOO  ",
-    "   OOOO   OOOO   "
-  ],
-  working: [
-    "                 ",
-    "                 ",
-    "  OOO       OOO  ",
-    " OFFFO     OFFFO ",
-    " OFFFO     OFFFO ",
-    " OFFFOOOOOOOFFFO ",
-    " OFFFFFFFFFFFFFO ",
-    " OFFFOFFFFFOFFFO ",
-    " OPPFOFFFFFOFPPO ",
-    " OWWWFFFFFFFWWWO ",
-    " OWWWWWFFFWWWWWO ",
-    " OWWWWWWOWWWWWWO ",
-    " RRRRRAAAAARRRRR ",
-    "RRDRRAACNCCAARDRR",
-    "  OOFAAAAAAAFOO  ",
-    "   OOOO   OOOO   "
-  ],
-  stressed: [
-    "                 ",
-    "                 ",
-    "  OOO       OOO  ",
-    " OFFFO     OFFFO ",
-    " OFFFO     OFFFO ",
-    " OFFFOOOOOOOFFFO ",
-    " OFFFFFFFFFFFFFO ",
-    " OFFFOFFFFFOFFFO ",
-    " OPPFOBFFFBOFPPO ",
-    " OWWWFBFFFBFWWWO ",
-    " OWWWWBBFBBWWWWO ",
-    " OWWWWWBOWBBWWWO ",
-    " RRRRRRBBRBBRRRR ",
-    "RRDRRDRBBRBBRRDRR",
-    "  OOFFFBBFBBFOO  ",
-    "   OOOO   OOOO   "
   ]
 };
 
 const colorMap = {
-  'O': '#282a36',
-  'F': '#e86a33',
+  'O': '#2d2d2d',
+  'F': '#ff7b00',
   'W': '#ffffff',
-  'P': '#f4a4b5',
-  'R': '#cc4d4d',
-  'D': '#a33939',
-  'B': '#8be9fd',
+  'P': '#ff9eaa',
+  'R': '#8b2b2b',
+  'D': '#5c1b1b',
+  'B': '#3498db',
   'A': '#bdc3c7',
-  'C': '#2c3e50',
+  'C': '#34495e',
   'N': '#50fa7b',
   'Z': '#f1fa8c',
   ' ': 'transparent'
@@ -182,7 +128,7 @@ export default function TerminalPortfolio() {
       newPose = 'stressed'; // Unknown command
     }
     
-    setPose(newPose);
+    // setPose(newPose); // Disabled dynamic poses per user request
 
     // Simulate network/processing delay
     await new Promise(resolve => setTimeout(resolve, 500 + Math.random() * 300));
@@ -375,24 +321,93 @@ Append a flag to learn more about me:
 **Tools**: Git, Docker, Linux, Bash`;
         break;
       case 'projects':
-        toolUse = { name: 'FetchProjects', desc: `Retrieve portfolio items (\${args[1] || 'all'})` };
+        toolUse = { name: 'FetchProjects', desc: `Retrieve portfolio items (${args[1] || 'all'})` };
         
-        if (args[1] === '--dev') {
-          const devProjects = [
-            { title: "Terminal Browser", desc: "A command-line web browser", img: "/project-banners/terminal-browser.svg" },
-            { title: "Semantic Email", desc: "AI-powered semantic email client", img: "/project-banners/semantic-email.svg" },
-            { title: "GitPerson", desc: "AI developer profile generator", img: "/project-banners/gitperson.svg" },
-            { title: "ReadmeFlier", desc: "Automated README generator", img: "/project-banners/readmeflier.svg" },
-            { title: "Resume Roaster", desc: "AI-based brutally honest resume reviewer", img: "/project-banners/resume-roaster.svg" }
-          ];
+        const allProjects = [
+          {
+            category: 'dev',
+            title: "My Blog",
+            desc: "Personal tech blog and portfolio",
+            img: "/project-banners/blog.svg",
+            details: "A personal blog built to share my technical writeups, thoughts on software engineering, and tutorials.",
+            tech: ["Next.js", "TailwindCSS", "MDX"],
+            link: "https://github.com/Pynthamil/blog"
+          },
+          {
+            category: 'dev',
+            title: "GitPerson",
+            desc: "AI developer profile generator",
+            img: "/project-banners/gitperson.svg",
+            details: "A tool that analyzes a GitHub user's commit history, repositories, and languages to generate a beautiful, AI-narrated profile and summary of their coding style.",
+            tech: ["Next.js", "GitHub API", "OpenAI"],
+            link: "https://github.com/Pynthamil/gitperson"
+          },
+          {
+            category: 'dev',
+            title: "ReadmeFlier",
+            desc: "Automated README generator",
+            img: "/project-banners/readmeflier.svg",
+            details: "Automatically reads your source code structure and comments, then generates a perfectly formatted, comprehensive README.md file complete with installation steps and API documentation.",
+            tech: ["TypeScript", "AST Parsing", "Markdown"],
+            link: "https://github.com/Pynthamil/readmeflier"
+          },
+          {
+            category: 'design',
+            title: "Resume Roaster",
+            desc: "AI-based brutally honest resume reviewer",
+            img: "/project-banners/resume-roaster.svg",
+            details: "A fun web app where you upload your PDF resume, and an AI agent roasts it brutally while secretly giving you excellent actionable feedback to improve it.",
+            tech: ["React", "PDF.js", "TailwindCSS"],
+            link: "https://github.com/Pynthamil/resume-roaster"
+          },
+          {
+            category: 'design',
+            title: "Terminal Browser",
+            desc: "A command-line web browser",
+            img: "/project-banners/terminal-browser.svg",
+            details: "Built a headless browser interface directly in the terminal using Puppeteer and Blessed. It renders text-based versions of web pages, handles form inputs, and executes JavaScript headless.",
+            tech: ["Node.js", "Puppeteer", "Blessed"],
+            link: "https://github.com/Pynthamil/terminal-browser"
+          },
+          {
+            category: 'design',
+            title: "Semantic Email",
+            desc: "AI-powered semantic email client",
+            img: "/project-banners/semantic-email.svg",
+            details: "An intelligent email client that uses local LLMs to categorize, summarize, and draft replies to incoming emails automatically. It understands the semantic meaning of your inbox.",
+            tech: ["Python", "Transformers", "React", "IMAP"],
+            link: "https://github.com/Pynthamil/semantic-email"
+          }
+        ];
 
-          const scrollHtml = devProjects.map((p, i) => `<div style="flex: 0 0 350px; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px;"><strong>${i+1}. ${p.title}</strong> - ${p.desc}<img src="${p.img}" style="width: 100%; height: auto; border-radius: 6px; margin-top: 10px;" /></div>`).join('');
-          responseContent = `**Development Projects:**\n<div style="display: flex; gap: 20px; overflow-x: auto; padding-bottom: 15px; margin-top: 15px; scrollbar-width: none; -ms-overflow-style: none;">${scrollHtml}</div>`;
-        } else if (args[1] === '--design') {
-          responseContent = `**Design Projects:**
-1. **Brand Identity** - Logo and brand guidelines for a local tech startup
-2. **UI/UX Redesign** - Mobile app interface overhaul for a fitness tracker
-3. **Pixel Art Mascots** - Character designs and custom sprites (like the fox above!)`;
+        if (args[1] === '--dev' || args[1] === '--design') {
+          const category = args[1].substring(2);
+          const filteredHtml = allProjects.map((p, i) => {
+            if (p.category === category) {
+              return `<div style="flex: 0 0 350px; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px;"><strong>${i+1}. ${p.title}</strong> - ${p.desc}<br/><span style="color: var(--accent); font-size: 0.9em; display: inline-block; margin-top: 5px;">Type <strong>projects ${i+1}</strong> for details</span><img src="${p.img}" style="width: 100%; height: auto; border-radius: 6px; margin-top: 10px;" /></div>`;
+            }
+            return '';
+          }).join('');
+          const title = category === 'dev' ? 'Development Projects' : 'Design Projects';
+          responseContent = `**${title}:**\n<div style="display: flex; gap: 20px; overflow-x: auto; padding-bottom: 15px; margin-top: 15px; scrollbar-width: none; -ms-overflow-style: none;">${filteredHtml}</div>`;
+        } else if (args[1] && !isNaN(parseInt(args[1]))) {
+          const idx = parseInt(args[1]) - 1;
+          if (idx >= 0 && idx < allProjects.length) {
+            const p = allProjects[idx];
+            responseContent = `**${p.title}**
+*${p.desc}*
+
+**Details:**
+${p.details}
+
+**Tech Stack:**
+${p.tech.map(t => '\`' + t + '\`').join('  ')}
+
+**Link:**
+[View on GitHub](${p.link})`;
+          } else {
+            responseContent = `Project ID ${args[1]} not found. Try running **projects --dev** to see available projects.`;
+          }
         } else if (args[1] === '--social') {
           responseContent = `**Social & Community Projects:**
 1. **Tech Meetup Organizer** - Hosting monthly local tech talks and workshops
