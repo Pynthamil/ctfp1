@@ -404,7 +404,7 @@ Append a flag to learn more about me:
             link: "https://github.com/Pynthamil/semantic-email"
           },
           {
-            category: 'design',
+            category: 'social',
             title: "Social Media Designs",
             desc: "A collection of social media graphics and marketing materials",
             img: "/project-banners/luma.svg",
@@ -414,7 +414,7 @@ Append a flag to learn more about me:
           }
         ];
 
-        if (args[1] === '--dev' || args[1] === '--design') {
+        if (args[1] === '--dev' || args[1] === '--design' || args[1] === '--social') {
           const category = args[1].substring(2);
           const filteredHtml = allProjects.map((p, i) => {
             if (p.category === category) {
@@ -422,7 +422,7 @@ Append a flag to learn more about me:
             }
             return '';
           }).join('');
-          const title = category === 'dev' ? 'Development Projects' : 'Design Projects';
+          const title = category === 'dev' ? 'Development Projects' : (category === 'social' ? 'Social Media & Community' : 'Design Projects');
           responseContent = `**${title}:**\n<div style="display: flex; gap: 20px; overflow-x: auto; padding-bottom: 15px; margin-top: 15px; scrollbar-width: none; -ms-overflow-style: none;">${filteredHtml}</div>`;
         } else if (args[1] && !isNaN(parseInt(args[1]))) {
           const idx = parseInt(args[1]) - 1;
@@ -442,11 +442,6 @@ ${p.tech.map(t => '\`' + t + '\`').join('  ')}
           } else {
             responseContent = `Project ID ${args[1]} not found. Try running **project --dev** to see available projects.`;
           }
-        } else if (args[1] === '--social') {
-          responseContent = `**Social & Community Projects:**
-1. **Tech Meetup Organizer** - Hosting monthly local tech talks and workshops
-2. **Open Source Contributions** - Regular contributor to community security tools
-3. **Mentorship** - Mentoring junior developers breaking into cybersecurity`;
         } else {
           responseContent = `Here are my project categories. Append a flag to view specific projects:
 
