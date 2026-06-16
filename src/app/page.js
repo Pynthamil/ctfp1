@@ -386,7 +386,8 @@ Append a flag to learn more about me:
             img: "/project-banners/git-person.svg",
             details: "A tool that analyzes a GitHub user's commit history, repositories, and languages to generate a beautiful, AI-narrated profile and summary of their coding style.",
             tech: ["Next.js", "GitHub API", "OpenAI"],
-            link: "https://github.com/Pynthamil/gitperson"
+            link: "https://github.com/Pynthamil/gitperson",
+            locked: true
           },
           {
             category: 'dev',
@@ -395,7 +396,8 @@ Append a flag to learn more about me:
             img: "/project-banners/readmeflier.svg",
             details: "Automatically reads your source code structure and comments, then generates a perfectly formatted, comprehensive README.md file complete with installation steps and API documentation.",
             tech: ["TypeScript", "AST Parsing", "Markdown"],
-            link: "https://github.com/Pynthamil/readmeflier"
+            link: "https://github.com/Pynthamil/readmeflier",
+            locked: true
           },
           {
             category: 'design',
@@ -592,7 +594,8 @@ Append a flag to learn more about me:
           const category = args[1].substring(2);
           const filteredHtml = allProjects.map((p, i) => {
             if (p.category === category) {
-              return `<div style="flex: 0 0 350px; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px;"><strong>${i+1}. ${p.title}</strong><br/><span style="color: var(--accent); font-size: 0.9em; display: inline-block; margin-top: 5px;">Type <strong>project ${i+1}</strong> for details</span><img src="${p.img}" style="width: 100%; height: auto; border-radius: 6px; margin-top: 10px;" /></div>`;
+              const statusText = p.locked ? `<span style="color: #ff5555; font-size: 0.9em; display: inline-block; margin-top: 5px; font-weight: bold;">Coming soon! 🔒</span>` : `<span style="color: var(--accent); font-size: 0.9em; display: inline-block; margin-top: 5px;">Type <strong>project ${i+1}</strong> for details</span>`;
+              return `<div style="flex: 0 0 350px; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; ${p.locked ? 'opacity: 0.6;' : ''}"><strong>${i+1}. ${p.title}</strong><br/>${statusText}<img src="${p.img}" style="width: 100%; height: auto; border-radius: 6px; margin-top: 10px; ${p.locked ? 'filter: grayscale(100%); opacity: 0.7;' : ''}" /></div>`;
             }
             return '';
           }).join('');
@@ -602,7 +605,10 @@ Append a flag to learn more about me:
           const idx = parseInt(args[1]) - 1;
           if (idx >= 0 && idx < allProjects.length) {
             const p = allProjects[idx];
-            responseContent = `**${p.title}**
+            if (p.locked) {
+              responseContent = `🔒 **${p.title}** is currently locked (Coming soon!). Please check back later!`;
+            } else {
+              responseContent = `**${p.title}**
 *${p.desc}*
 
 **Details:**
@@ -613,6 +619,7 @@ ${p.tech.map(t => '\`' + t + '\`').join('  ')}
 
 **Link${p.live ? 's' : ''}:**
 [View on GitHub](${p.link})${p.live ? `\n[View Live Site](${p.live})` : ''}`;
+            }
           } else {
             responseContent = `Project ID ${args[1]} not found. Try running **project --dev** to see available projects.`;
           }
