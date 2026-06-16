@@ -2,22 +2,80 @@
 
 import { useState, useRef, useEffect } from 'react';
 
-const FOX_PIXELS = [
-  "  OOO       OOO  ",
-  " OFFFO     OFFFO ",
-  " OFFFO     OFFFO ",
-  " OFFFOOOOOOOFFFO ",
-  " OFFFFFFFFFFFFFO ",
-  " OFFFOFFFFFOFFFO ",
-  " OPPFOFFFFFOFPPO ",
-  " OWWWFFFFFFFWWWO ",
-  " OWWWWWFFFWWWWWO ",
-  " OWWWWWWOWWWWWWO ",
-  " RRRRRRRRRRRRRRR ",
-  "RRDRRDRRDRRDRRDRR",
-  "  OOFFFFFOOFFOO  ",
-  "   OOOO   OOOO   "
-];
+const FOX_POSES = {
+  default: [
+    "                 ",
+    "                 ",
+    "  OOO       OOO  ",
+    " OFFFO     OFFFO ",
+    " OFFFO     OFFFO ",
+    " OFFFOOOOOOOFFFO ",
+    " OFFFFFFFFFFFFFO ",
+    " OFFFOFFFFFOFFFO ",
+    " OPPFOFFFFFOFPPO ",
+    " OWWWFFFFFFFWWWO ",
+    " OWWWWWFFFWWWWWO ",
+    " OWWWWWWOWWWWWWO ",
+    " RRRRRRRRRRRRRRR ",
+    "RRDRRDRRDRRDRRDRR",
+    "  OOFFFFFOOFFOO  ",
+    "   OOOO   OOOO   "
+  ],
+  sleeping: [
+    "       Z         ",
+    "         Z       ",
+    "  OOO   Z   OOO  ",
+    " OFFFO     OFFFO ",
+    " OFFFO     OFFFO ",
+    " OFFFOOOOOOOFFFO ",
+    " OFFFFFFFFFFFFFO ",
+    " OFFFFFFFFFFFFFO ",
+    " OPPOOFFFFFOOPPO ",
+    " OWWWFFFFFFFWWWO ",
+    " OWWWWWFFFWWWWWO ",
+    " OWWWWWWOWWWWWWO ",
+    " RRRRRRRRRRRRRRR ",
+    "RRDRRDRRDRRDRRDRR",
+    "  OOFFFFFOOFFOO  ",
+    "   OOOO   OOOO   "
+  ],
+  working: [
+    "                 ",
+    "                 ",
+    "  OOO       OOO  ",
+    " OFFFO     OFFFO ",
+    " OFFFO     OFFFO ",
+    " OFFFOOOOOOOFFFO ",
+    " OFFFFFFFFFFFFFO ",
+    " OFFFOFFFFFOFFFO ",
+    " OPPFOFFFFFOFPPO ",
+    " OWWWFFFFFFFWWWO ",
+    " OWWWWWFFFWWWWWO ",
+    " OWWWWWWOWWWWWWO ",
+    " RRRRRAAAAARRRRR ",
+    "RRDRRAACNCCAARDRR",
+    "  OOFAAAAAAAFOO  ",
+    "   OOOO   OOOO   "
+  ],
+  stressed: [
+    "                 ",
+    "                 ",
+    "  OOO       OOO  ",
+    " OFFFO     OFFFO ",
+    " OFFFO     OFFFO ",
+    " OFFFOOOOOOOFFFO ",
+    " OFFFFFFFFFFFFFO ",
+    " OFFFOFFFFFOFFFO ",
+    " OPPFOBFFFBOFPPO ",
+    " OWWWFBFFFBFWWWO ",
+    " OWWWWBBFBBWWWWO ",
+    " OWWWWWBOWBBWWWO ",
+    " RRRRRRBBRBBRRRR ",
+    "RRDRRDRBBRBBRRDRR",
+    "  OOFFFBBFBBFOO  ",
+    "   OOOO   OOOO   "
+  ]
+};
 
 const colorMap = {
   'O': '#282a36',
@@ -26,14 +84,20 @@ const colorMap = {
   'P': '#f4a4b5',
   'R': '#cc4d4d',
   'D': '#a33939',
+  'B': '#8be9fd',
+  'A': '#bdc3c7',
+  'C': '#2c3e50',
+  'N': '#50fa7b',
+  'Z': '#f1fa8c',
   ' ': 'transparent'
 };
 
-const FoxLogo = ({ small }) => {
+const FoxLogo = ({ small, pose = 'default' }) => {
   const pixelSize = small ? 4 : 8;
+  const pixels = FOX_POSES[pose] || FOX_POSES.default;
   return (
     <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 0, userSelect: 'none' }}>
-      {FOX_PIXELS.map((row, i) => (
+      {pixels.map((row, i) => (
         <div key={i} style={{ display: 'flex' }}>
           {row.split('').map((char, j) => (
             <div 
@@ -57,8 +121,18 @@ export default function TerminalPortfolio() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [commandHistory, setCommandHistory] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
+  const [pose, setPose] = useState('default');
+  const [theme, setTheme] = useState('dark');
   const scrollRef = useRef(null);
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (theme === 'light') {
+      document.body.classList.add('light-theme');
+    } else {
+      document.body.classList.remove('light-theme');
+    }
+  }, [theme]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -94,6 +168,21 @@ export default function TerminalPortfolio() {
     setHistory(prev => [...prev, { type: 'user', content: trimmed }]);
     setInput('');
     setIsProcessing(true);
+
+    let newPose = 'default';
+    const mainCommandBase = trimmed.split(' ').filter(Boolean)[0].toLowerCase().replace(/^\//, '');
+    
+    if (mainCommandBase === 'projects' || mainCommandBase === 'resume' || mainCommandBase === 'writeups') {
+      newPose = 'working';
+    } else if (mainCommandBase === 'clear') {
+      newPose = 'sleeping';
+    } else if (['cd', 'sudo', 'pwd', 'whoami', 'ls', 'cat'].includes(mainCommandBase)) {
+      newPose = 'stressed'; // Easter eggs trigger stressed pose!
+    } else if (!['about', 'skills', 'contact', 'help', 'man'].includes(mainCommandBase)) {
+      newPose = 'stressed'; // Unknown command
+    }
+    
+    setPose(newPose);
 
     // Simulate network/processing delay
     await new Promise(resolve => setTimeout(resolve, 500 + Math.random() * 300));
@@ -196,6 +285,7 @@ export default function TerminalPortfolio() {
 **writeups** : Read my security writeups
 **resume**   : Download or view my resume
 **contact**  : Get my contact information
+**theme**    : Toggle dark/light mode (or use **light** / **dark**)
 **clear**    : Clear the terminal output
 **help**     : Show this help message
 
@@ -400,6 +490,29 @@ drwxr-xr-x   1 root     staff   4096 Jun 16 10:00 ..
           responseContent = `Meow! 🐈`;
         }
         break;
+      case 'theme':
+        if (args[1] === 'light') {
+          setTheme('light');
+          responseContent = `Switched to light theme ☀️`;
+        } else if (args[1] === 'dark') {
+          setTheme('dark');
+          responseContent = `Switched to dark theme 🌙`;
+        } else {
+          setTheme(prev => {
+            const newTheme = prev === 'dark' ? 'light' : 'dark';
+            responseContent = `Switched to ${newTheme} theme ${newTheme === 'light' ? '☀️' : '🌙'}`;
+            return newTheme;
+          });
+        }
+        break;
+      case 'light':
+        setTheme('light');
+        responseContent = `Switched to light theme ☀️`;
+        break;
+      case 'dark':
+        setTheme('dark');
+        responseContent = `Switched to dark theme 🌙`;
+        break;
       default:
         responseContent = `Command not found: ${trimmed}. Type 'help' or 'man' for a list of available commands.`;
     }
@@ -453,14 +566,14 @@ drwxr-xr-x   1 root     staff   4096 Jun 16 10:00 ..
       <div className="scroll-area" ref={scrollRef}>
         {!isStarted ? (
           <div className="welcome-box">
-            <div className="welcome-title">Claude Code v2.0.0</div>
+            <div className="welcome-title">Terminal Agent v2.0.0</div>
             <div className="welcome-left">
               <div className="welcome-greeting">Welcome back!</div>
-              <div className="welcome-logo"><FoxLogo /></div>
+              <div className="welcome-logo"><FoxLogo pose={pose} /></div>
               <div className="welcome-metadata">
-                Sonnet 4.5 • Max 20x
+                Local Runtime • AI Assistant
                 <br />
-                /users/visitor/portfolio
+                /Users/visitor/portfolio
               </div>
             </div>
             <div className="welcome-right">
@@ -505,11 +618,11 @@ drwxr-xr-x   1 root     staff   4096 Jun 16 10:00 ..
           </div>
         ) : (
           <div className="agent-header">
-            <div className="agent-logo"><FoxLogo small /></div>
+            <div className="agent-logo"><FoxLogo small pose={pose} /></div>
             <div className="agent-info">
-              <div className="agent-info-title">Claude Code</div>
+              <div className="agent-info-title">Terminal Agent</div>
               <div className="agent-info-meta">
-                Opus (1M Context) • Claude Enterprise
+                Local Runtime • AI Assistant
                 <br />
                 /Users/visitor/portfolio
               </div>
