@@ -12,8 +12,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "3xpl01t",
-  description: "3xpl01t - CTF Player & Security Researcher",
+  title: "Pynthamil Pavendan",
+  description: "Pynthamil Pavendan - Developer",
 };
 
 export default function RootLayout({ children }) {
