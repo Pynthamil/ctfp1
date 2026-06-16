@@ -477,7 +477,7 @@ Append a flag to learn more about me:
             return '';
           }).join('');
           const title = category === 'dev' ? 'Development Projects' : (category === 'social' ? 'Social Media & Community' : 'Design Projects');
-          responseContent = `**${title}:**\n<div style="display: flex; gap: 20px; overflow-x: auto; padding-bottom: 15px; margin-top: 15px; scrollbar-width: none; -ms-overflow-style: none;">${filteredHtml}</div>`;
+          responseContent = `**${title}:**\n<div style="display: flex; gap: 20px; overflow-x: auto; padding-bottom: 15px; margin-top: 15px; scrollbar-width: none; -ms-overflow-style: none; align-items: flex-start;">${filteredHtml}</div>`;
         } else if (args[1] && !isNaN(parseInt(args[1]))) {
           const idx = parseInt(args[1]) - 1;
           if (idx >= 0 && idx < allProjects.length) {
