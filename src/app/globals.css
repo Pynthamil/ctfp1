@@ -208,6 +208,9 @@ body {
 
 .entry-content {
   color: var(--text);
+  flex: 1;
+  width: 100%;
+  min-width: 0;
 }
 
 .entry-tool {
