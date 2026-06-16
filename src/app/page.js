@@ -329,9 +329,10 @@ Append a flag to learn more about me:
             title: "My Blog",
             desc: "Personal tech blog and portfolio",
             img: "/project-banners/blog.svg",
-            details: "A personal blog built to share my technical writeups, thoughts on software engineering, and tutorials.",
+            details: "A personal blog built to share my technical writeups, thoughts on software engineering, and tutorials. It features a fully responsive design, seamless Light/Dark mode toggling, and an integrated tagging system to easily navigate through various topics. Built using Next.js and TailwindCSS, the blog parses MDX files allowing for rich, interactive content embedded directly within the markdown. I aimed for a minimalist, developer-focused aesthetic that prioritizes readability and speed.\n\n<div style=\"display: flex; flex-direction: column; gap: 24px; margin-top: 15px;\"><div><strong style=\"display: block; margin-bottom: 8px; color: var(--accent);\">Light Mode Theme</strong><img src=\"/my-blog/LightMode.webp\" style=\"width: 100%; height: auto; border-radius: 4px;\" /></div><div><strong style=\"display: block; margin-bottom: 8px; color: var(--accent);\">Dark Mode Theme</strong><img src=\"/my-blog/DarkMode.webp\" style=\"width: 100%; height: auto; border-radius: 4px;\" /></div><div><strong style=\"display: block; margin-bottom: 8px; color: var(--accent);\">Post Feed Layout</strong><img src=\"/my-blog/AllPosts.webp\" style=\"width: 100%; height: auto; border-radius: 4px;\" /></div><div><strong style=\"display: block; margin-bottom: 8px; color: var(--accent);\">MDX Blog Details</strong><img src=\"/my-blog/BlogDetails.webp\" style=\"width: 100%; height: auto; border-radius: 4px;\" /></div><div><strong style=\"display: block; margin-bottom: 8px; color: var(--accent);\">Tag Categorization</strong><img src=\"/my-blog/Tags.webp\" style=\"width: 100%; height: auto; border-radius: 4px;\" /></div></div>",
             tech: ["Next.js", "TailwindCSS", "MDX"],
-            link: "https://github.com/Pynthamil/blog"
+            link: "https://github.com/Pynthamil/my-blog",
+            live: "https://my-blog-tan-tau.vercel.app"
           },
           {
             category: 'dev',
@@ -412,8 +413,8 @@ ${p.details}
 **Tech Stack:**
 ${p.tech.map(t => '\`' + t + '\`').join('  ')}
 
-**Link:**
-[View on GitHub](${p.link})`;
+**Link${p.live ? 's' : ''}:**
+[View on GitHub](${p.link})${p.live ? `\n[View Live Site](${p.live})` : ''}`;
           } else {
             responseContent = `Project ID ${args[1]} not found. Try running **projects --dev** to see available projects.`;
           }
@@ -477,9 +478,7 @@ ${p.tech.map(t => '\`' + t + '\`').join('  ')}
         toolUse = { name: 'FetchResume', desc: 'Retrieve resume document' };
         responseContent = `You can view or download my resume here:
         
-**[📄 Click to view Resume](/resume.pdf)**
-
-*(Make sure you have placed your \`resume.pdf\` inside the \`public/\` folder of this project!)*`;
+**[📄 Click to view Resume](https://drive.google.com/file/d/1G6zblvbtjU_PLjBROUNJ6L2ZJoWw8_03/view?usp=sharing)**`;
         break;
       case 'sudo':
         responseContent = `visitor is not in the sudoers file. This incident will be reported.`;
