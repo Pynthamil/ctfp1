@@ -404,6 +404,15 @@ Append a flag to learn more about me:
             link: "https://github.com/Pynthamil/semantic-email"
           },
           {
+            category: 'design',
+            title: "ACM Hackathon Portal",
+            desc: "A comprehensive hackathon portal design",
+            img: "/project-banners/acm-hackathon-portal.svg",
+            details: `A comprehensive design for the ACM Hackathon portal, featuring a sleek user interface for registration, submissions, and leaderboards.\n\n**App Previews**\n<div style="display: flex; flex-direction: column; gap: 15px; margin-top: 15px;"><img src="/hack-portal/landing-page.svg" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--accent-muted);" /><img src="/hack-portal/hack-details.svg" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--accent-muted);" /><img src="/hack-portal/profile.svg" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--accent-muted);" /><img src="/hack-portal/profile-projects.svg" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--accent-muted);" /><img src="/hack-portal/submission.svg" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--accent-muted);" /><img src="/hack-portal/track-submission.svg" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--accent-muted);" /><img src="/hack-portal/leaderboard.svg" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--accent-muted);" /><img src="/hack-portal/hack-cafe.svg" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--accent-muted);" /></div>`,
+            tech: ["Figma", "UI/UX", "Prototyping"],
+            link: "#"
+          },
+          {
             category: 'social',
             title: "Codédex Graphics",
             desc: "Social media graphics designed for Codédex",
