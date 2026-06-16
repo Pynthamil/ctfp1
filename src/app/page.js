@@ -462,7 +462,88 @@ Append a flag to learn more about me:
             title: "Inspiher Event Materials",
             desc: "Slides and graphics for the Inspiher event",
             img: "/social-media/inspiher/Cover 2a.svg",
-            details: `A massive collection of presentation slides, speaker bios, and promotional graphics for the Inspiher event.\n\n<div><div style="margin-bottom: 8px; font-weight: bold; color: var(--accent);">Intro Series (Green)</div><div style="display: flex; gap: 20px; overflow-x: auto; padding-bottom: 15px; margin-bottom: 25px; scrollbar-width: none; -ms-overflow-style: none;"><div style="display: flex; height: 350px; border-radius: 6px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 1px solid var(--accent-muted); overflow: hidden;"><img src="/social-media/inspiher/Coming Soon.svg" style="height: 100%; width: auto; border-right: 1px solid rgba(255,255,255,0.1);" /><img src="/social-media/inspiher/what is inspiher.svg" style="height: 100%; width: auto; border-right: 1px solid rgba(255,255,255,0.1);" /><img src="/social-media/inspiher/what is inspiher 2.svg" style="height: 100%; width: auto; border-right: 1px solid rgba(255,255,255,0.1);" /><img src="/social-media/inspiher/Instructions a.svg" style="height: 100%; width: auto; border-right: 1px solid rgba(255,255,255,0.1);" /><img src="/social-media/inspiher/instructions b.svg" style="height: 100%; width: auto; border-right: 1px solid rgba(255,255,255,0.1);" /><img src="/social-media/inspiher/instructions c.svg" style="height: 100%; width: auto; " /></div></div></div><div><div style="margin-bottom: 8px; font-weight: bold; color: var(--accent);">Topics & Speakers</div><div style="display: flex; gap: 20px; overflow-x: auto; padding-bottom: 15px; margin-bottom: 25px; scrollbar-width: none; -ms-overflow-style: none;"><div style="display: flex; height: 350px; border-radius: 6px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 1px solid var(--accent-muted); overflow: hidden;"><img src="/social-media/inspiher/topic a.svg" style="height: 100%; width: auto; border-right: 1px solid rgba(255,255,255,0.1);" /><img src="/social-media/inspiher/topic b.svg" style="height: 100%; width: auto; " /></div><div style="display: flex; height: 350px; border-radius: 6px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 1px solid var(--accent-muted); overflow: hidden;"><img src="/social-media/inspiher/Speaker1a.svg" style="height: 100%; width: auto; border-right: 1px solid rgba(255,255,255,0.1);" /><img src="/social-media/inspiher/Speaker1b.svg" style="height: 100%; width: auto; " /></div><div style="display: flex; height: 350px; border-radius: 6px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 1px solid var(--accent-muted); overflow: hidden;"><img src="/social-media/inspiher/Speaker3a.svg" style="height: 100%; width: auto; border-right: 1px solid rgba(255,255,255,0.1);" /><img src="/social-media/inspiher/Speaker3b.svg" style="height: 100%; width: auto; border-right: 1px solid rgba(255,255,255,0.1);" /><img src="/social-media/inspiher/Speaker3c.svg" style="height: 100%; width: auto; " /></div></div></div><div><div style="margin-bottom: 8px; font-weight: bold; color: var(--accent);">About Sessions & Insights</div><div style="display: flex; gap: 20px; overflow-x: auto; padding-bottom: 15px; margin-bottom: 25px; scrollbar-width: none; -ms-overflow-style: none;"><img src="/social-media/inspiher/Cover 2a.svg" style="height: 350px; width: auto; border-radius: 6px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 1px solid var(--accent-muted);" /><img src="/social-media/inspiher/About session.svg" style="height: 350px; width: auto; border-radius: 6px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 1px solid var(--accent-muted);" /><div style="display: flex; height: 350px; border-radius: 6px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 1px solid var(--accent-muted); overflow: hidden;"><img src="/social-media/inspiher/Muskan Agarwal final.svg" style="height: 100%; width: auto; border-right: 1px solid rgba(255,255,255,0.1);" /><img src="/social-media/inspiher/About Speaker1.svg" style="height: 100%; width: auto; border-right: 1px solid rgba(255,255,255,0.1);" /><img src="/social-media/inspiher/About Speaker2.svg" style="height: 100%; width: auto; " /></div></div></div><div><div style="margin-bottom: 8px; font-weight: bold; color: var(--accent);">Additional Slides</div><div style="display: flex; gap: 20px; overflow-x: auto; padding-bottom: 15px; margin-bottom: 25px; scrollbar-width: none; -ms-overflow-style: none;"><div style="display: flex; height: 350px; border-radius: 6px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 1px solid var(--accent-muted); overflow: hidden;"><img src="/social-media/inspiher/about session slide 1.svg" style="height: 100%; width: auto; border-right: 1px solid rgba(255,255,255,0.1);" /><img src="/social-media/inspiher/about session slide 2.svg" style="height: 100%; width: auto; " /></div><div style="display: flex; height: 350px; border-radius: 6px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 1px solid var(--accent-muted); overflow: hidden;"><img src="/social-media/inspiher/about speaker slide 1.svg" style="height: 100%; width: auto; border-right: 1px solid rgba(255,255,255,0.1);" /><img src="/social-media/inspiher/about speaker slide 2.svg" style="height: 100%; width: auto; border-right: 1px solid rgba(255,255,255,0.1);" /><img src="/social-media/inspiher/about speaker slide 3.svg" style="height: 100%; width: auto; " /></div><div style="display: flex; height: 350px; border-radius: 6px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 1px solid var(--accent-muted); overflow: hidden;"><img src="/social-media/inspiher/insights 3.1.svg" style="height: 100%; width: auto; border-right: 1px solid rgba(255,255,255,0.1);" /><img src="/social-media/inspiher/insights 3.2.svg" style="height: 100%; width: auto; border-right: 1px solid rgba(255,255,255,0.1);" /><img src="/social-media/inspiher/insights 3.3.svg" style="height: 100%; width: auto; " /></div></div></div>`,
+            details: `A massive collection of presentation slides, speaker bios, and promotional graphics for the Inspiher event.\n\n<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 25px; align-items: start;"><div><img src="/social-media/inspiher/Coming Soon.svg" style="width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none;" /></div>
+      <details style="cursor: pointer;">
+        <summary style="list-style: none; display: flex; flex-direction: column; outline: none;">
+           <img src="/social-media/inspiher/what is inspiher.svg" style="width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none;" />
+        </summary>
+        <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
+           <img src="/social-media/inspiher/what is inspiher 2.svg" style="width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none;" />
+        </div>
+      </details>
+    
+      <details style="cursor: pointer;">
+        <summary style="list-style: none; display: flex; flex-direction: column; outline: none;">
+           <img src="/social-media/inspiher/Instructions a.svg" style="width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none;" />
+        </summary>
+        <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
+           <img src="/social-media/inspiher/instructions b.svg" style="width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none;" /><img src="/social-media/inspiher/instructions c.svg" style="width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none;" />
+        </div>
+      </details>
+    
+      <details style="cursor: pointer;">
+        <summary style="list-style: none; display: flex; flex-direction: column; outline: none;">
+           <img src="/social-media/inspiher/topic a.svg" style="width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none;" />
+        </summary>
+        <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
+           <img src="/social-media/inspiher/topic b.svg" style="width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none;" />
+        </div>
+      </details>
+    
+      <details style="cursor: pointer;">
+        <summary style="list-style: none; display: flex; flex-direction: column; outline: none;">
+           <img src="/social-media/inspiher/Speaker1a.svg" style="width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none;" />
+        </summary>
+        <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
+           <img src="/social-media/inspiher/Speaker1b.svg" style="width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none;" />
+        </div>
+      </details>
+    
+      <details style="cursor: pointer;">
+        <summary style="list-style: none; display: flex; flex-direction: column; outline: none;">
+           <img src="/social-media/inspiher/Speaker3a.svg" style="width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none;" />
+        </summary>
+        <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
+           <img src="/social-media/inspiher/Speaker3b.svg" style="width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none;" /><img src="/social-media/inspiher/Speaker3c.svg" style="width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none;" />
+        </div>
+      </details>
+    <div><img src="/social-media/inspiher/Cover 2a.svg" style="width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none;" /></div><div><img src="/social-media/inspiher/About session.svg" style="width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none;" /></div>
+      <details style="cursor: pointer;">
+        <summary style="list-style: none; display: flex; flex-direction: column; outline: none;">
+           <img src="/social-media/inspiher/Muskan Agarwal final.svg" style="width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none;" />
+        </summary>
+        <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
+           <img src="/social-media/inspiher/About Speaker1.svg" style="width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none;" /><img src="/social-media/inspiher/About Speaker2.svg" style="width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none;" />
+        </div>
+      </details>
+    
+      <details style="cursor: pointer;">
+        <summary style="list-style: none; display: flex; flex-direction: column; outline: none;">
+           <img src="/social-media/inspiher/about session slide 1.svg" style="width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none;" />
+        </summary>
+        <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
+           <img src="/social-media/inspiher/about session slide 2.svg" style="width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none;" />
+        </div>
+      </details>
+    
+      <details style="cursor: pointer;">
+        <summary style="list-style: none; display: flex; flex-direction: column; outline: none;">
+           <img src="/social-media/inspiher/about speaker slide 1.svg" style="width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none;" />
+        </summary>
+        <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
+           <img src="/social-media/inspiher/about speaker slide 2.svg" style="width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none;" /><img src="/social-media/inspiher/about speaker slide 3.svg" style="width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none;" />
+        </div>
+      </details>
+    
+      <details style="cursor: pointer;">
+        <summary style="list-style: none; display: flex; flex-direction: column; outline: none;">
+           <img src="/social-media/inspiher/insights 3.1.svg" style="width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none;" />
+        </summary>
+        <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
+           <img src="/social-media/inspiher/insights 3.2.svg" style="width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none;" /><img src="/social-media/inspiher/insights 3.3.svg" style="width: 100%; height: auto; display: block; border-radius: 0; box-shadow: none; border: none;" />
+        </div>
+      </details>
+    </div>`,
             tech: ["Figma", "Illustrator", "Marketing"],
             link: "#"
           }
