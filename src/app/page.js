@@ -736,66 +736,66 @@ drwxr-xr-x   1 root     staff   4096 Jun 16 10:00 ..
   const isStarted = history.length > 0;
 
   return (
-    <div className="terminal-container">
-      <div className="scroll-area" ref={scrollRef}>
+    <div className="w-full max-w-[900px] h-full flex flex-col mx-auto">
+      <div className="flex-1 overflow-y-auto pb-5 flex flex-col" ref={scrollRef}>
         {!isStarted ? (
-          <div className="welcome-box">
-            <div className="welcome-title">Terminal Agent v2.0.0</div>
-            <div className="welcome-left">
-              <div className="welcome-greeting">Welcome back!</div>
-              <div className="welcome-logo"><FoxLogo pose={pose} /></div>
-              <div className="welcome-metadata">
+          <div className="border border-dashed border-[var(--accent-muted)] rounded-md mt-5 mb-10 flex flex-col relative md:flex-row">
+            <div className="absolute -top-3 left-8 bg-[var(--bg)] px-2.5 text-[var(--accent)] text-base font-medium">Terminal Agent v2.0.0</div>
+            <div className="flex-1 py-8 px-5 flex flex-col items-center justify-center text-center">
+              <div className="text-lg font-medium mb-8">Welcome back!</div>
+              <div className="text-[var(--accent)] text-sm leading-tight whitespace-pre mb-8 select-none"><FoxLogo pose={pose} /></div>
+              <div className="text-[var(--text-muted)] text-[13px]">
                 Local Runtime • AI Assistant
                 <br />
                 /Users/visitor/portfolio
               </div>
             </div>
-            <div className="welcome-right">
-              <div className="welcome-section">
-                <div className="section-title">Recent Activity</div>
-                <ul className="activity-list">
-                  <li className="activity-item">
-                    <span className="activity-time">1m ago</span>
-                    <span className="activity-desc">Updated project memory</span>
+            <div className="flex-1 border-t border-dashed border-[var(--accent-muted)] flex flex-col md:border-t-0 md:border-l">
+              <div className="p-5 flex-1 border-b border-dashed border-[var(--accent-muted)]">
+                <div className="text-[var(--accent)] mb-4 font-medium">Recent Activity</div>
+                <ul className="list-none">
+                  <li className="flex mb-2 text-[13px]">
+                    <span className="w-[70px] text-[var(--text-muted)]">1m ago</span>
+                    <span className="text-[var(--text)]">Updated project memory</span>
                   </li>
-                  <li className="activity-item">
-                    <span className="activity-time">8m ago</span>
-                    <span className="activity-desc">Updated terminal aesthetics</span>
+                  <li className="flex mb-2 text-[13px]">
+                    <span className="w-[70px] text-[var(--text-muted)]">8m ago</span>
+                    <span className="text-[var(--text)]">Updated terminal aesthetics</span>
                   </li>
-                  <li className="activity-item">
-                    <span className="activity-time">2d ago</span>
-                    <span className="activity-desc">Add new words to spinner</span>
+                  <li className="flex mb-2 text-[13px]">
+                    <span className="w-[70px] text-[var(--text-muted)]">2d ago</span>
+                    <span className="text-[var(--text)]">Add new words to spinner</span>
                   </li>
-                  <li className="activity-item">
-                    <span className="activity-time">1w ago</span>
-                    <span className="activity-desc">Update unit tests</span>
+                  <li className="flex mb-2 text-[13px]">
+                    <span className="w-[70px] text-[var(--text-muted)]">1w ago</span>
+                    <span className="text-[var(--text)]">Update unit tests</span>
                   </li>
                 </ul>
-                <div className="activity-more">.../projects for more</div>
+                <div className="text-[var(--text-muted)] mt-3 text-[13px]">.../projects for more</div>
               </div>
-              <div className="welcome-section">
-                <div className="section-title">What&apos;s new</div>
-                <ul className="activity-list">
-                  <li className="activity-item">
-                    <span className="activity-desc">/skills to see technical skills</span>
+              <div className="p-5 flex-1">
+                <div className="text-[var(--accent)] mb-4 font-medium">What&apos;s new</div>
+                <ul className="list-none">
+                  <li className="flex mb-2 text-[13px]">
+                    <span className="text-[var(--text)]">/skills to see technical skills</span>
                   </li>
-                  <li className="activity-item">
-                    <span className="activity-desc">/about for background context</span>
+                  <li className="flex mb-2 text-[13px]">
+                    <span className="text-[var(--text)]">/about for background context</span>
                   </li>
-                  <li className="activity-item">
-                    <span className="activity-desc">ctrl+b to background bashes</span>
+                  <li className="flex mb-2 text-[13px]">
+                    <span className="text-[var(--text)]">ctrl+b to background bashes</span>
                   </li>
                 </ul>
-                <div className="activity-more">.../help for more</div>
+                <div className="text-[var(--text-muted)] mt-3 text-[13px]">.../help for more</div>
               </div>
             </div>
           </div>
         ) : (
-          <div className="agent-header">
-            <div className="agent-logo"><FoxLogo small pose={pose} /></div>
-            <div className="agent-info">
-              <div className="agent-info-title">Terminal Agent</div>
-              <div className="agent-info-meta">
+          <div className="flex mb-8 pt-5">
+            <div className="text-[var(--accent)] text-[10px] leading-[1.1] whitespace-pre mr-5"><FoxLogo small pose={pose} /></div>
+            <div>
+              <div className="font-medium mb-1">Terminal Agent</div>
+              <div className="text-[var(--text-muted)] text-[13px]">
                 Local Runtime • AI Assistant
                 <br />
                 /Users/visitor/portfolio
@@ -805,23 +805,23 @@ drwxr-xr-x   1 root     staff   4096 Jun 16 10:00 ..
         )}
 
         {history.map((entry, idx) => (
-          <div key={idx} className="history-entry">
+          <div key={idx} className="mb-6">
             {entry.type === 'user' ? (
-              <div className="entry-user">
-                <span className="entry-prompt">&gt;</span>
-                <span className="entry-command">{entry.content}</span>
+              <div className="flex mb-3">
+                <span className="text-[var(--text-muted)] mr-3">&gt;</span>
+                <span className="whitespace-pre-wrap">{entry.content}</span>
               </div>
             ) : (
-              <div className="entry-agent">
+              <div className="pl-5">
                 {entry.tool && (
-                  <div className="entry-tool">
-                    <div className="tool-header">{entry.tool.name}({entry.tool.desc})</div>
+                  <div className="pl-6 mt-2 mb-4">
+                    <div className="tool-header text-[var(--text-muted)] flex items-center">{entry.tool.name}({entry.tool.desc})</div>
                     <div className="tool-details">Done (1 tool use · 3.2k tokens · 1.4s)</div>
                   </div>
                 )}
-                <div className="entry-bullet">
-                  <span className="bullet-icon">•</span>
-                  <div className="entry-content md-content">
+                <div className="flex mb-2">
+                  <span className="mr-2.5 text-[var(--text-muted)]">•</span>
+                  <div className="flex-1 w-full min-w-0 md-content">
                     {formatMarkdown(entry.content)}
                   </div>
                 </div>
@@ -831,20 +831,20 @@ drwxr-xr-x   1 root     staff   4096 Jun 16 10:00 ..
         ))}
 
         {isProcessing && (
-          <div className="history-entry">
-            <div className="entry-agent" style={{ color: 'var(--accent-muted)' }}>
+          <div className="mb-6">
+            <div className="pl-5 text-[var(--accent-muted)]">
               * Clauding... (esc to interrupt)
             </div>
           </div>
         )}
       </div>
 
-      <div className="input-area">
-        <span className="input-prompt">&gt;</span>
+      <div className="flex items-center pt-2.5 bg-[var(--bg)]">
+        <span className="text-[var(--text-muted)] mr-3">&gt;</span>
         <input
           ref={inputRef}
           type="text"
-          className="input-field"
+          className="flex-1 bg-transparent border-none text-[var(--text)] font-mono text-sm outline-none"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}

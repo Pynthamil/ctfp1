@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap');
+@import 'tailwindcss';
+
 
 :root {
   --bg: #1c1b1a;
@@ -25,8 +27,8 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;     /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 body {
@@ -46,187 +48,7 @@ body {
   display: none;
 }
 
-.terminal-container {
-  width: 100%;
-  max-width: 900px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.scroll-area {
-  flex: 1;
-  overflow-y: auto;
-  padding-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Welcome Screen */
-.welcome-box {
-  border: 1px dashed var(--accent-muted);
-  border-radius: 6px;
-  margin-top: 20px;
-  margin-bottom: 40px;
-  display: flex;
-  position: relative;
-  flex-direction: column;
-}
-
-@media (min-width: 768px) {
-  .welcome-box {
-    flex-direction: row;
-  }
-}
-
-.welcome-title {
-  position: absolute;
-  top: -12px;
-  left: 30px;
-  background: var(--bg);
-  padding: 0 10px;
-  color: var(--accent);
-  font-size: 16px;
-  font-weight: 500;
-}
-
-.welcome-left {
-  flex: 1;
-  padding: 30px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.welcome-greeting {
-  font-size: 18px;
-  font-weight: 500;
-  margin-bottom: 30px;
-}
-
-.welcome-logo {
-  color: var(--accent);
-  font-size: 14px;
-  line-height: 1.2;
-  white-space: pre;
-  margin-bottom: 30px;
-  user-select: none;
-}
-
-.welcome-metadata {
-  color: var(--text-muted);
-  font-size: 13px;
-}
-
-.welcome-right {
-  flex: 1;
-  border-top: 1px dashed var(--accent-muted);
-  display: flex;
-  flex-direction: column;
-}
-
-@media (min-width: 768px) {
-  .welcome-right {
-    border-top: none;
-    border-left: 1px dashed var(--accent-muted);
-  }
-}
-
-.welcome-section {
-  padding: 20px;
-  flex: 1;
-}
-
-.welcome-section:first-child {
-  border-bottom: 1px dashed var(--accent-muted);
-}
-
-.section-title {
-  color: var(--accent);
-  margin-bottom: 15px;
-  font-weight: 500;
-}
-
-.activity-list {
-  list-style: none;
-}
-
-.activity-item {
-  display: flex;
-  margin-bottom: 8px;
-  font-size: 13px;
-}
-
-.activity-time {
-  width: 70px;
-  color: var(--text-muted);
-}
-
-.activity-desc {
-  color: var(--text);
-}
-
-.activity-more {
-  color: var(--text-muted);
-  margin-top: 12px;
-  font-size: 13px;
-}
-
-/* Chat History */
-.history-entry {
-  margin-bottom: 24px;
-}
-
-.entry-user {
-  display: flex;
-  margin-bottom: 12px;
-}
-
-.entry-prompt {
-  color: var(--text-muted);
-  margin-right: 12px;
-}
-
-.entry-command {
-  color: var(--text);
-  white-space: pre-wrap;
-}
-
-.entry-agent {
-  padding-left: 20px;
-}
-
-.entry-bullet {
-  display: flex;
-  margin-bottom: 8px;
-}
-
-.bullet-icon {
-  margin-right: 10px;
-  color: var(--text-muted);
-}
-
-.entry-content {
-  color: var(--text);
-  flex: 1;
-  width: 100%;
-  min-width: 0;
-}
-
-.entry-tool {
-  padding-left: 24px;
-  margin-top: 8px;
-  margin-bottom: 16px;
-}
-
-.tool-header {
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-}
-
+/* Pseudo-element styles — cannot be expressed in Tailwind utilities */
 .tool-header::before {
   content: '• ';
   margin-right: 8px;
@@ -244,55 +66,6 @@ body {
   position: absolute;
   left: 0;
   color: var(--text-muted);
-}
-
-/* Input Area */
-.input-area {
-  display: flex;
-  align-items: center;
-  padding-top: 10px;
-  background: var(--bg);
-}
-
-.input-prompt {
-  color: var(--text-muted);
-  margin-right: 12px;
-}
-
-.input-field {
-  flex: 1;
-  background: transparent;
-  border: none;
-  color: var(--text);
-  font-family: var(--font-mono);
-  font-size: 14px;
-  outline: none;
-}
-
-/* Agent Header (when started talking) */
-.agent-header {
-  display: flex;
-  margin-bottom: 30px;
-  padding-top: 20px;
-}
-
-.agent-logo {
-  color: var(--accent);
-  font-size: 10px;
-  line-height: 1.1;
-  white-space: pre;
-  margin-right: 20px;
-}
-
-.agent-info-title {
-  color: var(--text);
-  font-weight: 500;
-  margin-bottom: 4px;
-}
-
-.agent-info-meta {
-  color: var(--text-muted);
-  font-size: 13px;
 }
 
 /* Markdown formatting for responses */
