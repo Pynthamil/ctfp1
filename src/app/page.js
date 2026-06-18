@@ -42,7 +42,11 @@ const FoxLogo = ({ small, pose = 'default' }) => {
   const pixelSize = small ? 4 : 8;
   const pixels = FOX_POSES[pose] || FOX_POSES.default;
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 0, userSelect: 'none' }}>
+    <div
+      aria-hidden="true"
+      role="presentation"
+      style={{ display: 'flex', flexDirection: 'column', lineHeight: 0, userSelect: 'none' }}
+    >
       {pixels.map((row, i) => (
         <div key={i} style={{ display: 'flex' }}>
           {row.split('').map((char, j) => (
@@ -736,14 +740,20 @@ drwxr-xr-x   1 root     staff   4096 Jun 16 10:00 ..
   const isStarted = history.length > 0;
 
   return (
-    <div className="w-full max-w-[900px] h-full flex flex-col mx-auto">
-      <div className="flex-1 overflow-y-auto pb-5 flex flex-col" ref={scrollRef}>
+    <main className="w-full max-w-[900px] h-full flex flex-col mx-auto" aria-label="Pynthamil Pavendan's portfolio terminal">
+      <div
+        className="flex-1 overflow-y-auto pb-5 flex flex-col"
+        ref={scrollRef}
+        role="log"
+        aria-live="polite"
+        aria-label="Terminal output"
+      >
         {!isStarted ? (
           <div className="border border-dashed border-[var(--accent-muted)] rounded-md mt-5 mb-10 flex flex-col relative md:flex-row">
             <div className="absolute -top-3 left-8 bg-[var(--bg)] px-2.5 text-[var(--accent)] text-base font-medium">Terminal Agent v2.0.0</div>
             <div className="flex-1 py-8 px-5 flex flex-col items-center justify-center text-center">
               <div className="text-lg font-medium mb-8">Welcome back!</div>
-              <div className="text-[var(--accent)] text-sm leading-tight whitespace-pre mb-8 select-none"><FoxLogo pose={pose} /></div>
+              <div aria-hidden="true" className="text-[var(--accent)] text-sm leading-tight whitespace-pre mb-8 select-none"><FoxLogo pose={pose} /></div>
               <div className="text-[var(--text-muted)] text-[13px]">
                 Local Runtime • AI Assistant
                 <br />
@@ -791,8 +801,8 @@ drwxr-xr-x   1 root     staff   4096 Jun 16 10:00 ..
             </div>
           </div>
         ) : (
-          <div className="flex mb-8 pt-5">
-            <div className="text-[var(--accent)] text-[10px] leading-[1.1] whitespace-pre mr-5"><FoxLogo small pose={pose} /></div>
+          <header className="flex mb-8 pt-5">
+            <div aria-hidden="true" className="text-[var(--accent)] text-[10px] leading-[1.1] whitespace-pre mr-5"><FoxLogo small pose={pose} /></div>
             <div>
               <div className="font-medium mb-1">Terminal Agent</div>
               <div className="text-[var(--text-muted)] text-[13px]">
@@ -801,37 +811,37 @@ drwxr-xr-x   1 root     staff   4096 Jun 16 10:00 ..
                 /Users/visitor/portfolio
               </div>
             </div>
-          </div>
+          </header>
         )}
 
         {history.map((entry, idx) => (
-          <div key={idx} className="mb-6">
+          <article key={idx} className="mb-6">
             {entry.type === 'user' ? (
-              <div className="flex mb-3">
-                <span className="text-[var(--text-muted)] mr-3">&gt;</span>
+              <div className="flex mb-3" role="group" aria-label="Your command">
+                <span className="text-[var(--text-muted)] mr-3" aria-hidden="true">&gt;</span>
                 <span className="whitespace-pre-wrap">{entry.content}</span>
               </div>
             ) : (
-              <div className="pl-5">
+              <section className="pl-5" aria-label="Terminal response">
                 {entry.tool && (
-                  <div className="pl-6 mt-2 mb-4">
-                    <div className="tool-header text-[var(--text-muted)] flex items-center">{entry.tool.name}({entry.tool.desc})</div>
-                    <div className="tool-details">Done (1 tool use · 3.2k tokens · 1.4s)</div>
+                  <div className="pl-6 mt-2 mb-4" aria-label={`Tool: ${entry.tool.name}`}>
+                    <div className="tool-header text-[var(--text-muted)] flex items-center" aria-hidden="true">{entry.tool.name}({entry.tool.desc})</div>
+                    <div className="tool-details" aria-hidden="true">Done (1 tool use · 3.2k tokens · 1.4s)</div>
                   </div>
                 )}
                 <div className="flex mb-2">
-                  <span className="mr-2.5 text-[var(--text-muted)]">•</span>
+                  <span className="mr-2.5 text-[var(--text-muted)]" aria-hidden="true">•</span>
                   <div className="flex-1 w-full min-w-0 md-content">
                     {formatMarkdown(entry.content)}
                   </div>
                 </div>
-              </div>
+              </section>
             )}
-          </div>
+          </article>
         ))}
 
         {isProcessing && (
-          <div className="mb-6">
+          <div className="mb-6" role="status" aria-live="polite" aria-label="Processing command">
             <div className="pl-5 text-[var(--accent-muted)]">
               * Clauding... (esc to interrupt)
             </div>
@@ -839,8 +849,8 @@ drwxr-xr-x   1 root     staff   4096 Jun 16 10:00 ..
         )}
       </div>
 
-      <div className="flex items-center pt-2.5 bg-[var(--bg)]">
-        <span className="text-[var(--text-muted)] mr-3">&gt;</span>
+      <div className="flex items-center pt-2.5 bg-[var(--bg)]" role="group" aria-label="Command input area">
+        <span className="text-[var(--text-muted)] mr-3" aria-hidden="true">&gt;</span>
         <input
           ref={inputRef}
           type="text"
@@ -853,8 +863,10 @@ drwxr-xr-x   1 root     staff   4096 Jun 16 10:00 ..
           autoComplete="off"
           spellCheck="false"
           placeholder={!isStarted ? 'Try "help" or "about"...' : ''}
+          aria-label="Terminal command input — type a command and press Enter"
+          aria-autocomplete="none"
         />
       </div>
-    </div>
+    </main>
   );
 }
