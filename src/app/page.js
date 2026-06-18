@@ -742,15 +742,15 @@ drwxr-xr-x   1 root     staff   4096 Jun 16 10:00 ..
   return (
     <main className="w-full max-w-[900px] h-full flex flex-col mx-auto" aria-label="Pynthamil Pavendan's portfolio terminal">
       <div
-        className="flex-1 overflow-y-auto pb-5 flex flex-col"
+        className="flex-1 overflow-y-auto pt-4 pb-5 flex flex-col"
         ref={scrollRef}
         role="log"
         aria-live="polite"
         aria-label="Terminal output"
       >
         {!isStarted ? (
-          <div className="border border-dashed border-[var(--accent-muted)] rounded-md mt-5 mb-10 flex flex-col relative md:flex-row">
-            <div className="absolute -top-3 left-8 bg-[var(--bg)] px-2.5 text-[var(--accent)] text-base font-medium">Terminal Agent v2.0.0</div>
+          <div className="border border-dashed border-[var(--accent-muted)] rounded-md mt-6 mb-10 flex flex-col relative md:flex-row">
+            <div className="absolute -top-3 left-8 bg-[var(--bg)] px-2 text-[var(--accent)] text-base font-medium leading-none flex items-center h-6">Terminal Agent v2.0.0</div>
             <div className="flex-1 py-8 px-5 flex flex-col items-center justify-center text-center">
               <div className="text-lg font-medium mb-8">Welcome back!</div>
               <div aria-hidden="true" className="text-[var(--accent)] text-sm leading-tight whitespace-pre mb-8 select-none"><FoxLogo pose={pose} /></div>
