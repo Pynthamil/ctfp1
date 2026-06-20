@@ -142,7 +142,7 @@ export default function TerminalPortfolio() {
         break;
       case 'skills':
         toolUse = { name: 'QueryDatabase', desc: 'Fetch technical skills' };
-        responseContent = `**Frontend**: React, Next.js, HTML/CSS, JavaScript\n**Backend**: Node.js, Express, Python\n**Security**: Penetration Testing, CTFs, Web Security\n**Tools**: Git, Bash, Figma`;
+        responseContent = `**Languages**: Python, Java, C++, JavaScript, TypeScript, C, HTML/CSS\n**Frameworks**: React.js, Next.js, Express.js, Flask, React-Native, Textual\n**Developer Tools**: Git, GitHub, Google Cloud Platform, AWS, Vercel, Figma, Bash, Unix/Linux\n**Technologies**: RESTful APIs, OAuth, JSON/CSV processing, MongoDB, Supabase\n**Security**: Nmap, CTFs, Web Security`;
         break;
       case 'project':
         setMascot('laptop');
