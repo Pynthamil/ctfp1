@@ -3,7 +3,7 @@ import React from 'react';
 export const ClaudeMascot = ({ isProcessing, activeCommand = '', size = 160 }) => {
   let imgSrc = "/claude-assets/clawd.gif";
 
-  if (isProcessing && activeCommand) {
+  if (activeCommand) {
     const cmd = activeCommand.toLowerCase().trim();
     
     // 1. Engineering assets

@@ -27,11 +27,7 @@ export default function TerminalPortfolio() {
   const scrollRef = useRef(null);
   const inputRef = useRef(null);
 
-  useEffect(() => {
-    if (!isProcessing) {
-      setActiveCommand('');
-    }
-  }, [isProcessing]);
+
 
   useEffect(() => {
     if (theme === 'light') {
