@@ -23,8 +23,15 @@ export default function TerminalPortfolio() {
   const [pose, setPose] = useState('default');
   const [theme, setTheme] = useState('dark');
   const [mascot, setMascot] = useState('normal');
+  const [activeCommand, setActiveCommand] = useState('');
   const scrollRef = useRef(null);
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (!isProcessing) {
+      setActiveCommand('');
+    }
+  }, [isProcessing]);
 
   useEffect(() => {
     if (theme === 'light') {
@@ -75,6 +82,7 @@ export default function TerminalPortfolio() {
       setHistory(prev => [...prev, { type: 'user', content: displayLabel }]);
     }
     setInput('');
+    setActiveCommand(trimmed);
     setIsProcessing(true);
 
     await new Promise(resolve => setTimeout(resolve, 500 + Math.random() * 300));
@@ -278,6 +286,12 @@ export default function TerminalPortfolio() {
         setTheme('dark');
         responseContent = `Switched to dark theme 🌙`;
         break;
+      case 'idea':
+        responseContent = `💡 **Idea Dump & Future Brainstorms**
+- **Personalized LLM Agent**: A self-hosted CLI assistant tailored to my coding style and directory structure.
+- **Cybersecurity CTF Platform**: An open-source, lightweight training ground for local students to learn basic exploitation.
+- **Interactive TUI Resume**: A retro terminal-based interactive resume running over SSH.`;
+        break;
       default:
         responseContent = `Command not found: ${trimmed}. Type 'help' or 'man' for a list of available commands.`;
     }
@@ -406,6 +420,7 @@ export default function TerminalPortfolio() {
           setInput={setInput}
           handleKeyDown={handleKeyDown}
           isProcessing={isProcessing}
+          activeCommand={activeCommand}
           isStarted={isStarted}
         />
       ) : (

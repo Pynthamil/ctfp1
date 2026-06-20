@@ -5,9 +5,9 @@ import { ClaudeMascot } from './ClaudeMascot';
 
 const BASE_COMMANDS = [
   '/about', '/skills', '/project', '/ctf', '/writeups', 
-  '/blog', '/resume', '/contact', '/theme', '/clear', '/help', '/man',
+  '/blog', '/resume', '/contact', '/theme', '/clear', '/help', '/man', '/idea',
   'about', 'skills', 'project', 'ctf', 'writeups', 
-  'blog', 'resume', 'contact', 'theme', 'clear', 'help', 'man',
+  'blog', 'resume', 'contact', 'theme', 'clear', 'help', 'man', 'idea',
   '/project dev', '/project design', '/project social',
   '/ctf all', '/ctf stats', '/ctf boroctf',
   '/writeups all',
@@ -23,7 +23,7 @@ const BASE_COMMANDS = [
 const PROJECT_COMMANDS = allProjects.flatMap(p => [`project ${p.slug}`, `/project ${p.slug}`]);
 const COMMANDS = [...BASE_COMMANDS, ...PROJECT_COMMANDS];
 
-export const TerminalInput = ({ inputRef, input, setInput, handleKeyDown, isProcessing, isStarted }) => {
+export const TerminalInput = ({ inputRef, input, setInput, handleKeyDown, isProcessing, activeCommand, isStarted }) => {
   const [suggestion, setSuggestion] = useState('');
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export const TerminalInput = ({ inputRef, input, setInput, handleKeyDown, isProc
     <div style={{ position: 'relative', marginTop: '68px' }}>
       {/* Mascot on top of the input bar */}
       <div style={{ position: 'absolute', bottom: 'calc(100% - 16px)', left: 0, pointerEvents: 'none' }}>
-        <ClaudeMascot isProcessing={isProcessing} size={128} />
+        <ClaudeMascot isProcessing={isProcessing} activeCommand={activeCommand} size={128} />
       </div>
 
       {/* Separator line — thin, dim orange like Claude Code */}
