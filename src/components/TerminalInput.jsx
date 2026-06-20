@@ -5,9 +5,9 @@ import { ClaudeMascot } from './ClaudeMascot';
 
 const BASE_COMMANDS = [
   '/about', '/skills', '/project', '/ctf', '/writeups', 
-  '/blog', '/resume', '/contact', '/theme', '/clear', '/help', '/man', '/idea',
+  '/blog', '/resume', '/contact', '/theme', '/clear', '/help', '/man', '/idea', '/dark', '/light',
   'about', 'skills', 'project', 'ctf', 'writeups', 
-  'blog', 'resume', 'contact', 'theme', 'clear', 'help', 'man', 'idea',
+  'blog', 'resume', 'contact', 'theme', 'clear', 'help', 'man', 'idea', 'dark', 'light',
   '/project dev', '/project design', '/project social',
   '/ctf all', '/ctf stats', '/ctf boroctf',
   '/writeups all',
