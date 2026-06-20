@@ -3,15 +3,19 @@ import React from 'react';
 export const ClaudeLogo = ({ className = "", style = {} }) => {
   return (
     <svg 
-      width="64" 
-      height="48" 
-      viewBox="0 0 11 8" 
+      width="80" 
+      height="80" 
+      viewBox="0 0 24 24" 
       fill="currentColor" 
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       style={{ display: 'inline-block', ...style }}
     >
-      <path d="M3 0v1h5V0H3zm-1 1v1h1V1H2zm-1 1v1h1V2H1zm-1 1v2h1V3H0v2h1v1h1V5h1v1h1v1h1V6h1v1h1V6h1V5h1V3h1V2h-1V1h-1V0h-1v1h-1v1H3V1H2zm2 2h1v1H4V4zm3 0h1v1H7V4zm-3 3h1v1H4V7zm2 0h1v1H6V7z" />
+      <path 
+        clipRule="evenodd"
+        fillRule="evenodd"
+        d="M20.998 10.949H24v3.102h-3v3.028h-1.487V20H18v-2.921h-1.487V20H15v-2.921H9V20H7.488v-2.921H6V20H4.487v-2.921H3V14.05H0V10.95h3V5h17.998v5.949zM6 10.949h1.488V8.102H6v2.847zm10.51 0H18V8.102h-1.49v2.847z"
+      />
     </svg>
   );
 };

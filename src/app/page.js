@@ -340,7 +340,7 @@ export default function TerminalPortfolio() {
           <WelcomeBox input={input} />
         ) : (
           <header style={{ display: 'flex', marginBottom: '36px', paddingTop: '20px', alignItems: 'center', gap: '24px' }}>
-            <ClaudeLogo style={{ color: 'var(--accent)', width: '64px', height: '48px', flexShrink: 0 }} />
+            <ClaudeLogo style={{ color: 'var(--accent)', width: '80px', height: '80px', flexShrink: 0 }} />
             <div style={{ lineHeight: '1.5', fontSize: '15px' }}>
               <div style={{ color: 'var(--text)', fontSize: '16px', marginBottom: '2px' }}>Claude Code</div>
               <div style={{ color: 'var(--text-muted)' }}>
