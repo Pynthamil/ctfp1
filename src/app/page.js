@@ -59,7 +59,7 @@ export default function TerminalPortfolio() {
     }
     setHistoryIndex(-1);
 
-    if (trimmed.toLowerCase() === 'clear') {
+    if (trimmed.toLowerCase() === 'clear' || trimmed.toLowerCase() === '/clear') {
       setHistory([]);
       setInput('');
       return;
@@ -113,7 +113,7 @@ export default function TerminalPortfolio() {
               responseContent = `No manual entry for **${args[1]}**. Command not found.`;
           }
         } else {
-          responseContent = `Here are the available commands:\n**about**    : Learn more about my background\n**skills**   : View my technical expertise\n**projects** : Browse my recent work (try **project --dev**)\n**ctf**      : View Capture The Flag history\n**writeups** : Read my security writeups\n**blog**     : View my blog posts (try **blog --latest**)\n**resume**   : Download or view my resume\n**contact**  : Get my contact information\n**theme**    : Toggle dark/light mode (or use **light** / **dark**)\n**clear**    : Clear the terminal output\n**help**     : Show this help message\n\n*(Tip: Type **man <command>** for detailed usage, e.g., **man project**)*`;
+          responseContent = `Here are the available commands:\n**/about**    : Learn more about my background\n**/skills**   : View my technical expertise\n**/projects** : Browse my recent work (try **/project --dev**)\n**/ctf**      : View Capture The Flag history\n**/writeups** : Read my security writeups\n**/blog**     : View my blog posts (try **/blog --latest**)\n**/resume**   : Download or view my resume\n**/contact**  : Get my contact information\n**/theme**    : Toggle dark/light mode (or use **/light** / **/dark**)\n**/clear**    : Clear the terminal output\n**/help**     : Show this help message\n\n*(Tip: Type **/man <command>** for detailed usage, e.g., **/man project**)*`;
         }
         break;
       case 'about':
@@ -125,7 +125,7 @@ export default function TerminalPortfolio() {
         else if (args[1] === '--learning') responseContent = ABOUT_SECTIONS.learning;
         else if (args[1] === '--stats') responseContent = <AnalyticsDashboard />;
         else if (args[1] === '--music') responseContent = <SpotifyStats />;
-        else responseContent = `Hi, I'm **Pynthamil Pavendan** (aka 3xpl01t), a passionate developer and cybersecurity enthusiast.\n\nAppend a flag to learn more about me:\n**about --whoami**   : who am i and what do i do for a living?\n**about --hobbies**  : things i enjoy outside of screens\n**about --funfacts** : fun facts about me\n**about --blog**     : about my blog\n**about --learning** : what i am currently learning\n**about --stats**    : my github commit graph\n**about --music**    : what i'm listening to\n\n*(Try typing: **about --stats**)*`;
+        else responseContent = `Hi, I'm **Pynthamil Pavendan** (aka 3xpl01t), a passionate developer and cybersecurity enthusiast.\n\nAppend a flag to learn more about me:\n**/about --whoami**   : who am i and what do i do for a living?\n**/about --hobbies**  : things i enjoy outside of screens\n**/about --funfacts** : fun facts about me\n**/about --blog**     : about my blog\n**/about --learning** : what i am currently learning\n**/about --stats**    : my github commit graph\n**/about --music**    : what i'm listening to\n\n*(Try typing: **/about --stats**)*`;
         break;
       case 'skills':
         toolUse = { name: 'QueryDatabase', desc: 'Fetch technical skills' };

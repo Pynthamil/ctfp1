@@ -43,7 +43,7 @@ export const TerminalInput = ({ inputRef, input, setInput, handleKeyDown, isProc
           autoFocus
           autoComplete="off"
           spellCheck="false"
-          placeholder={!isStarted ? 'Try "help" or "about"...' : ''}
+          placeholder={!isStarted ? 'Try "/help" or "/about"...' : ''}
           aria-label="Terminal command input — type a command and press Enter"
           aria-autocomplete="none"
         />
