@@ -21,7 +21,9 @@ const BASE_COMMANDS = [
 ];
 
 const PROJECT_COMMANDS = allProjects.flatMap(p => [`project ${p.slug}`, `/project ${p.slug}`]);
-const COMMANDS = [...BASE_COMMANDS, ...PROJECT_COMMANDS];
+const MAN_SUBCOMMANDS = ['about', 'skills', 'project', 'ctf', 'writeups', 'blog', 'resume', 'contact', 'theme', 'clear', 'help', 'idea'];
+const MAN_COMMANDS = MAN_SUBCOMMANDS.flatMap(cmd => [`man ${cmd}`, `/man ${cmd}`]);
+const COMMANDS = [...BASE_COMMANDS, ...PROJECT_COMMANDS, ...MAN_COMMANDS];
 
 export const TerminalInput = ({ inputRef, input, setInput, handleKeyDown, isProcessing, activeCommand, isStarted }) => {
   const [suggestion, setSuggestion] = useState('');
