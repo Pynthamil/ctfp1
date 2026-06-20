@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { FoxLogo } from '../components/FoxLogo';
 import { WelcomeBox } from '../components/WelcomeBox';
 import { TerminalInput } from '../components/TerminalInput';
+import { InteractivePrompt } from '../components/InteractivePrompt';
 import { AnalyticsDashboard } from '../components/stats/AnalyticsDashboard';
 import { BoroCtfStats } from '../components/stats/BoroCtfStats';
 import { SpotifyStats } from '../components/stats/SpotifyStats';
@@ -12,6 +13,7 @@ import { ABOUT_SECTIONS } from '../data/about';
 
 export default function TerminalPortfolio() {
   const [history, setHistory] = useState([]);
+  const [interactivePrompt, setInteractivePrompt] = useState(null);
   const [input, setInput] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const [commandHistory, setCommandHistory] = useState([]);
@@ -50,7 +52,7 @@ export default function TerminalPortfolio() {
     return () => window.removeEventListener('click', handleWindowClick);
   }, []);
 
-  const handleCommand = async (cmd) => {
+  const handleCommand = async (cmd, hideFromHistory = false, displayLabel = null) => {
     const trimmed = cmd.trim();
     if (!trimmed) return;
 
@@ -65,7 +67,11 @@ export default function TerminalPortfolio() {
       return;
     }
 
-    setHistory(prev => [...prev, { type: 'user', content: trimmed }]);
+    if (!hideFromHistory) {
+      setHistory(prev => [...prev, { type: 'user', content: trimmed }]);
+    } else if (displayLabel) {
+      setHistory(prev => [...prev, { type: 'user', content: displayLabel }]);
+    }
     setInput('');
     setIsProcessing(true);
 
@@ -168,7 +174,20 @@ export default function TerminalPortfolio() {
             responseContent = `Project ID ${args[1]} not found. Try running **project dev** to see available projects.`;
           }
         } else {
-          responseContent = `Here are my project categories. Append a sub-command to view specific projects:\n\n**project dev**    : Software engineering & security projects\n**project design** : UI/UX, graphic design, and pixel art\n**project social** : Community initiatives and open source\n\n*(Try typing: **project dev**)*`;
+          setInteractivePrompt({
+            message: 'Which project category would you like to view?',
+            options: [
+              { label: 'Development Projects', value: 'dev' },
+              { label: 'Design Projects', value: 'design' },
+              { label: 'Social Media & Community', value: 'social' }
+            ],
+            onSelect: (value, label) => {
+              setInteractivePrompt(null);
+              handleCommand(`project ${value}`, true, `? Which project category would you like to view? » ${label}`);
+            }
+          });
+          setIsProcessing(false);
+          return;
         }
         break;
       case 'ctf':
@@ -390,14 +409,24 @@ export default function TerminalPortfolio() {
         )}
       </div>
 
-      <TerminalInput 
-        inputRef={inputRef}
-        input={input}
-        setInput={setInput}
-        handleKeyDown={handleKeyDown}
-        isProcessing={isProcessing}
-        isStarted={isStarted}
-      />
+      {!interactivePrompt ? (
+        <TerminalInput 
+          inputRef={inputRef}
+          input={input}
+          setInput={setInput}
+          handleKeyDown={handleKeyDown}
+          isProcessing={isProcessing}
+          isStarted={isStarted}
+        />
+      ) : (
+        <InteractivePrompt 
+          prompt={interactivePrompt} 
+          onCancel={() => {
+            setInteractivePrompt(null);
+            setHistory(prev => [...prev, { type: 'user', content: `? ${interactivePrompt.message} » Cancelled` }]);
+          }} 
+        />
+      )}
     </main>
   );
 }
