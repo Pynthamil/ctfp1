@@ -1,6 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+const COMMANDS = [
+  '/about', '/skills', '/project', '/ctf', '/writeups', 
+  '/blog', '/resume', '/contact', '/theme', '/clear', '/help', '/man',
+  'about', 'skills', 'project', 'ctf', 'writeups', 
+  'blog', 'resume', 'contact', 'theme', 'clear', 'help', 'man'
+];
 
 export const TerminalInput = ({ inputRef, input, setInput, handleKeyDown, isProcessing, isStarted }) => {
+  const [suggestion, setSuggestion] = useState('');
+
+  useEffect(() => {
+    if (!input.trim()) {
+      setSuggestion('');
+      return;
+    }
+    const match = COMMANDS.find(cmd => cmd.startsWith(input.toLowerCase()));
+    if (match) {
+      setSuggestion(input + match.slice(input.length));
+    } else {
+      setSuggestion('');
+    }
+  }, [input]);
+
+  const onKeyDown = (e) => {
+    if ((e.key === 'Tab' || e.key === 'ArrowRight') && suggestion && suggestion !== input) {
+      e.preventDefault();
+      setInput(suggestion);
+    } else {
+      handleKeyDown(e);
+    }
+  };
+
   return (
     <div>
       {/* Separator line — thin, dim orange like Claude Code */}
@@ -23,30 +54,48 @@ export const TerminalInput = ({ inputRef, input, setInput, handleKeyDown, isProc
         >
           &gt;
         </span>
-        <input
-          ref={inputRef}
-          type="text"
-          style={{
-            flex: 1,
-            background: 'transparent',
-            border: 'none',
-            color: 'var(--text)',
-            fontFamily: 'inherit',
-            fontSize: 'inherit',
-            outline: 'none',
-            caretColor: 'var(--accent)',
-          }}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyDown}
-          disabled={isProcessing}
-          autoFocus
-          autoComplete="off"
-          spellCheck="false"
-          placeholder={!isStarted ? 'Try "/help" or "/about"...' : ''}
-          aria-label="Terminal command input — type a command and press Enter"
-          aria-autocomplete="none"
-        />
+        <div style={{ position: 'relative', flex: 1, display: 'flex' }}>
+          {suggestion && input && (
+            <div style={{
+              position: 'absolute',
+              left: 0,
+              top: 0,
+              bottom: 0,
+              color: 'rgba(255, 255, 255, 0.25)',
+              pointerEvents: 'none',
+              whiteSpace: 'pre',
+            }}>
+              <span style={{ opacity: 0 }}>{input}</span>
+              <span>{suggestion.slice(input.length)}</span>
+            </div>
+          )}
+          <input
+            ref={inputRef}
+            type="text"
+            style={{
+              flex: 1,
+              background: 'transparent',
+              border: 'none',
+              color: 'var(--text)',
+              fontFamily: 'inherit',
+              fontSize: 'inherit',
+              outline: 'none',
+              caretColor: 'var(--accent)',
+              position: 'relative',
+              zIndex: 1
+            }}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={onKeyDown}
+            disabled={isProcessing}
+            autoFocus
+            autoComplete="off"
+            spellCheck="false"
+            placeholder={!isStarted && !input ? 'Try "/help" or "/about"...' : ''}
+            aria-label="Terminal command input — type a command and press Enter"
+            aria-autocomplete="none"
+          />
+        </div>
       </div>
     </div>
   );

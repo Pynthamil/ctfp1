@@ -87,19 +87,19 @@ export default function TerminalPortfolio() {
         if (args[1]) {
           switch (args[1].toLowerCase()) {
             case 'project':
-              responseContent = `**NAME**\n    project - Browse my recent work\n\n**SYNOPSIS**\n    project [FLAG]\n\n**DESCRIPTION**\n    Lists portfolio items. If no flag is provided, displays project categories.\n\n**FLAGS**\n    **--dev**    Show software engineering & security projects\n    **--design** Show UI/UX, graphic design, and pixel art projects\n    **--social** Show community initiatives and open source projects`;
+              responseContent = `**NAME**\n    project - Browse my recent work\n\n**SYNOPSIS**\n    project [SUBCOMMAND]\n\n**DESCRIPTION**\n    Lists portfolio items. If no sub-command is provided, displays project categories.\n\n**SUBCOMMANDS**\n    **dev**    Show software engineering & security projects\n    **design** Show UI/UX, graphic design, and pixel art projects\n    **social** Show community initiatives and open source projects`;
               break;
             case 'ctf':
-              responseContent = `**NAME**\n    ctf - View Capture The Flag history\n\n**SYNOPSIS**\n    ctf [FLAG]\n\n**DESCRIPTION**\n    Displays my recent Capture The Flag competition results.\n\n**FLAGS**\n    **--all**    View the complete competition history instead of just recent ones\n    **--stats**  View global player statistics and rankings`;
+              responseContent = `**NAME**\n    ctf - View Capture The Flag history\n\n**SYNOPSIS**\n    ctf [SUBCOMMAND]\n\n**DESCRIPTION**\n    Displays my recent Capture The Flag competition results.\n\n**SUBCOMMANDS**\n    **all**    View the complete competition history instead of just recent ones\n    **stats**  View global player statistics and rankings`;
               break;
             case 'writeups':
-              responseContent = `**NAME**\n    writeups - Read my security writeups\n\n**SYNOPSIS**\n    writeups [FLAG]\n\n**DESCRIPTION**\n    Displays my most recent security writeups and blog posts.\n\n**FLAGS**\n    **--all**    Read all older posts instead of just recent ones`;
+              responseContent = `**NAME**\n    writeups - Read my security writeups\n\n**SYNOPSIS**\n    writeups [SUBCOMMAND]\n\n**DESCRIPTION**\n    Displays my most recent security writeups and blog posts.\n\n**SUBCOMMANDS**\n    **all**    Read all older posts instead of just recent ones`;
               break;
             case 'blog':
-              responseContent = `**NAME**\n    blog - Read my personal blog\n\n**SYNOPSIS**\n    blog [FLAG]\n\n**DESCRIPTION**\n    Displays information about my blog and latest posts.\n\n**FLAGS**\n    **--latest**    Fetch and read the most recent blog post`;
+              responseContent = `**NAME**\n    blog - Read my personal blog\n\n**SYNOPSIS**\n    blog [SUBCOMMAND]\n\n**DESCRIPTION**\n    Displays information about my blog and latest posts.\n\n**SUBCOMMANDS**\n    **latest**    Fetch and read the most recent blog post`;
               break;
             case 'about':
-              responseContent = `**NAME**\n    about - Learn more about my background and personality\n\n**SYNOPSIS**\n    about [FLAG]\n\n**DESCRIPTION**\n    Displays detailed information about who I am, what I do, and my personal interests.\n\n**FLAGS**\n    **--whoami**     who am i and what do i do for a living?\n    **--hobbies**    things i enjoy outside of screens\n    **--funfacts**   fun facts about me\n    **--blog**       about my blog\n    **--learning**   what i am currently learning\n    **--stats**      my github commit graph and stats\n    **--music**      what i'm listening to`;
+              responseContent = `**NAME**\n    about - Learn more about my background and personality\n\n**SYNOPSIS**\n    about [SUBCOMMAND]\n\n**DESCRIPTION**\n    Displays detailed information about who I am, what I do, and my personal interests.\n\n**SUBCOMMANDS**\n    **whoami**     who am i and what do i do for a living?\n    **hobbies**    things i enjoy outside of screens\n    **funfacts**   fun facts about me\n    **blog**       about my blog\n    **learning**   what i am currently learning\n    **stats**      my github commit graph and stats\n    **music**      what i'm listening to`;
               break;
             case 'skills':
             case 'contact':
@@ -113,19 +113,19 @@ export default function TerminalPortfolio() {
               responseContent = `No manual entry for **${args[1]}**. Command not found.`;
           }
         } else {
-          responseContent = `Here are the available commands:\n**/about**    : Learn more about my background\n**/skills**   : View my technical expertise\n**/projects** : Browse my recent work (try **/project --dev**)\n**/ctf**      : View Capture The Flag history\n**/writeups** : Read my security writeups\n**/blog**     : View my blog posts (try **/blog --latest**)\n**/resume**   : Download or view my resume\n**/contact**  : Get my contact information\n**/theme**    : Toggle dark/light mode (or use **/light** / **/dark**)\n**/clear**    : Clear the terminal output\n**/help**     : Show this help message\n\n*(Tip: Type **/man <command>** for detailed usage, e.g., **/man project**)*`;
+          responseContent = `Here are the available commands:\n**/about**    : Learn more about my background\n**/skills**   : View my technical expertise\n**/project**  : Browse my recent work (try **/project dev**)\n**/ctf**      : View Capture The Flag history\n**/writeups** : Read my security writeups\n**/blog**     : View my blog posts (try **/blog latest**)\n**/resume**   : Download or view my resume\n**/contact**  : Get my contact information\n**/theme**    : Toggle dark/light mode (or use **/light** / **/dark**)\n**/clear**    : Clear the terminal output\n**/help**     : Show this help message\n\n*(Tip: Type **/man <command>** for detailed usage, e.g., **/man project**)*`;
         }
         break;
       case 'about':
         toolUse = { name: 'ReadFile', desc: `Read profile.md (${args[1] || 'summary'})` };
-        if (args[1] === '--whoami') responseContent = ABOUT_SECTIONS.whoami;
-        else if (args[1] === '--hobbies') responseContent = ABOUT_SECTIONS.hobbies;
-        else if (args[1] === '--funfacts') responseContent = ABOUT_SECTIONS.funfacts;
-        else if (args[1] === '--blog') responseContent = ABOUT_SECTIONS.blog;
-        else if (args[1] === '--learning') responseContent = ABOUT_SECTIONS.learning;
-        else if (args[1] === '--stats') responseContent = <AnalyticsDashboard />;
-        else if (args[1] === '--music') responseContent = <SpotifyStats />;
-        else responseContent = `Hi, I'm **Pynthamil Pavendan** (aka 3xpl01t), a passionate developer and cybersecurity enthusiast.\n\nAppend a flag to learn more about me:\n**/about --whoami**   : who am i and what do i do for a living?\n**/about --hobbies**  : things i enjoy outside of screens\n**/about --funfacts** : fun facts about me\n**/about --blog**     : about my blog\n**/about --learning** : what i am currently learning\n**/about --stats**    : my github commit graph\n**/about --music**    : what i'm listening to\n\n*(Try typing: **/about --stats**)*`;
+        if (args[1] === 'whoami') responseContent = ABOUT_SECTIONS.whoami;
+        else if (args[1] === 'hobbies') responseContent = ABOUT_SECTIONS.hobbies;
+        else if (args[1] === 'funfacts') responseContent = ABOUT_SECTIONS.funfacts;
+        else if (args[1] === 'blog') responseContent = ABOUT_SECTIONS.blog;
+        else if (args[1] === 'learning') responseContent = ABOUT_SECTIONS.learning;
+        else if (args[1] === 'stats') responseContent = <AnalyticsDashboard />;
+        else if (args[1] === 'music') responseContent = <SpotifyStats />;
+        else responseContent = `Hi, I'm **Pynthamil Pavendan** (aka 3xpl01t), a passionate developer and cybersecurity enthusiast.\n\nAppend a sub-command to learn more about me:\n**/about whoami**   : who am i and what do i do for a living?\n**/about hobbies**  : things i enjoy outside of screens\n**/about funfacts** : fun facts about me\n**/about blog**     : about my blog\n**/about learning** : what i am currently learning\n**/about stats**    : my github commit graph\n**/about music**    : what i'm listening to\n\n*(Try typing: **/about stats**)*`;
         break;
       case 'skills':
         toolUse = { name: 'QueryDatabase', desc: 'Fetch technical skills' };
@@ -134,8 +134,8 @@ export default function TerminalPortfolio() {
       case 'project':
         setMascot('laptop');
         toolUse = { name: 'FetchProjects', desc: `Retrieve portfolio items (${args[1] || 'all'})` };
-        if (args[1] === '--dev' || args[1] === '--design' || args[1] === '--social') {
-          const category = args[1].substring(2);
+        if (args[1] === 'dev' || args[1] === 'design' || args[1] === 'social') {
+          const category = args[1];
           const filteredHtml = allProjects.map((p, i) => {
             if (p.category === category) {
               const statusText = p.locked ? `<span style="color: #ff5555; font-size: 0.9em; display: inline-block; margin-top: 5px; font-weight: bold;">Coming soon! 🔒</span>` : `<span style="color: var(--accent); font-size: 0.9em; display: inline-block; margin-top: 5px;">Type <strong>project ${i+1}</strong> for details</span>`;
@@ -166,42 +166,42 @@ export default function TerminalPortfolio() {
               responseContent = `**${p.title}**\n*${p.desc}*\n\n**Details:**\n${p.details}${techStr}${linkStr}`;
             }
           } else {
-            responseContent = `Project ID ${args[1]} not found. Try running **project --dev** to see available projects.`;
+            responseContent = `Project ID ${args[1]} not found. Try running **project dev** to see available projects.`;
           }
         } else {
-          responseContent = `Here are my project categories. Append a flag to view specific projects:\n\n**project --dev**    : Software engineering & security projects\n**project --design** : UI/UX, graphic design, and pixel art\n**project --social** : Community initiatives and open source\n\n*(Try typing: **project --dev**)*`;
+          responseContent = `Here are my project categories. Append a sub-command to view specific projects:\n\n**project dev**    : Software engineering & security projects\n**project design** : UI/UX, graphic design, and pixel art\n**project social** : Community initiatives and open source\n\n*(Try typing: **project dev**)*`;
         }
         break;
       case 'ctf':
-        toolUse = { name: 'QueryDatabase', desc: `Fetch CTF history (${args[1] === '--all' ? 'all' : 'recent'})` };
+        toolUse = { name: 'QueryDatabase', desc: `Fetch CTF history (${args[1] === 'all' ? 'all' : 'recent'})` };
         const ctfContent = `**Team / Player**: 3xpl01t\n\n**1. boroctf** (Jun 13, 2026 - Jun 16, 2026)\n   - **Rank**: 261st out of 831 teams\n   - **Score**: 5300 pts\n   - **Solved Challenges (45)**:\n     - <strong style="color: var(--accent);">OSINT</strong>: Boro Hero, Nature's Takeover, Hidden Meaning, Third Time's the Charm, Physical Access >>, Oops..., The Squad, Mansion, Minecraftsint, Fireman, Go Knicks!, Nutella\n     - <strong style="color: var(--accent);">WEB</strong>: Beyond the Homepage, Cracking the Vault, boro-senpai 1, dotdotslashflagtxt, Drone Dash, boro-senpai 2, boro-senpai 3\n     - <strong style="color: var(--accent);">CRYPTO</strong>: A basic start, Et Tu, Brute, Not the Flag, Flipper's Dilemma, So Many Layers, Flight, Disco\n     - <strong style="color: var(--accent);">MISC</strong>: AI Slop, Distortion, Nature's Delight, 64 is life, File File Crocodile\n     - <strong style="color: var(--accent);">REV</strong>: Hidden but definitely not, George Orwell, Not Your Time, Perfectly Destructive File\n     - <strong style="color: var(--accent);">GEOSINT</strong>: Geopro 1, Geopro 4, Geopro 5, Geopro 3\n     - <strong style="color: var(--accent);">FORENSICS</strong>: Grep'n it, Mark Zuckerburg, kitty kitty meow meow, File Me to the Moon\n     - <strong style="color: var(--accent);">PWN</strong>: Coming Together, Next Challenge\n\n*(More to come soon!)*`;
 
         const isBoroTarget = args[1] === '1' || args[1] === '-1' || args[1] === 'boroctf';
         if (isBoroTarget) {
           responseContent = <BoroCtfStats />;
-        } else if (args[1] && args[1] !== '--all') {
+        } else if (args[1] && args[1] !== 'all') {
             responseContent = `No stats available for **${args[1]}**. Try **ctf 1**`;
-        } else if (args[1] === '--all') {
+        } else if (args[1] === 'all') {
           responseContent = `**All CTF Participations:**\n\n${ctfContent}`;
         } else {
           responseContent = `**Recent CTFs:**\n\n${ctfContent}\n\n*(Tip: Try typing **ctf 1**)*`;
         }
         break;
       case 'writeups':
-        toolUse = { name: 'FetchArticles', desc: `Retrieve writeups (${args[1] === '--all' ? 'all' : 'recent'})` };
-        if (args[1] === '--all') {
+        toolUse = { name: 'FetchArticles', desc: `Retrieve writeups (${args[1] === 'all' ? 'all' : 'recent'})` };
+        if (args[1] === 'all') {
           responseContent = `**All Writeups:**\n- **[Web]** Bypassing WAFs with Unicode Normalization\n- **[Crypto]** Breaking Custom RSA Implementation\n- **[Pwn]** Heap Exploitation: deep dive into glibc 2.35\n- **[Rev]** Deobfuscating custom VM architectures\n- **[OSINT]** Tracking threat actors via public metadata`;
         } else {
-          responseContent = `**Recent Writeups:**\n- **[Web]** Bypassing WAFs with Unicode Normalization\n- **[Crypto]** Breaking Custom RSA Implementation\n- **[Pwn]** Heap Exploitation: deep dive into glibc 2.35\n\n*Use **writeups --all** to read older posts.*`;
+          responseContent = `**Recent Writeups:**\n- **[Web]** Bypassing WAFs with Unicode Normalization\n- **[Crypto]** Breaking Custom RSA Implementation\n- **[Pwn]** Heap Exploitation: deep dive into glibc 2.35\n\n*Use **writeups all** to read older posts.*`;
         }
         break;
       case 'blog':
-        if (args[1] === '--latest') {
+        if (args[1] === 'latest') {
           responseContent = `**Latest Blog Post:**\n\n**readme, but make it aesthetic ✨**\n*not everything has to be loud to be meaningful.*\n\n[Read it on My Blog](https://my-blog-tan-tau.vercel.app/posts/readme-aesthetic) 🚀`;
-        } else if (args[1] === '--all') {
+        } else if (args[1] === 'all') {
           responseContent = `**All Published Blog Posts:**\n<div style="display: flex; gap: 20px; overflow-x: auto; padding-bottom: 15px; margin-top: 15px; scrollbar-width: none; -ms-overflow-style: none;"><a href="https://my-blog-tan-tau.vercel.app/posts/readme-aesthetic" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; flex: 0 0 350px;"><div style="background: var(--card-bg); padding: 15px; border-radius: 8px; border: 1px solid var(--accent-muted); transition: all 0.3s ease; height: 100%; display: flex; flex-direction: column; cursor: pointer;"><img src="https://my-blog-tan-tau.vercel.app/banners/Readme-post.svg" style="width: 100%; height: auto; border-radius: 6px; margin-bottom: 15px; border: 1px solid var(--accent-muted);" /><h3 style="margin: 0 0 10px 0; font-size: 1.1em; color: var(--text-primary);">readme, but make it aesthetic ✨</h3><p style="margin: 0 0 10px 0; font-size: 0.9em; color: var(--text-secondary); flex-grow: 1;">not everything has to be loud to be meaningful.</p><div style="font-size: 0.8em; color: var(--accent);">2026-06-08 • 3 min read</div></div></a><a href="https://my-blog-tan-tau.vercel.app/posts/my-first-post" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; flex: 0 0 350px;"><div style="background: var(--card-bg); padding: 15px; border-radius: 8px; border: 1px solid var(--accent-muted); transition: all 0.3s ease; height: 100%; display: flex; flex-direction: column; cursor: pointer;"><img src="https://my-blog-tan-tau.vercel.app/banners/Post1.svg" style="width: 100%; height: auto; border-radius: 6px; margin-bottom: 15px; border: 1px solid var(--accent-muted);" /><h3 style="margin: 0 0 10px 0; font-size: 1.1em; color: var(--text-primary);">print('Hello World') was not enough, so I built a blog.</h3><p style="margin: 0 0 10px 0; font-size: 0.9em; color: var(--text-secondary); flex-grow: 1;">a little about me, what I enjoy, and why I started this blog</p><div style="font-size: 0.8em; color: var(--accent);">2026-06-07 • 3 min read</div></div></a></div>`;
         } else {
-          responseContent = `Usage: **blog --latest** to fetch the most recent blog post, **blog --all** to see all posts, or visit [My Blog](https://my-blog-tan-tau.vercel.app).`;
+          responseContent = `Usage: **blog latest** to fetch the most recent blog post, **blog all** to see all posts, or visit [My Blog](https://my-blog-tan-tau.vercel.app).`;
         }
         break;
       case 'contact':
@@ -301,7 +301,7 @@ export default function TerminalPortfolio() {
 
   const formatMarkdown = (text) => {
     return text.split('\n').map((line, i) => {
-      let formattedLine = line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      let formattedLine = line.replace(/\*\*(.*?)\*\*/g, '<strong style="color: #a3be8c; font-weight: normal;">$1</strong>');
       formattedLine = formattedLine.replace(/\*(.*?)\*/g, '<em>$1</em>');
       formattedLine = formattedLine.replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1" style="max-width: 100%; height: auto; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; margin: 12px 0; display: block;" />');
       formattedLine = formattedLine.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" rel="noopener noreferrer" style="color: var(--accent); text-decoration: underline;">$1</a>');
@@ -323,14 +323,14 @@ export default function TerminalPortfolio() {
         {!isStarted ? (
           <WelcomeBox input={input} />
         ) : (
-          <header style={{ display: 'flex', marginBottom: '32px', paddingTop: '20px', alignItems: 'flex-start' }}>
+          <header style={{ display: 'flex', marginBottom: '36px', paddingTop: '20px', alignItems: 'center' }}>
             <img
               src={mascot === 'laptop' ? '/claude-assets/laptop.png' : '/claude-assets/normal.png'}
               alt="mascot"
-              style={{ width: '64px', height: 'auto', imageRendering: 'pixelated', marginRight: '16px', flexShrink: 0, display: 'block', marginTop: '2px' }}
+              style={{ width: '80px', height: 'auto', imageRendering: 'pixelated', marginRight: '24px', flexShrink: 0, display: 'block' }}
             />
-            <div style={{ lineHeight: '1.5', fontSize: '14px' }}>
-              <div style={{ color: 'var(--text)' }}>Claude Code</div>
+            <div style={{ lineHeight: '1.5', fontSize: '15px' }}>
+              <div style={{ color: 'var(--text)', fontSize: '16px', marginBottom: '2px' }}>Claude Code</div>
               <div style={{ color: 'var(--text-muted)' }}>
                 Sonnet 4.6 · Claude Pro
                 <br />
