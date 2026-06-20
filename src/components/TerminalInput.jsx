@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { allProjects } from '../data/projects';
+import { ClaudeMascot } from './ClaudeMascot';
 
 const BASE_COMMANDS = [
   '/about', '/skills', '/project', '/ctf', '/writeups', 
@@ -48,7 +49,12 @@ export const TerminalInput = ({ inputRef, input, setInput, handleKeyDown, isProc
   };
 
   return (
-    <div>
+    <div style={{ position: 'relative', marginTop: '68px' }}>
+      {/* Mascot walking on top of the input bar */}
+      <div style={{ position: 'absolute', bottom: '100%', left: 0, right: 0, pointerEvents: 'none' }}>
+        <ClaudeMascot isProcessing={isProcessing} size={64} />
+      </div>
+
       {/* Separator line — thin, dim orange like Claude Code */}
       <div style={{ height: '1px', backgroundColor: 'rgba(224, 108, 58, 0.35)', margin: '0' }} />
       <div

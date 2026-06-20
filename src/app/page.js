@@ -8,6 +8,7 @@ import { InteractivePrompt } from '../components/InteractivePrompt';
 import { AnalyticsDashboard } from '../components/stats/AnalyticsDashboard';
 import { BoroCtfStats } from '../components/stats/BoroCtfStats';
 import { SpotifyStats } from '../components/stats/SpotifyStats';
+import { ThinkingIndicator } from '../components/ThinkingIndicator';
 import { allProjects } from '../data/projects';
 import { ABOUT_SECTIONS } from '../data/about';
 
@@ -338,11 +339,6 @@ export default function TerminalPortfolio() {
           <WelcomeBox input={input} />
         ) : (
           <header style={{ display: 'flex', marginBottom: '36px', paddingTop: '20px', alignItems: 'center' }}>
-            <img
-              src={mascot === 'laptop' ? '/claude-assets/laptop.png' : '/claude-assets/normal.png'}
-              alt="mascot"
-              style={{ width: '80px', height: 'auto', imageRendering: 'pixelated', marginRight: '24px', flexShrink: 0, display: 'block' }}
-            />
             <div style={{ lineHeight: '1.5', fontSize: '15px' }}>
               <div style={{ color: 'var(--text)', fontSize: '16px', marginBottom: '2px' }}>Claude Code</div>
               <div style={{ color: 'var(--text-muted)' }}>
@@ -388,7 +384,7 @@ export default function TerminalPortfolio() {
                   </div>
                 )}
                 <div style={{ display: 'flex', marginBottom: '24px', alignItems: 'flex-start' }}>
-                  <span style={{ color: 'var(--text)', marginRight: '12px', marginTop: '1px', lineHeight: '1.6' }} aria-hidden="true">•</span>
+                  <span style={{ color: 'var(--text)', marginRight: '12px', fontSize: '14px', lineHeight: '1', marginTop: '4px' }} aria-hidden="true">•</span>
                   <div style={{ flex: 1, minWidth: 0, lineHeight: '1.6' }} className="md-content">
                     {typeof entry.content === 'string' ? formatMarkdown(entry.content) : entry.content}
                   </div>
@@ -398,15 +394,7 @@ export default function TerminalPortfolio() {
           </article>
         ))}
 
-        {isProcessing && (
-          <div style={{ marginBottom: '24px', paddingLeft: '4px', display: 'flex', gap: '12px', fontSize: '15px' }} role="status" aria-live="polite">
-            <span style={{ color: 'var(--accent)' }}>+</span>
-            <div>
-              <span style={{ color: 'var(--accent)' }}>Clauding... </span>
-              <span style={{ color: 'var(--text-muted)' }}>(esc to interrupt)</span>
-            </div>
-          </div>
-        )}
+        {isProcessing && <ThinkingIndicator />}
       </div>
 
       {!interactivePrompt ? (
