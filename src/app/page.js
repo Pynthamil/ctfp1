@@ -69,6 +69,7 @@ export default function TerminalPortfolio() {
     if (trimmed.toLowerCase() === 'clear' || trimmed.toLowerCase() === '/clear') {
       setHistory([]);
       setInput('');
+      setActiveCommand('');
       return;
     }
 

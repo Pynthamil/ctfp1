@@ -51,8 +51,8 @@ export const TerminalInput = ({ inputRef, input, setInput, handleKeyDown, isProc
   return (
     <div style={{ position: 'relative', marginTop: '68px' }}>
       {/* Mascot on top of the input bar */}
-      <div style={{ position: 'absolute', bottom: 'calc(100% - 16px)', left: 0, pointerEvents: 'none' }}>
-        <ClaudeMascot isProcessing={isProcessing} activeCommand={activeCommand} size={128} />
+      <div style={{ position: 'absolute', bottom: 'calc(100% - 20px)', left: 0, pointerEvents: 'none' }}>
+        <ClaudeMascot isProcessing={isProcessing} activeCommand={activeCommand} size={160} />
       </div>
 
       {/* Separator line — thin, dim orange like Claude Code */}
