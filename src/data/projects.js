@@ -1,6 +1,7 @@
 export         const allProjects = [
           {
             category: 'dev',
+            slug: "my-blog",
             title: "My Blog",
             desc: "I wanted a space that felt personal — somewhere I could write about things I'm learning, projects I'm building, and ideas I'm exploring. Most blogging platforms felt too generic, so I built my own from scratch with a focus on reading experience and minimal design.",
             img: "/project-banners/my-blog.svg",
@@ -11,6 +12,7 @@ export         const allProjects = [
           },
           {
             category: 'dev',
+            slug: "gitperson",
             title: "GitPerson",
             desc: "AI developer profile generator",
             img: "/project-banners/git-person.svg",
@@ -21,6 +23,7 @@ export         const allProjects = [
           },
           {
             category: 'dev',
+            slug: "readmeflier",
             title: "ReadmeFlier",
             desc: "Automated README generator",
             img: "/project-banners/readmeflier.svg",
@@ -31,6 +34,7 @@ export         const allProjects = [
           },
           {
             category: 'design',
+            slug: "codedex-app",
             title: "Codédex App",
             desc: "A beautiful conceptual mobile app for Codédex",
             img: "/project-banners/codedex-app.svg",
@@ -40,6 +44,7 @@ export         const allProjects = [
           },
           {
             category: 'design',
+            slug: "resume-roaster",
             title: "Resume Roaster",
             desc: "AI-based brutally honest resume reviewer",
             img: "/project-banners/resume-roaster.svg",
@@ -49,6 +54,7 @@ export         const allProjects = [
           },
           {
             category: 'design',
+            slug: "terminal-browser",
             title: "Terminal Browser",
             desc: "A command-line web browser",
             img: "/project-banners/terminal-browser.svg",
@@ -58,6 +64,7 @@ export         const allProjects = [
           },
           {
             category: 'design',
+            slug: "semantic-email",
             title: "Semantic Email",
             desc: "AI-powered semantic email client",
             img: "/project-banners/semantic-email.svg",
@@ -67,6 +74,7 @@ export         const allProjects = [
           },
           {
             category: 'design',
+            slug: "hackathon-portal",
             title: "ACM Hackathon Portal",
             desc: "A comprehensive hackathon portal design",
             img: "/project-banners/acm-hackathon-portal.svg",
@@ -76,6 +84,7 @@ export         const allProjects = [
           },
           {
             category: 'social',
+            slug: "codedex-graphics",
             title: "Codédex Graphics",
             desc: "Social media graphics designed for Codédex",
             img: "/social-media/codedex1.1.svg",
@@ -85,6 +94,7 @@ export         const allProjects = [
           },
           {
             category: 'social',
+            slug: "dear-rust",
             title: "Dear Rust Series",
             desc: "Promotional graphics for the Dear Rust series",
             img: "/social-media/dear-rust1.svg",
@@ -94,6 +104,7 @@ export         const allProjects = [
           },
           {
             category: 'social',
+            slug: "luma-1",
             title: "Luma Campaign 1",
             desc: "First collection of Luma event graphics",
             img: "/social-media/luma1.1.svg",
@@ -103,6 +114,7 @@ export         const allProjects = [
           },
           {
             category: 'social',
+            slug: "luma-2",
             title: "Luma Campaign 2",
             desc: "Second collection of Luma event graphics",
             img: "/social-media/luma2.1.svg",
@@ -112,6 +124,7 @@ export         const allProjects = [
           },
           {
             category: 'social',
+            slug: "mui-2",
             title: "MUI 2 Concept",
             desc: "MUI v2 marketing and concept graphics",
             img: "/social-media/Mui2-cover.svg",
@@ -121,6 +134,7 @@ export         const allProjects = [
           },
           {
             category: 'social',
+            slug: "miu-1",
             title: "MIU 1 Variations",
             desc: "Color variations for the MIU brand",
             img: "/social-media/miu1-blue.svg",
@@ -130,6 +144,7 @@ export         const allProjects = [
           },
           {
             category: 'social',
+            slug: "inspiher",
             title: "Inspiher Event Materials",
             desc: "Instagram posts and graphics for the Inspiher event",
             img: "/social-media/inspiher/Cover 2a.svg",

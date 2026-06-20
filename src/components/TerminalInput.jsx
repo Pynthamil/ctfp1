@@ -1,11 +1,26 @@
 import React, { useState, useEffect } from 'react';
 
-const COMMANDS = [
+import { allProjects } from '../data/projects';
+
+const BASE_COMMANDS = [
   '/about', '/skills', '/project', '/ctf', '/writeups', 
   '/blog', '/resume', '/contact', '/theme', '/clear', '/help', '/man',
   'about', 'skills', 'project', 'ctf', 'writeups', 
-  'blog', 'resume', 'contact', 'theme', 'clear', 'help', 'man'
+  'blog', 'resume', 'contact', 'theme', 'clear', 'help', 'man',
+  '/project dev', '/project design', '/project social',
+  '/ctf all', '/ctf stats', '/ctf boroctf',
+  '/writeups all',
+  '/blog latest', '/blog all',
+  '/about whoami', '/about hobbies', '/about funfacts', '/about blog', '/about learning', '/about stats', '/about music',
+  'project dev', 'project design', 'project social',
+  'ctf all', 'ctf stats', 'ctf boroctf',
+  'writeups all',
+  'blog latest', 'blog all',
+  'about whoami', 'about hobbies', 'about funfacts', 'about blog', 'about learning', 'about stats', 'about music'
 ];
+
+const PROJECT_COMMANDS = allProjects.flatMap(p => [`project ${p.slug}`, `/project ${p.slug}`]);
+const COMMANDS = [...BASE_COMMANDS, ...PROJECT_COMMANDS];
 
 export const TerminalInput = ({ inputRef, input, setInput, handleKeyDown, isProcessing, isStarted }) => {
   const [suggestion, setSuggestion] = useState('');

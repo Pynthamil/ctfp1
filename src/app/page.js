@@ -138,17 +138,16 @@ export default function TerminalPortfolio() {
           const category = args[1];
           const filteredHtml = allProjects.map((p, i) => {
             if (p.category === category) {
-              const statusText = p.locked ? `<span style="color: #ff5555; font-size: 0.9em; display: inline-block; margin-top: 5px; font-weight: bold;">Coming soon! 🔒</span>` : `<span style="color: var(--accent); font-size: 0.9em; display: inline-block; margin-top: 5px;">Type <strong>project ${i+1}</strong> for details</span>`;
-              return `<div style="flex: 0 0 350px; background: var(--card-bg); padding: 15px; border-radius: 8px; ${p.locked ? 'opacity: 0.6;' : ''}"><strong>${i+1}. ${p.title}</strong><br/>${statusText}<img src="${p.img}" style="width: 100%; height: auto; border-radius: 6px; margin-top: 10px; ${p.locked ? 'filter: grayscale(100%); opacity: 0.7;' : ''}" /></div>`;
+              const statusText = p.locked ? `<span style="color: #ff5555; font-size: 0.9em; display: inline-block; margin-top: 5px; font-weight: bold;">Coming soon! 🔒</span>` : `<span style="color: var(--accent); font-size: 0.9em; display: inline-block; margin-top: 5px;">Type <strong>project ${p.slug}</strong> for details</span>`;
+              return `<div style="flex: 0 0 350px; background: var(--card-bg); padding: 15px; border-radius: 8px; ${p.locked ? 'opacity: 0.6;' : ''}"><strong>${p.title}</strong><br/>${statusText}<img src="${p.img}" style="width: 100%; height: auto; border-radius: 6px; margin-top: 10px; ${p.locked ? 'filter: grayscale(100%); opacity: 0.7;' : ''}" /></div>`;
             }
             return '';
           }).join('');
           const title = category === 'dev' ? 'Development Projects' : (category === 'social' ? 'Social Media & Community' : 'Design Projects');
           responseContent = `**${title}:**\n<div style="display: flex; gap: 20px; overflow-x: auto; padding-bottom: 15px; margin-top: 15px; scrollbar-width: none; -ms-overflow-style: none; align-items: flex-start;">${filteredHtml}</div>`;
-        } else if (args[1] && !isNaN(parseInt(args[1]))) {
-          const idx = parseInt(args[1]) - 1;
-          if (idx >= 0 && idx < allProjects.length) {
-            const p = allProjects[idx];
+        } else if (args[1]) {
+          const p = allProjects.find(project => project.slug === args[1].toLowerCase());
+          if (p) {
             if (p.locked) {
               responseContent = `🔒 **${p.title}** is currently locked (Coming soon!). Please check back later!`;
             } else {
@@ -176,15 +175,15 @@ export default function TerminalPortfolio() {
         toolUse = { name: 'QueryDatabase', desc: `Fetch CTF history (${args[1] === 'all' ? 'all' : 'recent'})` };
         const ctfContent = `**Team / Player**: 3xpl01t\n\n**1. boroctf** (Jun 13, 2026 - Jun 16, 2026)\n   - **Rank**: 261st out of 831 teams\n   - **Score**: 5300 pts\n   - **Solved Challenges (45)**:\n     - <strong style="color: var(--accent);">OSINT</strong>: Boro Hero, Nature's Takeover, Hidden Meaning, Third Time's the Charm, Physical Access >>, Oops..., The Squad, Mansion, Minecraftsint, Fireman, Go Knicks!, Nutella\n     - <strong style="color: var(--accent);">WEB</strong>: Beyond the Homepage, Cracking the Vault, boro-senpai 1, dotdotslashflagtxt, Drone Dash, boro-senpai 2, boro-senpai 3\n     - <strong style="color: var(--accent);">CRYPTO</strong>: A basic start, Et Tu, Brute, Not the Flag, Flipper's Dilemma, So Many Layers, Flight, Disco\n     - <strong style="color: var(--accent);">MISC</strong>: AI Slop, Distortion, Nature's Delight, 64 is life, File File Crocodile\n     - <strong style="color: var(--accent);">REV</strong>: Hidden but definitely not, George Orwell, Not Your Time, Perfectly Destructive File\n     - <strong style="color: var(--accent);">GEOSINT</strong>: Geopro 1, Geopro 4, Geopro 5, Geopro 3\n     - <strong style="color: var(--accent);">FORENSICS</strong>: Grep'n it, Mark Zuckerburg, kitty kitty meow meow, File Me to the Moon\n     - <strong style="color: var(--accent);">PWN</strong>: Coming Together, Next Challenge\n\n*(More to come soon!)*`;
 
-        const isBoroTarget = args[1] === '1' || args[1] === '-1' || args[1] === 'boroctf';
+        const isBoroTarget = args[1] === 'boroctf';
         if (isBoroTarget) {
           responseContent = <BoroCtfStats />;
         } else if (args[1] && args[1] !== 'all') {
-            responseContent = `No stats available for **${args[1]}**. Try **ctf 1**`;
+            responseContent = `No stats available for **${args[1]}**. Try **ctf boroctf**`;
         } else if (args[1] === 'all') {
           responseContent = `**All CTF Participations:**\n\n${ctfContent}`;
         } else {
-          responseContent = `**Recent CTFs:**\n\n${ctfContent}\n\n*(Tip: Try typing **ctf 1**)*`;
+          responseContent = `**Recent CTFs:**\n\n${ctfContent}\n\n*(Tip: Try typing **ctf boroctf**)*`;
         }
         break;
       case 'writeups':
