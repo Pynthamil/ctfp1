@@ -9,6 +9,7 @@ import { AnalyticsDashboard } from '../components/stats/AnalyticsDashboard';
 import { BoroCtfStats } from '../components/stats/BoroCtfStats';
 import { SpotifyStats } from '../components/stats/SpotifyStats';
 import { ThinkingIndicator } from '../components/ThinkingIndicator';
+import { ClaudeLogo } from '../components/ClaudeLogo';
 import { allProjects } from '../data/projects';
 import { ABOUT_SECTIONS } from '../data/about';
 
@@ -338,7 +339,8 @@ export default function TerminalPortfolio() {
         {!isStarted ? (
           <WelcomeBox input={input} />
         ) : (
-          <header style={{ display: 'flex', marginBottom: '36px', paddingTop: '20px', alignItems: 'center' }}>
+          <header style={{ display: 'flex', marginBottom: '36px', paddingTop: '20px', alignItems: 'center', gap: '24px' }}>
+            <ClaudeLogo style={{ color: 'var(--accent)', width: '64px', height: '48px', flexShrink: 0 }} />
             <div style={{ lineHeight: '1.5', fontSize: '15px' }}>
               <div style={{ color: 'var(--text)', fontSize: '16px', marginBottom: '2px' }}>Claude Code</div>
               <div style={{ color: 'var(--text-muted)' }}>
