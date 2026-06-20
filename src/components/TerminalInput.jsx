@@ -51,7 +51,7 @@ export const TerminalInput = ({ inputRef, input, setInput, handleKeyDown, isProc
   return (
     <div style={{ position: 'relative', marginTop: '68px' }}>
       {/* Mascot on top of the input bar */}
-      <div style={{ position: 'absolute', bottom: '100%', left: 0, pointerEvents: 'none' }}>
+      <div style={{ position: 'absolute', bottom: 'calc(100% - 16px)', left: 0, pointerEvents: 'none' }}>
         <ClaudeMascot isProcessing={isProcessing} size={128} />
       </div>
 
