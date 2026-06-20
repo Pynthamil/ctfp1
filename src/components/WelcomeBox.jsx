@@ -62,7 +62,7 @@ export const WelcomeBox = ({ input }) => {
         </div>
 
         <img
-          src={isProjectCommand ? '/claude-assets/laptop.png' : '/claude-assets/normal.png'}
+          src={isProjectCommand ? '/claude-assets/hat.png' : '/claude-assets/normal.png'}
           alt="mascot"
           style={{ width: '80px', imageRendering: 'pixelated', display: 'block' }}
         />
