@@ -31,8 +31,12 @@ export const ClaudeMascot = ({ isProcessing, activeCommand = '', size = 160 }) =
     }
   }
 
+  const isEngineer = imgSrc.includes("engineer.jpeg");
+  const finalSize = isEngineer ? size * 1.25 : size;
+  const offsetTranslate = isEngineer ? (finalSize - size) / 8 : 0;
+
   return (
-    <div style={{ width: `${size}px`, height: `${size}px`, flexShrink: 0, display: 'block' }}>
+    <div style={{ width: `${finalSize}px`, height: `${finalSize}px`, flexShrink: 0, display: 'block' }}>
       <img
         src={imgSrc}
         alt="Claude Mascot"
@@ -41,7 +45,8 @@ export const ClaudeMascot = ({ isProcessing, activeCommand = '', size = 160 }) =
           height: '100%',
           objectFit: 'contain',
           display: 'block',
-          imageRendering: 'pixelated'
+          imageRendering: 'pixelated',
+          transform: offsetTranslate ? `translateY(${offsetTranslate}px)` : 'none'
         }}
       />
     </div>
