@@ -11,7 +11,7 @@ export const WelcomeBox = ({ input }) => {
   const FG_BOLD  = '#e0dcd4';
   const BG       = '#2b2b28';
   const FONT     = "'Menlo', 'Monaco', 'SF Mono', 'Consolas', monospace";
-  const FS       = '14px';
+  const FS       = '15px';
 
   return (
     <div style={{
@@ -20,19 +20,19 @@ export const WelcomeBox = ({ input }) => {
       borderRadius: '4px',
       display: 'flex',
       flexDirection: 'row',
-      margin: '20px 0 28px',
+      margin: '20px auto 28px',
       backgroundColor: BG,
       fontFamily: FONT,
       fontSize: FS,
       color: FG,
+      width: 'fit-content',
     }}>
 
       {/* ── Header: "─── Claude Code v2.0.0 ──────────" ── */}
       <div style={{
         position: 'absolute',
         top: '-10px',
-        left: 0,
-        right: 0,
+        left: '16px',
         display: 'flex',
         alignItems: 'center',
         fontSize: FS,
@@ -40,12 +40,8 @@ export const WelcomeBox = ({ input }) => {
         pointerEvents: 'none',
         fontFamily: FONT,
       }}>
-        <span style={{ color: DIM, backgroundColor: BG, paddingLeft: '10px' }}>───</span>
-        <span style={{ color: ORANGE, backgroundColor: BG, padding: '0 0 0 5px' }}> Claude Code</span>
-        <span style={{ color: MUTED, backgroundColor: BG, paddingRight: '5px' }}> v2.0.0</span>
-        <span style={{ color: DIM, backgroundColor: BG, flex: 1, overflow: 'hidden', whiteSpace: 'nowrap', paddingRight: '8px' }}>
-          {'─'.repeat(120)}
-        </span>
+        <span style={{ color: ORANGE, backgroundColor: BG, padding: '0 5px' }}>Claude Code</span>
+        <span style={{ color: MUTED, backgroundColor: BG, paddingRight: '10px' }}> v2.0.0</span>
       </div>
 
       {/* ══ LEFT PANEL ══ */}
@@ -83,7 +79,7 @@ export const WelcomeBox = ({ input }) => {
         {/* Recent Activity */}
         <div style={{
           flex: 1,
-          padding: '24px 20px 18px',
+          padding: '2px 20px 18px',
           borderBottom: `1px dashed ${DIM}`,
         }}>
           <div style={{ color: ORANGE, fontWeight: 'bold', marginBottom: '6px' }}>
@@ -95,27 +91,27 @@ export const WelcomeBox = ({ input }) => {
             ['2d ago', 'Add new words to spinner'],
             ['1w ago', 'Update unit tests'],
           ].map(([t, d]) => (
-            <div key={t} style={{ display: 'flex', lineHeight: '1.65' }}>
-              <span style={{ color: MUTED, width: '60px', flexShrink: 0 }}>{t}</span>
+            <div key={t} style={{ display: 'flex', lineHeight: '1.4' }}>
+              <span style={{ color: MUTED, width: '85px', flexShrink: 0 }}>{t}</span>
               <span style={{ color: FG }}>{d}</span>
             </div>
           ))}
-          <div style={{ color: MUTED, lineHeight: '1.65', paddingLeft: '4px' }}>
+          <div style={{ color: MUTED, lineHeight: '1.4', paddingLeft: '4px' }}>
             .../resume for more
           </div>
         </div>
 
         {/* What's new */}
-        <div style={{ flex: 1, padding: '18px 20px 24px' }}>
+        <div style={{ flex: 1, padding: '2px 20px 24px' }}>
           <div style={{ color: ORANGE, fontWeight: 'bold', marginBottom: '6px' }}>
             What&apos;s new
           </div>
-          <div style={{ color: FG, lineHeight: '1.65' }}>
+          <div style={{ color: FG, lineHeight: '1.4' }}>
             <div>/skills to see technical skills</div>
             <div>/about for background context</div>
             <div>ctrl+b to background bashes</div>
           </div>
-          <div style={{ color: MUTED, lineHeight: '1.65', paddingLeft: '4px' }}>
+          <div style={{ color: MUTED, lineHeight: '1.4', paddingLeft: '4px' }}>
             .../help for more
           </div>
         </div>

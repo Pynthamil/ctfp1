@@ -357,16 +357,25 @@ export default function TerminalPortfolio() {
                 <span style={{ whiteSpace: 'pre-wrap' }}>{entry.content}</span>
               </div>
             ) : (
-              <section className="pl-5" aria-label="Terminal response">
+              <section style={{ paddingLeft: '4px' }} aria-label="Terminal response">
                 {entry.tool && (
-                  <div className="pl-6 mt-2 mb-4" aria-label={`Tool: ${entry.tool.name}`}>
-                    <div className="tool-header text-text-muted flex items-center" aria-hidden="true">{entry.tool.name}({entry.tool.desc})</div>
-                    <div className="tool-details" aria-hidden="true">Done (1 tool use · 3.2k tokens · 1.4s)</div>
+                  <div style={{ marginBottom: '24px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', fontWeight: 'bold', fontSize: '15px', color: 'var(--text)', marginBottom: '8px' }}>
+                      <span style={{ color: '#4ade80', marginRight: '10px', fontSize: '14px', lineHeight: '1' }}>●</span>
+                      {entry.tool.name}
+                    </div>
+                    <div style={{ paddingLeft: '6px', display: 'flex', color: 'var(--text-muted)', lineHeight: '1.6' }}>
+                      <span style={{ color: 'rgba(255,255,255,0.2)', marginRight: '8px' }}>└</span>
+                      <div>
+                        <div style={{ color: '#a6acf5' }}>□ {entry.tool.desc}</div>
+                        <div>□ Done (1 tool use · 3.2k tokens · 1.4s)</div>
+                      </div>
+                    </div>
                   </div>
                 )}
-                <div className="flex mb-2">
-                  <span className="mr-2.5 text-text-muted" aria-hidden="true">•</span>
-                  <div className="flex-1 w-full min-w-0 md-content">
+                <div style={{ display: 'flex', marginBottom: '24px', alignItems: 'flex-start' }}>
+                  <span style={{ color: 'var(--text)', marginRight: '12px', marginTop: '1px', lineHeight: '1.6' }} aria-hidden="true">•</span>
+                  <div style={{ flex: 1, minWidth: 0, lineHeight: '1.6' }} className="md-content">
                     {typeof entry.content === 'string' ? formatMarkdown(entry.content) : entry.content}
                   </div>
                 </div>
@@ -376,9 +385,11 @@ export default function TerminalPortfolio() {
         ))}
 
         {isProcessing && (
-          <div className="mb-6" role="status" aria-live="polite" aria-label="Processing command">
-            <div className="pl-5 text-accent-muted">
-              * Clauding... (esc to interrupt)
+          <div style={{ marginBottom: '24px', paddingLeft: '4px', display: 'flex', gap: '12px', fontSize: '15px' }} role="status" aria-live="polite">
+            <span style={{ color: 'var(--accent)' }}>+</span>
+            <div>
+              <span style={{ color: 'var(--accent)' }}>Clauding... </span>
+              <span style={{ color: 'var(--text-muted)' }}>(esc to interrupt)</span>
             </div>
           </div>
         )}
