@@ -189,11 +189,7 @@ export default function TerminalPortfolio() {
         break;
       case 'writeups':
         toolUse = { name: 'FetchArticles', desc: `Retrieve writeups (${args[1] === 'all' ? 'all' : 'recent'})` };
-        if (args[1] === 'all') {
-          responseContent = `**All Writeups:**\n- **[Web]** Bypassing WAFs with Unicode Normalization\n- **[Crypto]** Breaking Custom RSA Implementation\n- **[Pwn]** Heap Exploitation: deep dive into glibc 2.35\n- **[Rev]** Deobfuscating custom VM architectures\n- **[OSINT]** Tracking threat actors via public metadata`;
-        } else {
-          responseContent = `**Recent Writeups:**\n- **[Web]** Bypassing WAFs with Unicode Normalization\n- **[Crypto]** Breaking Custom RSA Implementation\n- **[Pwn]** Heap Exploitation: deep dive into glibc 2.35\n\n*Use **writeups all** to read older posts.*`;
-        }
+        responseContent = `**Writeups:**\n\nComing soon! 🔒`;
         break;
       case 'blog':
         if (args[1] === 'latest') {
