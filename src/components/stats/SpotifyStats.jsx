@@ -50,13 +50,17 @@ export const SpotifyStats = () => {
 
         {/* Currently playing simulation */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-          <div style={{ width: '40px', height: '40px', background: 'var(--card-bg)', borderRadius: '4px', border: '1px solid var(--accent-muted)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <div style={{ display: 'flex', gap: '3px', alignItems: 'flex-end', height: '15px' }}>
-              <div style={{ width: '3px', height: '10px', background: '#1DB954', animation: 'bounce 1s infinite alternate' }} />
-              <div style={{ width: '3px', height: '15px', background: '#1DB954', animation: 'bounce 1.2s infinite alternate-reverse' }} />
-              <div style={{ width: '3px', height: '8px', background: '#1DB954', animation: 'bounce 0.8s infinite alternate' }} />
-            </div>
-          </div>
+          <img
+            src="/enhypen.png"
+            alt="ENHYPEN Album Art"
+            style={{
+              width: '40px',
+              height: '40px',
+              borderRadius: '4px',
+              border: '1px solid var(--accent-muted)',
+              objectFit: 'cover'
+            }}
+          />
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <span style={{ color: 'var(--text-muted)', fontSize: '12px', marginBottom: '2px' }}>Currently Listening...</span>
             <span style={{ color: 'var(--text)', fontSize: '14px', fontWeight: '500' }}>Chaconne • ENHYPEN</span>
