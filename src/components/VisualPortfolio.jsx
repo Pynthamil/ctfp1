@@ -525,7 +525,14 @@ export const VisualPortfolio = ({ onSwitchToTerminal }) => {
         {/* ABOUT TAB */}
         {/* ========================================================== */}
         {activeTab === 'about' && (
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '32px' }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr',
+            gap: '32px',
+            maxWidth: '900px',
+            margin: '0 auto 40px',
+            width: '100%'
+          }}>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '28px', alignItems: 'start' }}>
               
               {/* Profile Card & Spotify */}
@@ -634,7 +641,14 @@ export const VisualPortfolio = ({ onSwitchToTerminal }) => {
         {/* CTF TAB */}
         {/* ========================================================== */}
         {activeTab === 'ctf' && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '28px',
+            maxWidth: '900px',
+            margin: '0 auto 40px',
+            width: '100%'
+          }}>
             <div style={{
               background: 'var(--card-bg)',
               border: isLightTheme ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.05)',
