@@ -175,15 +175,19 @@ export const VisualPortfolio = ({ onSwitchToTerminal }) => {
         padding: isMobile ? '16px' : '12px 24px',
         border: '3px solid var(--accent-muted)',
         borderRadius: '14px',
-        backgroundColor: isLightTheme ? 'rgba(255, 255, 255, 0.65)' : 'rgba(20, 20, 20, 0.4)',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
-        marginBottom: '40px',
-        marginTop: '20px',
-        width: '100%',
+        backgroundColor: isLightTheme ? 'rgba(255, 255, 255, 0.6)' : 'rgba(20, 20, 20, 0.35)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        position: 'fixed',
+        top: '20px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: 'calc(100% - 40px)',
         maxWidth: '1000px',
-        marginLeft: 'auto',
-        marginRight: 'auto',
+        zIndex: 1000,
+        boxShadow: isLightTheme 
+          ? '0 8px 32px 0 rgba(31, 38, 135, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.2)' 
+          : '0 8px 32px 0 rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.05)',
         gap: isMobile ? '12px' : '0',
         fontFamily: 'var(--font-geist), system-ui, sans-serif'
       }}>
@@ -281,7 +285,7 @@ export const VisualPortfolio = ({ onSwitchToTerminal }) => {
       </header>
 
       {/* --- Main Contents --- */}
-      <main style={{ flex: 1 }}>
+      <main style={{ flex: 1, paddingTop: isMobile ? '150px' : '100px' }}>
         {/* ========================================================== */}
         {/* PROJECTS TAB */}
         {/* ========================================================== */}

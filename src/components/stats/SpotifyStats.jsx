@@ -113,7 +113,7 @@ export const SpotifyStats = () => {
         borderBottomColor: '#808080',
         boxShadow: '1px 1px 0px #000',
         width: '100%',
-        maxWidth: '430px',
+        maxWidth: '100%',
         padding: '3px',
         color: '#000',
         fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
