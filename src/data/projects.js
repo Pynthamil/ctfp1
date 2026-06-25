@@ -47,26 +47,32 @@ export         const allProjects = [
     </div>
   </div>
 
+  <!-- Color Palette -->
+  <div>
+    <strong style="display: block; margin-bottom: 8px; color: var(--accent); font-size: 1.1em;">Color Palette</strong>
+    <div style="margin-top: 10px; margin-bottom: 15px;">
+      <img src="/job/colorpalette.svg" alt="JobTrace Color Palette" style="width: 100%; height: auto; border-radius: 8px;" />
+    </div>
+  </div>
+
   <!-- Interface Design Mockup -->
   <div>
     <strong style="display: block; margin-bottom: 8px; color: var(--accent); font-size: 1.1em;">Interface Design</strong>
     <div style="margin-top: 10px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 15px;">
-      <img src="/job/colorpalette.svg" alt="JobTrace Color Palette" style="width: 100%; height: auto; border-radius: 8px;" />
-      <img src="/job/homescreen.svg" alt="JobTrace Homescreen" style="width: 100%; height: auto; border-radius: 8px; border: 1.5px solid var(--accent-muted); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); margin-top: 15px;" />
+      <img src="/job/homescreen.svg" alt="JobTrace Homescreen" style="width: 100%; height: auto; border-radius: 8px; border: 1.5px solid var(--accent-muted); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);" />
+      <div style="display: flex; gap: 15px; margin-top: 15px;"><div style="flex: 1;"><img src="/job/appl.svg" alt="Applications Screen" style="width: 100%; height: auto; border-radius: 8px;" /></div><div style="flex: 1;"><img src="/job/anlyt.svg" alt="Analytics Screen" style="width: 100%; height: auto; border-radius: 8px;" /></div></div>
       <video src="/job/demo/addAppl.mp4" autoplay loop muted playsinline style="width: 100%; border-radius: 8px; margin-top: 15px;" />
+      <div style="display: flex; gap: 15px; margin-top: 15px;"><div style="flex: 1;"><img src="/job/cal1.svg" alt="Calendar View 1" style="width: 100%; height: auto; border-radius: 8px;" /></div><div style="flex: 1;"><img src="/job/cal2.svg" alt="Calendar View 2" style="width: 100%; height: auto; border-radius: 8px;" /></div></div>
     </div>
   </div>
 
-  <!-- User Research -->
+  <!-- Pain Points & Solutions -->
   <div>
-    <strong style="display: block; margin-bottom: 8px; color: var(--accent); font-size: 1.1em;">User Research & Insights</strong>
+    <strong style="display: block; margin-bottom: 8px; color: var(--accent); font-size: 1.1em;">Pain Points & Solutions</strong>
     <p style="margin: 0 0 10px 0; line-height: 1.6; color: var(--text-muted);">
-      We surveyed and observed 15 active software engineering job seekers who apply to an average of 15-20 jobs a week:
+      Key challenges identified in developer job search workflows and the solutions designed to address them:
     </p>
-    <ul style="margin: 0; padding-left: 20px; line-height: 1.6; color: var(--text-muted); display: flex; flex-direction: column; gap: 6px;">
-      <li><strong>Application Overhead:</strong> Most job seekers apply to dozens of roles weekly and lose track of stages, leading to missed interviews. *Solution:* A unified, clean dashboard to store and monitor all active applications.</li>
-      <li><strong>Lack of Pipeline Analytics:</strong> Users do not know where their process is failing (resume screening vs. coding rounds). *Solution:* Funnel charts showing stage drop-off percentages.</li>
-    </ul>
+    <div style="display: flex; flex-direction: column; gap: 12px; color: var(--text-muted); line-height: 1.6; margin-top: 10px;"><div style="padding-left: 12px; border-left: 2.5px solid var(--accent);"><strong style="color: var(--text); display: block; margin-bottom: 2px;">1. Application Overhead</strong>Most job seekers apply to dozens of roles weekly and lose track of stages, leading to missed interviews. <strong style="color: var(--accent); font-weight: normal;">Solution:</strong> A unified, clean dashboard to store, organize, and monitor all active applications in one place.</div><div style="padding-left: 12px; border-left: 2.5px solid var(--accent);"><strong style="color: var(--text); display: block; margin-bottom: 2px;">2. Lack of Pipeline Analytics</strong>Users do not know where their process is failing (resume screening vs. coding rounds). <strong style="color: var(--accent); font-weight: normal;">Solution:</strong> Interactive funnel charts showing conversion rates and stage drop-off percentages.</div></div>
   </div>
 </div>`
           },
@@ -98,7 +104,7 @@ export         const allProjects = [
             title: "JobTrace UI",
             desc: "Homescreen and dashboard interface design for JobTrace",
             img: "/project-banners/jobTracker.svg",
-            details: `Designed a comprehensive tracking interface for JobTrace. The UI focuses on readability, quick-glance status indicators, and custom layouts for developer job searches.\n\n**Homescreen Layout**\n<div style="margin-top: 15px; margin-bottom: 15px;"><img src="/job/homescreen.svg" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--accent-muted); box-shadow: 0 4px 20px rgba(0,0,0,0.4);" /></div>\n\n**Core Features**\n<div style="margin-top: 15px; margin-bottom: 15px;"><img src="/job/Core%20Features.svg" style="width: 100%; height: auto; border-radius: 8px;" /></div>\n\n**Project Mindmap**\n<div style="margin-top: 15px; margin-bottom: 15px;"><img src="/job/mindmap.svg" style="width: 100%; height: auto; border-radius: 8px;" /></div>\n\n**Color Palette**\n<div style="margin-top: 15px; margin-bottom: 15px;"><img src="/job/colorpalette.svg" style="width: 100%; height: auto; border-radius: 8px;" /></div>`,
+            details: `Designed a comprehensive tracking interface for JobTrace. The UI focuses on readability, quick-glance status indicators, and custom layouts for developer job searches.\n\n**Core Features**\n<div style="margin-top: 15px; margin-bottom: 15px;"><img src="/job/Core%20Features.svg" style="width: 100%; height: auto; border-radius: 8px;" /></div>\n\n**Project Mindmap**\n<div style="margin-top: 15px; margin-bottom: 15px;"><img src="/job/mindmap.svg" style="width: 100%; height: auto; border-radius: 8px;" /></div>\n\n**Color Palette**\n<div style="margin-top: 15px; margin-bottom: 15px;"><img src="/job/colorpalette.svg" style="width: 100%; height: auto; border-radius: 8px;" /></div>\n\n**Interface Design**\n<div style="margin-top: 15px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 15px;"><img src="/job/homescreen.svg" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--accent-muted); box-shadow: 0 4px 20px rgba(0,0,0,0.4);" /><div style="display: flex; gap: 15px; margin-top: 15px;"><div style="flex: 1;"><img src="/job/appl.svg" style="width: 100%; height: auto; border-radius: 8px;" /></div><div style="flex: 1;"><img src="/job/anlyt.svg" style="width: 100%; height: auto; border-radius: 8px;" /></div></div><div style="display: flex; gap: 15px; margin-top: 15px;"><div style="flex: 1;"><img src="/job/cal1.svg" style="width: 100%; height: auto; border-radius: 8px;" /></div><div style="flex: 1;"><img src="/job/cal2.svg" style="width: 100%; height: auto; border-radius: 8px;" /></div></div></div>`,
             tech: ["Figma"],
             link: "#"
           },
