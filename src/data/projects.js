@@ -43,17 +43,275 @@ export         const allProjects = [
     </div>
   </div>
 
-  <!-- Ideation & Sketch Placeholder -->
+  <!-- Ideation: Interactive Process Flow -->
   <div>
-    <strong style="display: block; margin-bottom: 8px; color: var(--accent); font-size: 1.1em;">Ideation & Architecture Sketch</strong>
-    <div style="width: 100%; height: 200px; border-radius: 8px; border: 1.5px dashed var(--accent-muted); display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.02); box-sizing: border-box; padding: 20px; text-align: center;">
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--accent); opacity: 0.8; margin-bottom: 12px;">
-        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-      </svg>
-      <span style="color: var(--text); font-weight: 500; font-size: 0.95em;">Ideation Diagram Placeholder</span>
-      <span style="color: var(--text-muted); font-size: 0.8em; margin-top: 6px; max-width: 320px;">
-        Upload your initial UI wireframes or architecture drawing to: <code>/public/project-assets/jobtrace/ideation.webp</code>
-      </span>
+    <strong style="display: block; margin-bottom: 8px; color: var(--accent); font-size: 1.1em;">Ideation & Process Flow</strong>
+    
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
+      .flow-container {
+        position: relative;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1.5px dashed var(--accent-muted);
+        border-radius: 8px;
+        padding: 40px 20px 50px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: visible;
+        margin-top: 15px;
+        margin-bottom: 15px;
+      }
+      .flow-line-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        height: 80px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 25px;
+      }
+      .flow-bg-line {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: #374151;
+        transform: translateY(-50%);
+        z-index: 1;
+      }
+      .flow-loop-arrow {
+        position: absolute;
+        top: 10px;
+        left: 36%;
+        width: 28%;
+        height: 30px;
+        border: 2px dashed #4b5563;
+        border-bottom: none;
+        border-radius: 30px 30px 0 0;
+        pointer-events: none;
+        z-index: 1;
+      }
+      .flow-loop-arrow::before {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: -3px;
+        width: 0;
+        height: 0;
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+        border-right: 7px solid #4b5563;
+        transform: rotate(30deg);
+      }
+      .flow-annotation {
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.85em;
+        color: var(--text-muted);
+        font-family: 'Caveat', cursive;
+        letter-spacing: 1px;
+        white-space: nowrap;
+        opacity: 0.7;
+        z-index: 2;
+      }
+      .flow-node {
+        position: relative;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.1em;
+        color: #111827;
+        cursor: pointer;
+        z-index: 3;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .node-label {
+        position: absolute;
+        bottom: -28px;
+        font-size: 0.75em;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+        font-family: -apple-system, sans-serif;
+      }
+      
+      .node-1 { background: #EAB308; }
+      .node-1 .node-label { color: #EAB308; }
+      .node-2 { background: #06B6D4; }
+      .node-2 .node-label { color: #06B6D4; }
+      .node-3 { background: #22C55E; }
+      .node-3 .node-label { color: #22C55E; }
+      .node-4 { background: #F97316; }
+      .node-4 .node-label { color: #F97316; }
+
+      .flow-node:hover {
+        transform: scale(1.15);
+        box-shadow: 0 0 15px currentColor;
+      }
+
+      .notes-container {
+        position: absolute;
+        width: 300px;
+        height: 120px;
+        pointer-events: none;
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(0.9) translateY(10px);
+        transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.2), visibility 0.25s;
+        z-index: 10;
+      }
+      .flow-node:hover .notes-container {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1) translateY(0);
+      }
+
+      .node-1 .notes-container { top: -110px; left: -10px; }
+      .node-2 .notes-container { top: 40px; left: -120px; }
+      .node-3 .notes-container { top: 40px; left: -120px; }
+      .node-4 .notes-container { top: -110px; left: -250px; }
+
+      .sticky-note {
+        position: absolute;
+        width: 150px;
+        padding: 10px;
+        box-shadow: 2px 5px 10px rgba(0,0,0,0.5);
+        font-family: 'Caveat', cursive;
+        font-size: 1.15em;
+        color: #111827;
+        line-height: 1.2;
+        box-sizing: border-box;
+        text-align: left;
+      }
+      .sticky-title {
+        font-weight: bold;
+        font-size: 1.05em;
+        margin-bottom: 4px;
+        border-bottom: 1px dashed rgba(0,0,0,0.15);
+        padding-bottom: 2px;
+      }
+      
+      .note-yellow { background: #FEF08A; }
+      .note-blue { background: #CFFAFE; }
+      .note-green { background: #DCFCE7; }
+      .note-orange { background: #FFEDD5; }
+
+      .node-1 .note-a { transform: rotate(-5deg); z-index: 12; left: 0; top: 0; }
+      .node-1 .note-b { transform: rotate(4deg); z-index: 11; left: 130px; top: -10px; }
+
+      .node-2 .note-a { transform: rotate(3deg); z-index: 12; left: 20px; top: 0; }
+      .node-2 .note-b { transform: rotate(-4deg); z-index: 11; left: 140px; top: 10px; }
+
+      .node-3 .note-a { transform: rotate(-3deg); z-index: 12; left: 20px; top: 0; }
+      .node-3 .note-b { transform: rotate(5deg); z-index: 11; left: 140px; top: -5px; }
+
+      .node-4 .note-a { transform: rotate(4deg); z-index: 12; left: 20px; top: 0; }
+      .node-4 .note-b { transform: rotate(-5deg); z-index: 11; left: 140px; top: 10px; }
+
+      .flow-instruction {
+        font-size: 0.8em;
+        color: var(--text-muted);
+        margin-top: 30px;
+        font-style: italic;
+        opacity: 0.7;
+      }
+    </style>
+
+    <div class="flow-container">
+      <div class="flow-line-wrapper">
+        <div class="flow-bg-line"></div>
+        <div class="flow-loop-arrow"></div>
+        <div class="flow-annotation">Visualization • Planning • Sketching</div>
+        
+        <!-- Node 1 -->
+        <div class="flow-node node-1">
+          1
+          <span class="node-label">Motivation</span>
+          <div class="notes-container">
+            <div class="sticky-note note-yellow note-a">
+              <div class="sticky-title">The Spark ⚡</div>
+              • Sick of messy spreadsheets!<br>
+              • Applying to 20+ jobs/week is pure chaos.
+            </div>
+            <div class="sticky-note note-yellow note-b">
+              <div class="sticky-title">Goals 🎯</div>
+              • Build a fast terminal UI<br>
+              • Parse details automatically<br>
+              • Track conversions
+            </div>
+          </div>
+        </div>
+
+        <!-- Node 2 -->
+        <div class="flow-node node-2">
+          2
+          <span class="node-label">Incubation</span>
+          <div class="notes-container">
+            <div class="sticky-note note-blue note-a">
+              <div class="sticky-title">Research 🔍</div>
+              • Too much manual entry makes users quit.<br>
+              • Chrome extension is the key.
+            </div>
+            <div class="sticky-note note-blue note-b">
+              <div class="sticky-title">Stack 💡</div>
+              • Next.js server actions<br>
+              • Supabase DB &amp; Auth<br>
+              • Resend for email alerts
+            </div>
+          </div>
+        </div>
+
+        <!-- Node 3 -->
+        <div class="flow-node node-3">
+          3
+          <span class="node-label">Execution</span>
+          <div class="notes-container">
+            <div class="sticky-note note-green note-a">
+              <div class="sticky-title">Coding 💻</div>
+              • Supabase RLS is tricky but secure!<br>
+              • Real-time drag &amp; drop Kanban works.
+            </div>
+            <div class="sticky-note note-green note-b">
+              <div class="sticky-title">Challenges 📈</div>
+              • LinkedIn job site layout changes constantly.<br>
+              • Handled via scraping APIs.
+            </div>
+          </div>
+        </div>
+
+        <!-- Node 4 -->
+        <div class="flow-node node-4">
+          4
+          <span class="node-label">Outcome</span>
+          <div class="notes-container">
+            <div class="sticky-note note-orange note-a">
+              <div class="sticky-title">Launch 🚀</div>
+              • Deployed on Vercel.<br>
+              • Staged on GitHub.<br>
+              • Time to land an offer!
+            </div>
+            <div class="sticky-note note-orange note-b">
+              <div class="sticky-title">Future 🧠</div>
+              • Add interview checklists.<br>
+              • Build salary converter utility.
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="flow-instruction">Hover over each process stage number to reveal initial ideation sticky notes</div>
     </div>
   </div>
 
