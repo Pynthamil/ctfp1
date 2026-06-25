@@ -26,7 +26,7 @@ export default function TerminalPortfolio() {
   const [theme, setTheme] = useState('dark');
   const [mascot, setMascot] = useState('normal');
   const [activeCommand, setActiveCommand] = useState('');
-  const [soundEnabled, setSoundEnabled] = useState(false);
+  const [soundEnabled, setSoundEnabled] = useState(true);
   const [viewMode, setViewMode] = useState('tui'); // 'tui' | 'gui'
   const scrollRef = useRef(null);
   const inputRef = useRef(null);
@@ -79,6 +79,29 @@ export default function TerminalPortfolio() {
     window.addEventListener('click', handleWindowClick);
     return () => window.removeEventListener('click', handleWindowClick);
   }, []);
+
+  useEffect(() => {
+    let played = false;
+    const playStartupOnInteraction = () => {
+      if (played) return;
+      if (soundEnabled) {
+        try {
+          playStartupChime();
+          played = true;
+        } catch (e) {
+          console.error("Failed to play startup chime:", e);
+        }
+        cleanup();
+      }
+    };
+    const cleanup = () => {
+      window.removeEventListener('click', playStartupOnInteraction);
+      window.removeEventListener('keydown', playStartupOnInteraction);
+    };
+    window.addEventListener('click', playStartupOnInteraction);
+    window.addEventListener('keydown', playStartupOnInteraction);
+    return cleanup;
+  }, [soundEnabled]);
 
   const handleCommand = async (cmd, hideFromHistory = false, displayLabel = null) => {
     const trimmed = cmd.trim();
