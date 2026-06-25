@@ -12,6 +12,133 @@ export         const allProjects = [
           },
           {
             category: 'dev',
+            slug: "careerflow",
+            title: "CareerFlow",
+            desc: "Minimalist job application tracker designed for developer workflows.",
+            img: "/project-banners/careerflow.svg",
+            tech: ["Next.js", "TailwindCSS", "Supabase", "Resend"],
+            link: "https://github.com/Pynthamil/careerflow",
+            locked: false,
+            details: `<div style="display: flex; flex-direction: column; gap: 24px; margin-top: 15px;">
+  <!-- Overview -->
+  <div>
+    <strong style="display: block; margin-bottom: 8px; color: var(--accent); font-size: 1.1em;">Overview</strong>
+    <p style="margin: 0; line-height: 1.6; color: var(--text-muted);">
+      CareerFlow is an aesthetic, developer-first job application tracking system (ATS) designed to streamline the career hunt. Instead of relying on cluttered, manual spreadsheets, CareerFlow provides a clean Kanban dashboard, automated data scraping via a browser extension, and analytics to visualize your interview pipeline conversion rates.
+    </p>
+  </div>
+
+  <!-- Demo Video Placeholder -->
+  <div>
+    <strong style="display: block; margin-bottom: 8px; color: var(--accent); font-size: 1.1em;">Product Demo Video</strong>
+    <div style="width: 100%; height: 260px; border-radius: 8px; border: 1.5px dashed var(--accent-muted); display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.02); box-sizing: border-box; padding: 20px; text-align: center;">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--accent); opacity: 0.8; margin-bottom: 12px;">
+        <circle cx="12" cy="12" r="10" />
+        <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" />
+      </svg>
+      <span style="color: var(--text); font-weight: 500; font-size: 0.95em;">Demo Video Placeholder</span>
+      <span style="color: var(--text-muted); font-size: 0.8em; margin-top: 6px; max-width: 320px;">
+        Replace this with your product walk-through: e.g., <code>/public/project-assets/careerflow/demo.mp4</code>
+      </span>
+    </div>
+  </div>
+
+  <!-- Ideation & Sketch Placeholder -->
+  <div>
+    <strong style="display: block; margin-bottom: 8px; color: var(--accent); font-size: 1.1em;">Ideation & Architecture Sketch</strong>
+    <div style="width: 100%; height: 200px; border-radius: 8px; border: 1.5px dashed var(--accent-muted); display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.02); box-sizing: border-box; padding: 20px; text-align: center;">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--accent); opacity: 0.8; margin-bottom: 12px;">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+      </svg>
+      <span style="color: var(--text); font-weight: 500; font-size: 0.95em;">Ideation Diagram Placeholder</span>
+      <span style="color: var(--text-muted); font-size: 0.8em; margin-top: 6px; max-width: 320px;">
+        Upload your initial UI wireframes or architecture drawing to: <code>/public/project-assets/careerflow/ideation.webp</code>
+      </span>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div>
+    <strong style="display: block; margin-bottom: 8px; color: var(--accent); font-size: 1.1em;">Key Features</strong>
+    <ul style="margin: 0; padding-left: 20px; line-height: 1.6; color: var(--text-muted); display: flex; flex-direction: column; gap: 6px;">
+      <li><strong>Kanban Pipeline:</strong> Drag-and-drop board organized by Wishlist, Applied, Interviewing, Offered, and Rejected columns.</li>
+      <li><strong>Chrome Extension:</strong> Parse job postings on LinkedIn, Glassdoor, and Greenhouse with one click to auto-fill description details.</li>
+      <li><strong>Task Scheduler:</strong> Automatic follow-up alerts and interview reminders integrated with Google Calendar.</li>
+      <li><strong>Analytics Dashboard:</strong> Visual conversion rates of application-to-interview and interview-to-offer ratios.</li>
+    </ul>
+  </div>
+
+  <!-- Tech Stack Details -->
+  <div>
+    <strong style="display: block; margin-bottom: 8px; color: var(--accent); font-size: 1.1em;">Tech Stack Details</strong>
+    <ul style="margin: 0; padding-left: 20px; line-height: 1.6; color: var(--text-muted); display: flex; flex-direction: column; gap: 6px;">
+      <li><strong>Frontend:</strong> Next.js 14, TailwindCSS for a highly tailored fluid interface, Framer Motion for kanban animations.</li>
+      <li><strong>Backend & Auth:</strong> Supabase (PostgreSQL) leveraging Row Level Security (RLS) for isolating user job boards.</li>
+      <li><strong>Scraping API:</strong> Cheerio / Puppeteer hosted as Serverless Functions to extract metadata from corporate job posts.</li>
+      <li><strong>Email Service:</strong> Resend API for delivering automated daily reminder digests.</li>
+    </ul>
+  </div>
+
+  <!-- System Architecture -->
+  <div>
+    <strong style="display: block; margin-bottom: 8px; color: var(--accent); font-size: 1.1em;">System Architecture</strong>
+    <div style="background: rgba(0, 0, 0, 0.2); border: 1px solid var(--accent-muted); border-radius: 6px; padding: 15px; font-family: monospace; font-size: 0.85em; color: var(--text); line-height: 1.5; overflow-x: auto; box-sizing: border-box;">
+      [Client Layer: Next.js + Extension]<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ (HTTPS / Server Actions)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+      [API Gateway / NextJS Backend Server]<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;├──► [Cheerio Parser Service] ──► (External Job Sites)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;├──► [Resend Email Client] ────► (User Inbox)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;└──► [Supabase Client Services]<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ (RLS Policies enforced)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[PostgreSQL Database]
+    </div>
+  </div>
+
+  <!-- Color Palette -->
+  <div>
+    <strong style="display: block; margin-bottom: 8px; color: var(--accent); font-size: 1.1em;">Design Color Palette</strong>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 5px;">
+      <div style="flex: 1; min-width: 80px; text-align: center;">
+        <div style="height: 35px; background: #0B0F19; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);"></div>
+        <span style="font-size: 0.75em; color: var(--text-muted); display: block; margin-top: 4px;">#0B0F19<br>Primary Dark</span>
+      </div>
+      <div style="flex: 1; min-width: 80px; text-align: center;">
+        <div style="height: 35px; background: #1E293B; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);"></div>
+        <span style="font-size: 0.75em; color: var(--text-muted); display: block; margin-top: 4px;">#1E293B<br>Surface Card</span>
+      </div>
+      <div style="flex: 1; min-width: 80px; text-align: center;">
+        <div style="height: 35px; background: #6366F1; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);"></div>
+        <span style="font-size: 0.75em; color: var(--text-muted); display: block; margin-top: 4px;">#6366F1<br>Accent Indigo</span>
+      </div>
+      <div style="flex: 1; min-width: 80px; text-align: center;">
+        <div style="height: 35px; background: #10B981; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);"></div>
+        <span style="font-size: 0.75em; color: var(--text-muted); display: block; margin-top: 4px;">#10B981<br>Success Green</span>
+      </div>
+      <div style="flex: 1; min-width: 80px; text-align: center;">
+        <div style="height: 35px; background: #EC4899; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);"></div>
+        <span style="font-size: 0.75em; color: var(--text-muted); display: block; margin-top: 4px;">#EC4899<br>Highlight Pink</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- User Research -->
+  <div>
+    <strong style="display: block; margin-bottom: 8px; color: var(--accent); font-size: 1.1em;">User Research & Insights</strong>
+    <p style="margin: 0 0 10px 0; line-height: 1.6; color: var(--text-muted);">
+      We surveyed and observed 15 active software engineering job seekers who apply to an average of 15-20 jobs a week:
+    </p>
+    <ul style="margin: 0; padding-left: 20px; line-height: 1.6; color: var(--text-muted); display: flex; flex-direction: column; gap: 6px;">
+      <li><strong>The "Tab Overhead":</strong> Most job seekers open 15+ browser tabs for applications, leading to details getting lost. *Solution:* A lightweight chrome extension that grabs details with a click.</li>
+      <li><strong>Friction of Manual Logging:</strong> Users abandon trackers because entering text manually for company name, location, and description takes too much time. *Solution:* Automation of description parsing.</li>
+      <li><strong>Lack of Pipeline Analytics:</strong> Users do not know where their process is failing (resume screening vs. coding rounds). *Solution:* Funnel charts showing stage drop-off percentages.</li>
+    </ul>
+  </div>
+</div>`
+          },
+          {
+            category: 'dev',
             slug: "gitperson",
             title: "GitPerson",
             desc: "AI developer profile generator",
