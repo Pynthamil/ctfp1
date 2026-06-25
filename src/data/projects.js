@@ -16,7 +16,7 @@ export         const allProjects = [
             title: "JobTrace",
             desc: "Minimalist job application tracker designed for developer workflows.",
             img: "/project-banners/jobTracker.svg",
-            tech: ["Next.js", "TailwindCSS", "Supabase"],
+            tech: ["Next.js", "TailwindCSS", "Supabase", "Figma"],
             link: "https://github.com/Pynthamil/jobtrace",
             locked: false,
             details: `<div style="display: flex; flex-direction: column; gap: 24px; margin-top: 15px;">
@@ -97,16 +97,6 @@ export         const allProjects = [
             tech: ["TypeScript", "AST Parsing", "Markdown"],
             link: "https://github.com/Pynthamil/readmeflier",
             locked: true
-          },
-          {
-            category: 'design',
-            slug: "jobtrace-ui",
-            title: "JobTrace UI",
-            desc: "Homescreen and dashboard interface design for JobTrace",
-            img: "/project-banners/jobTracker.svg",
-            details: `Designed a comprehensive tracking interface for JobTrace. The UI focuses on readability, quick-glance status indicators, and custom layouts for developer job searches.\n\n**Core Features**\n<div style="margin-top: 15px; margin-bottom: 15px;"><img src="/job/Core%20Features.svg" style="width: 100%; height: auto; border-radius: 8px;" /></div>\n\n**Project Mindmap**\n<div style="margin-top: 15px; margin-bottom: 15px;"><img src="/job/mindmap.svg" style="width: 100%; height: auto; border-radius: 8px;" /></div>\n\n**Color Palette**\n<div style="margin-top: 15px; margin-bottom: 15px;"><img src="/job/colorpalette.svg" style="width: 100%; height: auto; border-radius: 8px;" /></div>\n\n**Interface Design**\n<div style="margin-top: 15px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 15px;"><img src="/job/homescreen.svg" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--accent-muted); box-shadow: 0 4px 20px rgba(0,0,0,0.4);" /><div style="display: flex; gap: 15px; margin-top: 15px;"><div style="flex: 1;"><img src="/job/appl.svg" style="width: 100%; height: auto; border-radius: 8px;" /></div><div style="flex: 1;"><img src="/job/anlyt.svg" style="width: 100%; height: auto; border-radius: 8px;" /></div></div><div style="display: flex; gap: 15px; margin-top: 15px;"><div style="flex: 1;"><img src="/job/cal1.svg" style="width: 100%; height: auto; border-radius: 8px;" /></div><div style="flex: 1;"><img src="/job/cal2.svg" style="width: 100%; height: auto; border-radius: 8px;" /></div></div></div>`,
-            tech: ["Figma"],
-            link: "#"
           },
           {
             category: 'design',

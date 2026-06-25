@@ -42,6 +42,25 @@ export default function TerminalPortfolio() {
   }, [theme]);
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const modeParam = params.get('mode');
+    if (modeParam === 'gui' || modeParam === 'visual') {
+      setViewMode('gui');
+    } else {
+      const savedMode = localStorage.getItem('portfolio-view-mode');
+      if (savedMode) {
+        setViewMode(savedMode);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (viewMode) {
+      localStorage.setItem('portfolio-view-mode', viewMode);
+    }
+  }, [viewMode]);
+
+  useEffect(() => {
     if (scrollRef.current) {
       if (history.length > 0 || isProcessing) {
         scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
