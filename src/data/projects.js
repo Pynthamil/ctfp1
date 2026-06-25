@@ -12,19 +12,19 @@ export         const allProjects = [
           },
           {
             category: 'dev',
-            slug: "careerflow",
-            title: "CareerFlow",
+            slug: "jobtrace",
+            title: "JobTrace",
             desc: "Minimalist job application tracker designed for developer workflows.",
-            img: "/project-banners/careerflow.svg",
+            img: "/project-banners/jobTracker.svg",
             tech: ["Next.js", "TailwindCSS", "Supabase", "Resend"],
-            link: "https://github.com/Pynthamil/careerflow",
+            link: "https://github.com/Pynthamil/jobtrace",
             locked: false,
             details: `<div style="display: flex; flex-direction: column; gap: 24px; margin-top: 15px;">
   <!-- Overview -->
   <div>
     <strong style="display: block; margin-bottom: 8px; color: var(--accent); font-size: 1.1em;">Overview</strong>
     <p style="margin: 0; line-height: 1.6; color: var(--text-muted);">
-      CareerFlow is an aesthetic, developer-first job application tracking system (ATS) designed to streamline the career hunt. Instead of relying on cluttered, manual spreadsheets, CareerFlow provides a clean Kanban dashboard, automated data scraping via a browser extension, and analytics to visualize your interview pipeline conversion rates.
+      JobTrace is an aesthetic, developer-first job application tracking system (ATS) designed to streamline the career hunt. Instead of relying on cluttered, manual spreadsheets, JobTrace provides a clean Kanban dashboard, automated data scraping via a browser extension, and analytics to visualize your interview pipeline conversion rates.
     </p>
   </div>
 
@@ -38,7 +38,7 @@ export         const allProjects = [
       </svg>
       <span style="color: var(--text); font-weight: 500; font-size: 0.95em;">Demo Video Placeholder</span>
       <span style="color: var(--text-muted); font-size: 0.8em; margin-top: 6px; max-width: 320px;">
-        Replace this with your product walk-through: e.g., <code>/public/project-assets/careerflow/demo.mp4</code>
+        Replace this with your product walk-through: e.g., <code>/public/project-assets/jobtrace/demo.mp4</code>
       </span>
     </div>
   </div>
@@ -52,7 +52,7 @@ export         const allProjects = [
       </svg>
       <span style="color: var(--text); font-weight: 500; font-size: 0.95em;">Ideation Diagram Placeholder</span>
       <span style="color: var(--text-muted); font-size: 0.8em; margin-top: 6px; max-width: 320px;">
-        Upload your initial UI wireframes or architecture drawing to: <code>/public/project-assets/careerflow/ideation.webp</code>
+        Upload your initial UI wireframes or architecture drawing to: <code>/public/project-assets/jobtrace/ideation.webp</code>
       </span>
     </div>
   </div>
