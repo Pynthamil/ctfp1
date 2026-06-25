@@ -24,54 +24,18 @@ export         const allProjects = [
   <div>
     <strong style="display: block; margin-bottom: 8px; color: var(--accent); font-size: 1.1em;">Overview</strong>
     <p style="margin: 0; line-height: 1.6; color: var(--text-muted);">
-      JobTrace is an aesthetic, developer-first job application tracking system (ATS) designed to streamline the career hunt. Instead of relying on cluttered, manual spreadsheets, JobTrace provides a clean Kanban dashboard, automated data scraping via a browser extension, and analytics to visualize your interview pipeline conversion rates.
+      JobTrace is an aesthetic, developer-first job application tracking system (ATS) designed to streamline the career hunt. Instead of relying on cluttered, manual spreadsheets, JobTrace provides a clean unified dashboard and analytics to visualize your interview pipeline conversion rates.
     </p>
   </div>
 
-  <!-- Demo Video Placeholder -->
-  <div>
-    <strong style="display: block; margin-bottom: 8px; color: var(--accent); font-size: 1.1em;">Product Demo Video</strong>
-    <div style="width: 100%; height: 260px; border-radius: 8px; border: 1.5px dashed var(--accent-muted); display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.02); box-sizing: border-box; padding: 20px; text-align: center;">
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--accent); opacity: 0.8; margin-bottom: 12px;">
-        <circle cx="12" cy="12" r="10" />
-        <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" />
-      </svg>
-      <span style="color: var(--text); font-weight: 500; font-size: 0.95em;">Demo Video Placeholder</span>
-      <span style="color: var(--text-muted); font-size: 0.8em; margin-top: 6px; max-width: 320px;">
-        Replace this with your product walk-through: e.g., <code>/public/project-assets/jobtrace/demo.mp4</code>
-      </span>
-    </div>
-  </div>
-
-  <!-- Interface Design Mockup -->
-  <div>
-    <strong style="display: block; margin-bottom: 8px; color: var(--accent); font-size: 1.1em;">Interface Design</strong>
-    <div style="margin-top: 10px; margin-bottom: 15px;">
-      <img src="/job/homescreen.svg" alt="JobTrace Homescreen" style="width: 100%; height: auto; border-radius: 8px; border: 1.5px solid var(--accent-muted); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);" />
-    </div>
-  </div>
+  <!-- Demo Videos -->
+  <video src="/job/demo/home.mp4" autoplay loop muted playsinline style="width: 100%; border-radius: 8px; margin-top: -10px; margin-bottom: 10px;" />
 
   <!-- Core Features Mockup -->
   <div>
     <strong style="display: block; margin-bottom: 8px; color: var(--accent); font-size: 1.1em;">Core Features</strong>
     <div style="margin-top: 10px; margin-bottom: 15px;">
       <img src="/job/Core%20Features.svg" alt="JobTrace Core Features" style="width: 100%; height: auto; border-radius: 8px;" />
-    </div>
-  </div>
-
-  <!-- System Architecture -->
-  <div>
-    <strong style="display: block; margin-bottom: 8px; color: var(--accent); font-size: 1.1em;">System Architecture</strong>
-    <div style="background: rgba(0, 0, 0, 0.2); border: 1px solid var(--accent-muted); border-radius: 6px; padding: 15px; font-family: monospace; font-size: 0.85em; color: var(--text); line-height: 1.5; overflow-x: auto; box-sizing: border-box;">
-      [Client Layer: Next.js + Extension]<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ (HTTPS / Server Actions)<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
-        [API Gateway / NextJS Backend Server]<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;├──► [Cheerio Parser Service] ──► (External Job Sites)<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;└──► [Supabase Client Services]<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ (RLS Policies enforced)<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[PostgreSQL Database]
     </div>
   </div>
 
@@ -83,11 +47,13 @@ export         const allProjects = [
     </div>
   </div>
 
-  <!-- Color Palette -->
+  <!-- Interface Design Mockup -->
   <div>
-    <strong style="display: block; margin-bottom: 8px; color: var(--accent); font-size: 1.1em;">Design Color Palette</strong>
-    <div style="margin-top: 10px; margin-bottom: 15px;">
+    <strong style="display: block; margin-bottom: 8px; color: var(--accent); font-size: 1.1em;">Interface Design</strong>
+    <div style="margin-top: 10px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 15px;">
       <img src="/job/colorpalette.svg" alt="JobTrace Color Palette" style="width: 100%; height: auto; border-radius: 8px;" />
+      <img src="/job/homescreen.svg" alt="JobTrace Homescreen" style="width: 100%; height: auto; border-radius: 8px; border: 1.5px solid var(--accent-muted); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); margin-top: 15px;" />
+      <video src="/job/demo/addAppl.mp4" autoplay loop muted playsinline style="width: 100%; border-radius: 8px; margin-top: 15px;" />
     </div>
   </div>
 
@@ -98,8 +64,7 @@ export         const allProjects = [
       We surveyed and observed 15 active software engineering job seekers who apply to an average of 15-20 jobs a week:
     </p>
     <ul style="margin: 0; padding-left: 20px; line-height: 1.6; color: var(--text-muted); display: flex; flex-direction: column; gap: 6px;">
-      <li><strong>The "Tab Overhead":</strong> Most job seekers open 15+ browser tabs for applications, leading to details getting lost. *Solution:* A lightweight chrome extension that grabs details with a click.</li>
-      <li><strong>Friction of Manual Logging:</strong> Users abandon trackers because entering text manually for company name, location, and description takes too much time. *Solution:* Automation of description parsing.</li>
+      <li><strong>Application Overhead:</strong> Most job seekers apply to dozens of roles weekly and lose track of stages, leading to missed interviews. *Solution:* A unified, clean dashboard to store and monitor all active applications.</li>
       <li><strong>Lack of Pipeline Analytics:</strong> Users do not know where their process is failing (resume screening vs. coding rounds). *Solution:* Funnel charts showing stage drop-off percentages.</li>
     </ul>
   </div>

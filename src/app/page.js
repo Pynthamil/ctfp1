@@ -164,7 +164,7 @@ export default function TerminalPortfolio() {
             if (p.locked) {
               responseContent = `🔒 **${p.title}** is currently locked (Coming soon!). Please check back later!`;
             } else {
-              let techStr = p.tech && p.tech.length > 0 ? `\n\n**Tech Stack:**\n${p.tech.map(t => '`' + t + '`').join('  ')}` : '';
+              let techStr = p.tech && p.tech.length > 0 ? `\n\n**Tech Stack:**\n${p.tech.join(', ')}` : '';
               let linkStr = '';
               if (p.category === 'design' || p.category === 'social') {
                 if (p.link && p.link !== '#' && !p.link.includes('github.com')) {
