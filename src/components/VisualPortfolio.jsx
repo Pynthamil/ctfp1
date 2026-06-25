@@ -181,7 +181,7 @@ export const VisualPortfolio = ({ onSwitchToTerminal }) => {
         marginBottom: '40px',
         marginTop: '20px',
         width: '100%',
-        maxWidth: '900px',
+        maxWidth: '1000px',
         marginLeft: 'auto',
         marginRight: 'auto',
         gap: isMobile ? '12px' : '0',
@@ -286,7 +286,11 @@ export const VisualPortfolio = ({ onSwitchToTerminal }) => {
         {/* PROJECTS TAB */}
         {/* ========================================================== */}
         {activeTab === 'projects' && (
-          <div>
+          <div style={{
+            maxWidth: '1000px',
+            margin: '0 auto 40px',
+            width: '100%'
+          }}>
             {/* Intro Section */}
             <div style={{
               marginBottom: '48px',
@@ -454,7 +458,7 @@ export const VisualPortfolio = ({ onSwitchToTerminal }) => {
                   onClick={() => !project.locked && router.push(`/project/${project.slug}`)}
                   style={{
                     background: 'var(--card-bg)',
-                    border: isLightTheme ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.05)',
+                    border: 'none',
                     borderRadius: '8px',
                     overflow: 'hidden',
                     cursor: project.locked ? 'not-allowed' : 'pointer',
@@ -466,13 +470,11 @@ export const VisualPortfolio = ({ onSwitchToTerminal }) => {
                   }}
                   onMouseEnter={(e) => {
                     if (!project.locked) {
-                      e.currentTarget.style.borderColor = 'var(--accent)';
                       e.currentTarget.style.transform = 'translateY(-4px)';
                       e.currentTarget.style.boxShadow = '0 6px 20px rgba(204, 119, 85, 0.08)';
                     }
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = isLightTheme ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.05)';
                     e.currentTarget.style.transform = 'translateY(0)';
                     e.currentTarget.style.boxShadow = 'none';
                   }}
@@ -529,7 +531,7 @@ export const VisualPortfolio = ({ onSwitchToTerminal }) => {
             display: 'grid',
             gridTemplateColumns: '1fr',
             gap: '32px',
-            maxWidth: '900px',
+            maxWidth: '1000px',
             margin: '0 auto 40px',
             width: '100%'
           }}>
@@ -645,7 +647,7 @@ export const VisualPortfolio = ({ onSwitchToTerminal }) => {
             display: 'flex',
             flexDirection: 'column',
             gap: '28px',
-            maxWidth: '900px',
+            maxWidth: '1000px',
             margin: '0 auto 40px',
             width: '100%'
           }}>
@@ -672,7 +674,7 @@ export const VisualPortfolio = ({ onSwitchToTerminal }) => {
             display: 'flex',
             flexDirection: 'column',
             gap: '24px',
-            maxWidth: '900px',
+            maxWidth: '1000px',
             margin: '0 auto 40px',
             width: '100%'
           }}>
@@ -860,7 +862,7 @@ export const VisualPortfolio = ({ onSwitchToTerminal }) => {
             alignItems: 'center',
             justifyContent: 'center',
             padding: '60px 0',
-            maxWidth: '900px',
+            maxWidth: '1000px',
             margin: '0 auto',
             width: '100%'
           }}>
