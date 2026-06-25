@@ -2,12 +2,28 @@ import React, { useState, useEffect } from 'react';
 
 import { allProjects } from '../data/projects';
 import { ClaudeMascot } from './ClaudeMascot';
+import { playKeyClick, playEnterClick, playStartupChime } from '../utils/audio';
+
+const SoundOnIcon = ({ size = 16 }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="currentColor" style={{ shapeRendering: 'crispEdges' }}>
+    <path d="M3 6h3v4H3zm3-1h1v6H6zm1-1h1v8H7zm1-1h1v10H8z" />
+    <path d="M11 5h1v1h-1zm1 1h1v4h-1zm-1 4h1v1h-1z" />
+    <path d="M13 3h1v1h-1zm1 1h1v1h-1zm1 1h1v6h-1zm-1 6h1v1h-1zm-1 1h1v1h-1z" />
+  </svg>
+);
+
+const SoundMutedIcon = ({ size = 16 }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="currentColor" style={{ shapeRendering: 'crispEdges' }}>
+    <path d="M3 6h3v4H3zm3-1h1v6H6zm1-1h1v8H7zm1-1h1v10H8z" />
+    <path d="M11 5h1v1h-1zm4 0h1v1h-1zm-3 1h1v1h-1zm2 0h1v1h-1zm-1 1h1v1h-1zm-1 1h1v1h-1zm2 0h1v1h-1zm-2 1h1v1h-1zm4 0h1v1h-1z" />
+  </svg>
+);
 
 const BASE_COMMANDS = [
   '/about', '/skills', '/project', '/ctf', '/writeups', 
-  '/blog', '/resume', '/contact', '/theme', '/clear', '/help', '/man', '/idea', '/dark', '/light',
+  '/blog', '/resume', '/contact', '/theme', '/sound', '/codedex', '/clear', '/help', '/man', '/idea', '/dark', '/light',
   'about', 'skills', 'project', 'ctf', 'writeups', 
-  'blog', 'resume', 'contact', 'theme', 'clear', 'help', 'man', 'idea', 'dark', 'light',
+  'blog', 'resume', 'contact', 'theme', 'sound', 'codedex', 'clear', 'help', 'man', 'idea', 'dark', 'light',
   '/project dev', '/project design', '/project social',
   '/ctf all', '/ctf stats', '/ctf boroctf',
   '/writeups all',
@@ -17,15 +33,16 @@ const BASE_COMMANDS = [
   'ctf all', 'ctf stats', 'ctf boroctf',
   'writeups all',
   'blog latest', 'blog all',
-  'about whoami', 'about hobbies', 'about funfacts', 'about blog', 'about learning', 'about stats', 'about music'
+  'about whoami', 'about hobbies', 'about funfacts', 'about blog', 'about learning', 'about stats', 'about music',
+  '/sound on', '/sound off', 'sound on', 'sound off'
 ];
 
 const PROJECT_COMMANDS = allProjects.flatMap(p => [`project ${p.slug}`, `/project ${p.slug}`]);
-const MAN_SUBCOMMANDS = ['about', 'skills', 'project', 'ctf', 'writeups', 'blog', 'resume', 'contact', 'theme', 'clear', 'help', 'idea'];
+const MAN_SUBCOMMANDS = ['about', 'skills', 'project', 'ctf', 'writeups', 'blog', 'resume', 'contact', 'theme', 'sound', 'codedex', 'clear', 'help', 'idea'];
 const MAN_COMMANDS = MAN_SUBCOMMANDS.flatMap(cmd => [`man ${cmd}`, `/man ${cmd}`]);
 const COMMANDS = [...BASE_COMMANDS, ...PROJECT_COMMANDS, ...MAN_COMMANDS];
 
-export const TerminalInput = ({ inputRef, input, setInput, handleKeyDown, isProcessing, activeCommand, isStarted }) => {
+export const TerminalInput = ({ inputRef, input, setInput, handleKeyDown, isProcessing, activeCommand, isStarted, soundEnabled, setSoundEnabled }) => {
   const [suggestion, setSuggestion] = useState('');
 
   useEffect(() => {
@@ -42,9 +59,13 @@ export const TerminalInput = ({ inputRef, input, setInput, handleKeyDown, isProc
   }, [input]);
 
   const onKeyDown = (e) => {
-    if ((e.key === 'Tab' || e.key === 'ArrowRight') && suggestion && suggestion !== input) {
+    if (e.key === 'Enter') {
+      if (soundEnabled) playEnterClick();
+      handleKeyDown(e);
+    } else if ((e.key === 'Tab' || e.key === 'ArrowRight') && suggestion && suggestion !== input) {
       e.preventDefault();
       setInput(suggestion);
+      if (soundEnabled) playKeyClick(false);
     } else {
       handleKeyDown(e);
     }
@@ -108,7 +129,13 @@ export const TerminalInput = ({ inputRef, input, setInput, handleKeyDown, isProc
               zIndex: 1
             }}
             value={input}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={(e) => {
+              setInput(e.target.value);
+              if (soundEnabled) {
+                const isBackspace = e.target.value.length < input.length;
+                playKeyClick(isBackspace);
+              }
+            }}
             onKeyDown={onKeyDown}
             disabled={isProcessing}
             autoFocus
@@ -119,6 +146,35 @@ export const TerminalInput = ({ inputRef, input, setInput, handleKeyDown, isProc
             aria-autocomplete="none"
           />
         </div>
+        {/* Sound toggle button */}
+        <button
+          onClick={() => {
+            setSoundEnabled(prev => {
+              const nextVal = !prev;
+              if (nextVal) {
+                setTimeout(() => playStartupChime(), 30);
+              }
+              return nextVal;
+            });
+          }}
+          style={{
+            background: 'transparent',
+            border: 'none',
+            color: soundEnabled ? 'var(--accent)' : 'var(--text-muted)',
+            cursor: 'pointer',
+            fontSize: '16px',
+            padding: '0 8px',
+            outline: 'none',
+            userSelect: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            transition: 'color 0.2s ease',
+          }}
+          title={soundEnabled ? "Disable sound" : "Enable sound"}
+          aria-label={soundEnabled ? "Disable sound" : "Enable sound"}
+        >
+          {soundEnabled ? <SoundOnIcon /> : <SoundMutedIcon />}
+        </button>
       </div>
     </div>
   );

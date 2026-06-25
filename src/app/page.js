@@ -12,6 +12,7 @@ import { ThinkingIndicator } from '../components/ThinkingIndicator';
 import { ClaudeLogo } from '../components/ClaudeLogo';
 import { allProjects } from '../data/projects';
 import { ABOUT_SECTIONS } from '../data/about';
+import { playStartupChime } from '../utils/audio';
 
 export default function TerminalPortfolio() {
   const [history, setHistory] = useState([]);
@@ -24,6 +25,7 @@ export default function TerminalPortfolio() {
   const [theme, setTheme] = useState('dark');
   const [mascot, setMascot] = useState('normal');
   const [activeCommand, setActiveCommand] = useState('');
+  const [soundEnabled, setSoundEnabled] = useState(false);
   const scrollRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -122,11 +124,17 @@ export default function TerminalPortfolio() {
             case 'man':
               responseContent = `No detailed manual entry for **${args[1]}**. This command is simple and takes no additional flags.`;
               break;
+            case 'sound':
+              responseContent = `**NAME**\n    sound - Toggle mechanical typing clicks and chime sound effects\n\n**SYNOPSIS**\n    sound [on|off]\n\n**DESCRIPTION**\n    Enables or disables mechanical typing clicks and arpeggio executing chimes. If no flag is given, toggles the current sound status.`;
+              break;
+            case 'codedex':
+              responseContent = `**NAME**\n    codedex - Print the custom retro mascot ASCII art\n\n**SYNOPSIS**\n    codedex\n\n**DESCRIPTION**\n    Outputs a gorgeous custom pixel-art rendition of the Codédex logo/mascot.`;
+              break;
             default:
               responseContent = `No manual entry for **${args[1]}**. Command not found.`;
           }
         } else {
-          responseContent = `Here are the available commands:\n**/about**    : Learn more about my background\n**/skills**   : View my technical expertise\n**/project**  : Browse my recent work (try **/project dev**)\n**/ctf**      : View Capture The Flag history\n**/writeups** : Read my security writeups\n**/blog**     : View my blog posts (try **/blog latest**)\n**/resume**   : Download or view my resume\n**/contact**  : Get my contact information\n**/theme**    : Toggle dark/light mode (or use **/light** / **/dark**)\n**/clear**    : Clear the terminal output\n**/help**     : Show this help message\n\n*(Tip: Type **/man <command>** for detailed usage, e.g., **/man project**)*`;
+          responseContent = `Here are the available commands:\n**/about**    : Learn more about my background\n**/skills**   : View my technical expertise\n**/project**  : Browse my recent work (try **/project dev**)\n**/ctf**      : View Capture The Flag history\n**/writeups** : Read my security writeups\n**/blog**     : View my blog posts (try **/blog latest**)\n**/resume**   : Download or view my resume\n**/contact**  : Get my contact information\n**/theme**    : Toggle dark/light mode (or use **/light** / **/dark**)\n**/sound**    : Toggle audio clicks/chimes (or use **/sound on** / **/sound off**)\n**/codedex**  : Print the custom retro mascot ASCII art\n**/clear**    : Clear the terminal output\n**/help**     : Show this help message\n\n*(Tip: Type **/man <command>** for detailed usage, e.g., **/man project**)*`;
         }
         break;
       case 'about':
@@ -295,6 +303,79 @@ export default function TerminalPortfolio() {
         setTheme('dark');
         responseContent = `Switched to dark theme 🌙`;
         break;
+      case 'sound':
+        if (args[1] === 'on') {
+          setSoundEnabled(true);
+          setTimeout(() => playStartupChime(), 30);
+          responseContent = `🔊 Sound enabled (mechanical typing clicks & retro startup chime)`;
+        } else if (args[1] === 'off') {
+          setSoundEnabled(false);
+          responseContent = `🔇 Sound disabled`;
+        } else {
+          const nextVal = !soundEnabled;
+          setSoundEnabled(nextVal);
+          if (nextVal) {
+            setTimeout(() => playStartupChime(), 30);
+            responseContent = `🔊 Sound enabled`;
+          } else {
+            responseContent = `🔇 Sound disabled`;
+          }
+        }
+        break;
+      case 'codedex':
+        responseContent = (
+          <div style={{ fontFamily: 'monospace', whiteSpace: 'pre', color: 'var(--accent)', fontSize: '11px', lineHeight: '1.15', overflowX: 'auto', padding: '10px 0' }}>
+{`                                                     @@@@@@@@@@@@@%                                 
+                                    @@@@@@@@@@@@@@@@@@:::::::::...+@@@@*                            
+                               %@@@@+:::::::::::::::::::::::..-@@@#::::=%@@@%                       
+                           *%%%-:::::::::::::::::::::::::::+@@#::::::::::-::-%%%#                   
+                       %%@%=:-:::::::::::::::::::::::..=%@@*::::::::::::::::::::+@%                 
+                    *%%%:::::::::::::::::::::::::..:*@@#-:-::::::::::::::::::--:+@@                 
+                @#%%=---:::::::::::::::::::::::.+@@%+---::::::::::::::::::-----:+@%                 
+               %#--:::::::::::::::::::::::::.#@@*:::::::::::::::::::::----------+@%                 
+            *#@==+=-----::::::::::::::::.#@@@-..:::::::::::::::::::-------------+@%                 
+            ##@+=====++=-------::::::.%@@+.:.::::::::::::::::::------::=@@@+----+@%                 
+             #@+=============+=-----#@-:::::::::::::::::::::--------#@@#-+@+---:+@%                 
+             #@+==============+=++#@*:-:::::::::::::::::-----:::+@@@+:::-+@+---:+@%                 
+             #@+==================#@#===--:::::::::::----:::-@@@%-::-----*@+---:+@%                 
+             #@+==================#@#======--::::-------:*@@%------------+@+----+@%                 
+             #@===================#@#=======+----:----@@@*-::-----+%%%=--+@+----+@%                 
+             *%++=================#@#=======+-----#@@@--:---------+###---+@+----+@%                 
+               @%++===============#@#=+=====+----:#@+--------------------+@+----+@%                 
+                @@%++==++=========#@#=======+-----*@+--=#%#+-------------+@+----+@%                 
+                @%@@*+++==========#@#=======+-----*@+--=###+----------##-+@+----+@%                 
+                @@#=%@++==========#@#=======+-----*@+:----------------##-+@+----+@%                 
+                @@#+=+%%++=+======#@#=======+-----*@+---------=%*----=**-+@+---:+@%                 
+                @@%+===+@%+=+=====#@#=======+-----#@+---------=#*=--*#---*@+--:-+@%                 
+                @@#+=+===*@*======#@#=======+-----#@+---------=#*=--*#---*@+--:-+@%                 
+                @@#+=+===*@*======#@#=======+-----#@+---------=#*=--*#---*@+--:-+@@                 
+                @%#+++++==+%@*+===#@#=======+-----#@+-#*=-=+#----===#@@#-------=+%%                 
+                  %%******==+#%**+#@#=======+-----#@+--=***=-+++*###=------=+++%#                   
+                      +++**#*++%#*%@*=======+-----*@+:---=+++###*-------+++%@#-                     
+                      =-=+%%%***#%@@#=======+----:#@+:++=*%%#------:=+=*%%%%%===                    
+                  %--=#%#*==+##%#*%@#=======+----:#@#+###+:----:-+++##%#+=---*##+=@@                
+               %%%*+*+--==+=====+#%@*========-----+******=---****###+=----::::::-***+%              
+             -+*#*=:::::---===+==+#@#=======+-------:-###****###*+=---::::::::::::--#%              
+           @%**::::::::::::----+=+#@*=======+---------+++#%%#+=-=--::::::::::::----:%%              
+           %@+=--::::::::::::::--=+*#%%#+===+----:+###***++---::::::::::::::-###*:-:%%              
+           %@*======-:::::::::::::-++***%%%*=--#%%#***==--:::::::::::::----*%+*@#:-:%%              
+           %@*=========-:::::::::::-::=+***#%%#***+=-:-:::::::::::::-------#@%#+=:-:%%              
+           %@*============--:::::::::::--=++***+=---::::::::::::-----------=++=----:%%              
+           %@*============+====-:::::::::::::::::::::::::::-:------------------:+@%@=@              
+           %@*===================--:::::::::::::::::::::::---###*------------###*++=                
+           %@*=================+====--::::::::::::::::--:+#**###*-------:=##*+%%#                   
+           @+#%##=====+=+===============--:::::::::---######*=--------*##*==%                       
+              -:=%@%+==================+===-:::---*%%%***=--------+%%%=::                           
+                    %@@%===================-------=+++------::=@@@#                                 
+                       #@@@*===+===+=======-------------::-*@@# #                                   
+                          %#@@@+===+=======-----------:=%@@+                                        
+                               @@@#========---------#@@#                                            
+                                ##*@@@+====--:::*@@@###                                             
+                                      %@@#=-:%@@+%                                                  
+                                         *@@@=`}
+          </div>
+        );
+        break;
       case 'idea':
         responseContent = `💡 **Idea Dump & Future Brainstorms**
 - **Personalized LLM Agent**: A self-hosted CLI assistant tailored to my coding style and directory structure.
@@ -431,6 +512,8 @@ export default function TerminalPortfolio() {
           isProcessing={isProcessing}
           activeCommand={activeCommand}
           isStarted={isStarted}
+          soundEnabled={soundEnabled}
+          setSoundEnabled={setSoundEnabled}
         />
       ) : (
         <InteractivePrompt 
