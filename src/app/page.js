@@ -232,7 +232,7 @@ export default function TerminalPortfolio() {
               } else {
                 linkStr = p.link && p.link !== '#' ? `\n\n**Link${p.live && p.live !== '#' ? 's' : ''}:**\n[View on GitHub](${p.link})${p.live && p.live !== '#' ? `\n[View Live Site](${p.live})` : ''}` : (p.live && p.live !== '#' ? `\n\n**Link:**\n[View Live Site](${p.live})` : '');
               }
-              responseContent = `**${p.title}**\n*${p.desc}*\n\n**Details:**\n${p.details}${techStr}${linkStr}`;
+              responseContent = `**${p.title}**\n*${p.desc}*\n\n${p.details}${techStr}${linkStr}`;
             }
           } else {
             responseContent = `Project ID ${args[1]} not found. Try running **project dev** to see available projects.`;
