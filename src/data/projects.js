@@ -145,22 +145,22 @@ export         const allProjects = [
     **Functional & Non-Functional Requirements**
     <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 10px;">
       <div>
-        <strong style="color: var(--text); display: block; font-size: 0.95em; margin-bottom: 6px;">Functional</strong>
-        <ul style="margin: 0; padding-left: 18px; color: var(--text-muted); font-size: 0.9em; line-height: 1.5; display: flex; flex-direction: column; gap: 6px;">
-          <li>Automated inline variable detection.</li>
-          <li>Side-by-side commit comparisons with diff highlighting.</li>
-          <li>Realtime playgrounds with user key caching.</li>
-          <li>Hierarchical multi-level collections framework.</li>
-        </ul>
+        <span style="color: var(--accent); font-weight: bold; display: block; font-size: 0.95em; margin-bottom: 6px;">Functional</span>
+        <div style="display: flex; flex-direction: column; gap: 8px; color: var(--text-muted); font-size: 0.9em; line-height: 1.5; margin-top: 5px;">
+          <div style="display: flex; gap: 6px; align-items: flex-start;"><span style="color: var(--accent); flex-shrink: 0;">★</span><span>Automated inline variable detection.</span></div>
+          <div style="display: flex; gap: 6px; align-items: flex-start;"><span style="color: var(--accent); flex-shrink: 0;">★</span><span>Side-by-side commit comparisons with diff highlighting.</span></div>
+          <div style="display: flex; gap: 6px; align-items: flex-start;"><span style="color: var(--accent); flex-shrink: 0;">★</span><span>Realtime playgrounds with user key caching.</span></div>
+          <div style="display: flex; gap: 6px; align-items: flex-start;"><span style="color: var(--accent); flex-shrink: 0;">★</span><span>Hierarchical multi-level collections framework.</span></div>
+        </div>
       </div>
       <div>
-        <strong style="color: var(--text); display: block; font-size: 0.95em; margin-bottom: 6px;">Non-Functional</strong>
-        <ul style="margin: 0; padding-left: 18px; color: var(--text-muted); font-size: 0.9em; line-height: 1.5; display: flex; flex-direction: column; gap: 6px;">
-          <li>Diff rendering latency under 100ms.</li>
-          <li>Edge API endpoints with sub-50ms latency overhead.</li>
-          <li>Local-only storage models for API keys.</li>
-          <li>High availability scaling for public registries.</li>
-        </ul>
+        <span style="color: var(--accent); font-weight: bold; display: block; font-size: 0.95em; margin-bottom: 6px;">Non-Functional</span>
+        <div style="display: flex; flex-direction: column; gap: 8px; color: var(--text-muted); font-size: 0.9em; line-height: 1.5; margin-top: 5px;">
+          <div style="display: flex; gap: 6px; align-items: flex-start;"><span style="color: var(--accent); flex-shrink: 0;">★</span><span>Diff rendering latency under 100ms.</span></div>
+          <div style="display: flex; gap: 6px; align-items: flex-start;"><span style="color: var(--accent); flex-shrink: 0;">★</span><span>Edge API endpoints with sub-50ms latency overhead.</span></div>
+          <div style="display: flex; gap: 6px; align-items: flex-start;"><span style="color: var(--accent); flex-shrink: 0;">★</span><span>Local-only storage models for API keys.</span></div>
+          <div style="display: flex; gap: 6px; align-items: flex-start;"><span style="color: var(--accent); flex-shrink: 0;">★</span><span>High availability scaling for public registries.</span></div>
+        </div>
       </div>
     </div>
   </div>
