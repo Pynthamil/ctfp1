@@ -130,10 +130,12 @@ export const TerminalInput = ({ inputRef, input, setInput, handleKeyDown, isProc
             }}
             value={input}
             onChange={(e) => {
-              setInput(e.target.value);
+              const val = e.target.value;
+              setInput(val);
               if (soundEnabled) {
-                const isBackspace = e.target.value.length < input.length;
-                playKeyClick(isBackspace);
+                const isBackspace = val.length < input.length;
+                const isSpace = !isBackspace && val.length > input.length && val.slice(-1) === ' ';
+                playKeyClick(isBackspace, isSpace);
               }
             }}
             onKeyDown={onKeyDown}
