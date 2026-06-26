@@ -101,28 +101,43 @@ export         const allProjects = [
   <!-- Features -->
   <div>
     **Features**
-    <ul style="list-style-type: '★ '; padding-left: 20px; color: var(--text-muted); line-height: 1.7; display: flex; flex-direction: column; gap: 16px; margin-top: 10px;">
-      <li>
-        <strong style="color: var(--text);">Prompt Editor & Templates</strong>: 
-        A rich editor supporting Markdown syntax, custom metadata, and inline variable declaration using standard <code>{{variable_name}}</code> syntax.
-      </li>
-      <li>
-        <strong style="color: var(--text);">Git-like Version Control</strong>: 
-        Save explicit versions of prompts with descriptive commits, author metadata, and configuration parameters (model, temperature, top-p). Visually diff template lineages or fork them into new lines.
-      </li>
-      <li>
-        <strong style="color: var(--text);">Interactive Playground</strong>: 
-        Auto-detects variables from templates to generate dynamic form inputs, allowing direct streaming execution against OpenAI and Anthropic API endpoints.
-      </li>
-      <li>
-        <strong style="color: var(--text);">Collections & Access Control</strong>: 
-        Organize templates in hierarchical folders and control accessibility with Private (team-scoped) or Public (discoverable registry) visibility toggles.
-      </li>
-      <li>
-        <strong style="color: var(--text);">Developer API & SDK Snippets</strong>: 
-        Instantly generates TypeScript, Python, and cURL snippets to query specific prompt versions dynamically from your codebases.
-      </li>
-    </ul>
+    <div style="display: flex; flex-direction: column; gap: 16px; color: var(--text-muted); line-height: 1.7; margin-top: 10px;">
+      <div style="display: flex; gap: 8px; align-items: flex-start;">
+        <span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">★</span>
+        <div>
+          <strong style="color: var(--text);">Prompt Editor & Templates</strong>: 
+          A rich editor supporting Markdown syntax, custom metadata, and inline variable declaration using standard <code>{{variable_name}}</code> syntax.
+        </div>
+      </div>
+      <div style="display: flex; gap: 8px; align-items: flex-start;">
+        <span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">★</span>
+        <div>
+          <strong style="color: var(--text);">Git-like Version Control</strong>: 
+          Save explicit versions of prompts with descriptive commits, author metadata, and configuration parameters (model, temperature, top-p). Visually diff template lineages or fork them into new lines.
+        </div>
+      </div>
+      <div style="display: flex; gap: 8px; align-items: flex-start;">
+        <span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">★</span>
+        <div>
+          <strong style="color: var(--text);">Interactive Playground</strong>: 
+          Auto-detects variables from templates to generate dynamic form inputs, allowing direct streaming execution against OpenAI and Anthropic API endpoints.
+        </div>
+      </div>
+      <div style="display: flex; gap: 8px; align-items: flex-start;">
+        <span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">★</span>
+        <div>
+          <strong style="color: var(--text);">Collections & Access Control</strong>: 
+          Organize templates in hierarchical folders and control accessibility with Private (team-scoped) or Public (discoverable registry) visibility toggles.
+        </div>
+      </div>
+      <div style="display: flex; gap: 8px; align-items: flex-start;">
+        <span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">★</span>
+        <div>
+          <strong style="color: var(--text);">Developer API & SDK Snippets</strong>: 
+          Instantly generates TypeScript, Python, and cURL snippets to query specific prompt versions dynamically from your codebases.
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Demo -->
@@ -130,10 +145,6 @@ export         const allProjects = [
     **Demo**
   </div>
 
-  <!-- Tech Stack -->
-  <div>
-    **Tech Stack**
-  </div>
 
   <!-- Architecture -->
   <div>
