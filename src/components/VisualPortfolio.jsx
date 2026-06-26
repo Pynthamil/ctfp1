@@ -5,6 +5,7 @@ import { ABOUT_SECTIONS } from '../data/about';
 import { AnalyticsDashboard } from './stats/AnalyticsDashboard';
 import { BoroCtfStats } from './stats/BoroCtfStats';
 import { SpotifyStats } from './stats/SpotifyStats';
+import { playSound } from 'react-sounds';
 
 export const VisualPortfolio = ({ onSwitchToTerminal }) => {
   const router = useRouter();
@@ -459,7 +460,11 @@ export const VisualPortfolio = ({ onSwitchToTerminal }) => {
               {filteredProjects.map(project => (
                 <div
                   key={project.slug}
-                  onClick={() => !project.locked && router.push(`/project/${project.slug}`)}
+                  onClick={() => {
+                    if (!project.locked) {
+                      router.push(`/project/${project.slug}`);
+                    }
+                  }}
                   style={{
                     background: 'var(--card-bg)',
                     border: 'none',
@@ -554,7 +559,10 @@ export const VisualPortfolio = ({ onSwitchToTerminal }) => {
                   alignItems: 'center',
                   gap: '16px'
                 }}>
-                  <div style={{ position: 'relative' }}>
+                  <div 
+                    style={{ position: 'relative', cursor: 'pointer' }}
+                    onClick={() => playSound('arcade/coin', { volume: 0.45 })}
+                  >
                     <img
                       src="/claude-assets/normal.png"
                       alt="mascot"

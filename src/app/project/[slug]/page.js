@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { allProjects } from '../../../data/projects';
+import { playSound } from 'react-sounds';
 
 export default function ProjectPage() {
   const { slug } = useParams();
@@ -12,6 +13,11 @@ export default function ProjectPage() {
   
   const project = allProjects.find(p => p.slug === slug);
   const detailsRef = useRef(null);
+
+  // Play portal opening sound when the project page is loaded
+  useEffect(() => {
+    playSound('game/portal_opening', { volume: 0.45 });
+  }, []);
 
   // Parse sections/headings dynamically from details content
   useEffect(() => {
@@ -135,8 +141,11 @@ export default function ProjectPage() {
   };
 
   const handleBack = () => {
-    // Navigate back to visual portfolio
-    router.push('/?mode=visual');
+    playSound('game/portal_closing', { volume: 0.45 });
+    // Navigate back to visual portfolio after a brief delay to let the sound start
+    setTimeout(() => {
+      router.push('/?mode=visual');
+    }, 150);
   };
 
   const scrollToSection = (id) => {

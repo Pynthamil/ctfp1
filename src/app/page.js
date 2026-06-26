@@ -14,6 +14,7 @@ import { allProjects } from '../data/projects';
 import { ABOUT_SECTIONS } from '../data/about';
 import { playStartupChime } from '../utils/audio';
 import { VisualPortfolio } from '../components/VisualPortfolio';
+import { playSound, setSoundEnabled as setLibSoundEnabled } from 'react-sounds';
 
 export default function TerminalPortfolio() {
   const [history, setHistory] = useState([]);
@@ -27,9 +28,51 @@ export default function TerminalPortfolio() {
   const [mascot, setMascot] = useState('normal');
   const [activeCommand, setActiveCommand] = useState('');
   const [soundEnabled, setSoundEnabled] = useState(true);
+  const [hasExecutedCommand, setHasExecutedCommand] = useState(false);
   const [viewMode, setViewMode] = useState('tui'); // 'tui' | 'gui'
   const scrollRef = useRef(null);
   const inputRef = useRef(null);
+
+  // Synchronize initial sound settings from LocalStorage
+  useEffect(() => {
+    const savedSound = localStorage.getItem('portfolio-sound-enabled');
+    if (savedSound !== null) {
+      const isEnabled = savedSound === 'true';
+      setSoundEnabled(isEnabled);
+      setLibSoundEnabled(isEnabled);
+    }
+  }, []);
+
+  // Sync state changes to react-sounds and LocalStorage
+  useEffect(() => {
+    localStorage.setItem('portfolio-sound-enabled', soundEnabled ? 'true' : 'false');
+    setLibSoundEnabled(soundEnabled);
+  }, [soundEnabled]);
+
+  // Play success/error/powerup sounds on command completion
+  useEffect(() => {
+    if (history.length === 0) return;
+    const lastItem = history[history.length - 1];
+    if (lastItem.type === 'agent') {
+      if (lastItem.content && lastItem.content.toString().includes('Command not found')) {
+        playSound('notification/error', { volume: 0.3 });
+      } else {
+        if (!hasExecutedCommand) {
+          playSound('arcade/power_up', { volume: 0.4 });
+          setHasExecutedCommand(true);
+        } else {
+          playSound('ui/success_blip', { volume: 0.2 });
+        }
+      }
+    }
+  }, [history, hasExecutedCommand]);
+
+  // Play pop-up sound when an interactive prompt appears
+  useEffect(() => {
+    if (interactivePrompt) {
+      playSound('notification/popup', { volume: 0.3 });
+    }
+  }, [interactivePrompt]);
 
 
 
@@ -113,9 +156,11 @@ export default function TerminalPortfolio() {
     setHistoryIndex(-1);
 
     if (trimmed.toLowerCase() === 'clear' || trimmed.toLowerCase() === '/clear') {
+      playSound('arcade/power_down', { volume: 0.45 });
       setHistory([]);
       setInput('');
       setActiveCommand('');
+      setHasExecutedCommand(false);
       return;
     }
 

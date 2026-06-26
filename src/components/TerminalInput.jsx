@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { allProjects } from '../data/projects';
 import { ClaudeMascot } from './ClaudeMascot';
 import { playKeyClick, playEnterClick, playStartupChime } from '../utils/audio';
+import { playSound } from 'react-sounds';
 
 const SoundOnIcon = ({ size = 16 }) => (
   <svg width={size} height={size} viewBox="0 0 16 16" fill="currentColor" style={{ shapeRendering: 'crispEdges' }}>
@@ -21,9 +22,9 @@ const SoundMutedIcon = ({ size = 16 }) => (
 
 const BASE_COMMANDS = [
   '/about', '/skills', '/project', '/ctf', '/writeups', 
-  '/blog', '/resume', '/contact', '/theme', '/sound', '/codedex', '/clear', '/help', '/man', '/idea', '/dark', '/light',
+  '/blog', '/resume', '/contact', '/theme', '/sound', '/codedex', '/clear', '/help', '/man', '/idea', '/dark', '/light', '/visual',
   'about', 'skills', 'project', 'ctf', 'writeups', 
-  'blog', 'resume', 'contact', 'theme', 'sound', 'codedex', 'clear', 'help', 'man', 'idea', 'dark', 'light',
+  'blog', 'resume', 'contact', 'theme', 'sound', 'codedex', 'clear', 'help', 'man', 'idea', 'dark', 'light', 'visual',
   '/project dev', '/project design', '/project social',
   '/ctf all', '/ctf stats', '/ctf boroctf',
   '/writeups all',

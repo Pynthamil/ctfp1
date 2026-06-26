@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { playSound } from 'react-sounds';
 
 export const InteractivePrompt = ({ prompt, onCancel }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -14,9 +15,11 @@ export const InteractivePrompt = ({ prompt, onCancel }) => {
     if (e.key === 'ArrowUp') {
       e.preventDefault();
       setSelectedIndex(prev => (prev > 0 ? prev - 1 : prompt.options.length - 1));
+      playSound('ui/button_soft', { volume: 0.35 });
     } else if (e.key === 'ArrowDown') {
       e.preventDefault();
       setSelectedIndex(prev => (prev < prompt.options.length - 1 ? prev + 1 : 0));
+      playSound('ui/button_soft', { volume: 0.35 });
     } else if (e.key === 'Enter') {
       e.preventDefault();
       prompt.onSelect(prompt.options[selectedIndex].value, prompt.options[selectedIndex].label);
