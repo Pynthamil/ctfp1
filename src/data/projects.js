@@ -101,28 +101,28 @@ export         const allProjects = [
   <!-- Features -->
   <div>
     **Features**
-    <div style="display: flex; flex-direction: column; gap: 16px; color: var(--text-muted); line-height: 1.6; margin-top: 10px;">
-      <div style="padding-left: 12px; border-left: 2.5px solid var(--accent);">
-        <strong style="color: var(--text); display: block; margin-bottom: 2px;">Prompt Editor & Templates</strong>
+    <ul style="list-style-type: '★ '; padding-left: 20px; color: var(--text-muted); line-height: 1.7; display: flex; flex-direction: column; gap: 16px; margin-top: 10px;">
+      <li>
+        <strong style="color: var(--text);">Prompt Editor & Templates</strong>: 
         A rich editor supporting Markdown syntax, custom metadata, and inline variable declaration using standard <code>{{variable_name}}</code> syntax.
-      </div>
-      <div style="padding-left: 12px; border-left: 2.5px solid var(--accent);">
-        <strong style="color: var(--text); display: block; margin-bottom: 2px;">Git-like Version Control</strong>
+      </li>
+      <li>
+        <strong style="color: var(--text);">Git-like Version Control</strong>: 
         Save explicit versions of prompts with descriptive commits, author metadata, and configuration parameters (model, temperature, top-p). Visually diff template lineages or fork them into new lines.
-      </div>
-      <div style="padding-left: 12px; border-left: 2.5px solid var(--accent);">
-        <strong style="color: var(--text); display: block; margin-bottom: 2px;">Interactive Playground</strong>
+      </li>
+      <li>
+        <strong style="color: var(--text);">Interactive Playground</strong>: 
         Auto-detects variables from templates to generate dynamic form inputs, allowing direct streaming execution against OpenAI and Anthropic API endpoints.
-      </div>
-      <div style="padding-left: 12px; border-left: 2.5px solid var(--accent);">
-        <strong style="color: var(--text); display: block; margin-bottom: 2px;">Collections & Access Control</strong>
+      </li>
+      <li>
+        <strong style="color: var(--text);">Collections & Access Control</strong>: 
         Organize templates in hierarchical folders and control accessibility with Private (team-scoped) or Public (discoverable registry) visibility toggles.
-      </div>
-      <div style="padding-left: 12px; border-left: 2.5px solid var(--accent);">
-        <strong style="color: var(--text); display: block; margin-bottom: 2px;">Developer API & SDK Snippets</strong>
+      </li>
+      <li>
+        <strong style="color: var(--text);">Developer API & SDK Snippets</strong>: 
         Instantly generates TypeScript, Python, and cURL snippets to query specific prompt versions dynamically from your codebases.
-      </div>
-    </div>
+      </li>
+    </ul>
   </div>
 
   <!-- Demo -->
@@ -158,36 +158,6 @@ export         const allProjects = [
     **User Journey**
     <div style="margin-top: 10px; margin-bottom: 20px;">
       <img src="/gitprompt/userjourney.png" alt="GitPrompt User Journey" style="width: 100%; height: auto; border-radius: 8px; border: 1.5px solid var(--accent-muted); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);" />
-    </div>
-    <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 15px;">
-      <div style="display: flex; gap: 16px; align-items: flex-start;">
-        <div style="background: var(--accent); color: var(--bg); font-weight: bold; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">1</div>
-        <div>
-          <strong style="color: var(--text); display: block; font-size: 0.95em;">Initialize Template</strong>
-          <p style="margin: 2px 0 0 0; color: var(--text-muted); font-size: 0.9em;">Define templates in the editor and declare variables inline with <code>{{variable_name}}</code> syntax.</p>
-        </div>
-      </div>
-      <div style="display: flex; gap: 16px; align-items: flex-start;">
-        <div style="background: var(--accent); color: var(--bg); font-weight: bold; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">2</div>
-        <div>
-          <strong style="color: var(--text); display: block; font-size: 0.95em;">Commit & Track</strong>
-          <p style="margin: 2px 0 0 0; color: var(--text-muted); font-size: 0.9em;">Save template snapshots with detailed commit descriptions, temperature values, and model targets.</p>
-        </div>
-      </div>
-      <div style="display: flex; gap: 16px; align-items: flex-start;">
-        <div style="background: var(--accent); color: var(--bg); font-weight: bold; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">3</div>
-        <div>
-          <strong style="color: var(--text); display: block; font-size: 0.95em;">Playground Validation</strong>
-          <p style="margin: 2px 0 0 0; color: var(--text-muted); font-size: 0.9em;">Input variable values into auto-generated forms and run streaming tests to benchmark responses.</p>
-        </div>
-      </div>
-      <div style="display: flex; gap: 16px; align-items: flex-start;">
-        <div style="background: var(--accent); color: var(--bg); font-weight: bold; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">4</div>
-        <div>
-          <strong style="color: var(--text); display: block; font-size: 0.95em;">Deployment</strong>
-          <p style="margin: 2px 0 0 0; color: var(--text-muted); font-size: 0.9em;">Reference specific prompt versions or aliases inside target applications using compiled SDK snippets.</p>
-        </div>
-      </div>
     </div>
   </div>
 
