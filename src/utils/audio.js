@@ -60,7 +60,7 @@ export const playKeyClick = (isBackspace = false, isSpace = false) => {
   clickOsc.frequency.setValueAtTime(clickFreq, now);
   clickOsc.frequency.exponentialRampToValueAtTime(clickFreq * 0.4, now + 0.012);
   
-  clickGain.gain.setValueAtTime(isSpace ? 0.18 : (isBackspace ? 0.12 : 0.14), now);
+  clickGain.gain.setValueAtTime(isSpace ? 0.70 : (isBackspace ? 0.50 : 0.55), now);
   clickGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.015);
   
   clickOsc.connect(clickGain);
@@ -81,7 +81,7 @@ export const playKeyClick = (isBackspace = false, isSpace = false) => {
   thudOsc.frequency.setValueAtTime(thudFreq, now);
   thudOsc.frequency.exponentialRampToValueAtTime(thudFreq * 0.65, now + 0.035);
   
-  thudGain.gain.setValueAtTime(isSpace ? 0.36 : (isBackspace ? 0.24 : 0.22), now);
+  thudGain.gain.setValueAtTime(isSpace ? 1.20 : (isBackspace ? 0.80 : 0.75), now);
   thudGain.gain.exponentialRampToValueAtTime(0.0001, now + (isSpace ? 0.07 : 0.045));
   
   thudOsc.connect(thudGain);
@@ -105,7 +105,7 @@ export const playKeyClick = (isBackspace = false, isSpace = false) => {
   filter.Q.setValueAtTime(isSpace ? 1.5 : 2.5, now);
   
   const noiseGain = ctx.createGain();
-  noiseGain.gain.setValueAtTime(isSpace ? 0.09 : (isBackspace ? 0.05 : 0.035), now);
+  noiseGain.gain.setValueAtTime(isSpace ? 0.35 : (isBackspace ? 0.20 : 0.15), now);
   noiseGain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
   
   noiseNode.connect(filter);
@@ -137,7 +137,7 @@ export const playEnterClick = () => {
   thudOsc.frequency.setValueAtTime(thudFreq, now);
   thudOsc.frequency.exponentialRampToValueAtTime(thudFreq * 0.6, now + 0.07);
   
-  thudGain.gain.setValueAtTime(0.42, now);
+  thudGain.gain.setValueAtTime(1.50, now);
   thudGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.09);
   
   thudOsc.connect(thudGain);
@@ -150,7 +150,7 @@ export const playEnterClick = () => {
   clickOsc.frequency.setValueAtTime(950, now);
   clickOsc.frequency.exponentialRampToValueAtTime(350, now + 0.02);
   
-  clickGain.gain.setValueAtTime(0.18, now);
+  clickGain.gain.setValueAtTime(0.70, now);
   clickGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.025);
   
   clickOsc.connect(clickGain);
@@ -173,7 +173,7 @@ export const playEnterClick = () => {
   filter.Q.setValueAtTime(1.2, now);
   
   const noiseGain = ctx.createGain();
-  noiseGain.gain.setValueAtTime(0.10, now);
+  noiseGain.gain.setValueAtTime(0.38, now);
   noiseGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.07);
   
   noiseNode.connect(filter);
