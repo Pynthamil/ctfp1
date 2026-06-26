@@ -92,7 +92,7 @@ export         const allProjects = [
             details: `<div style="display: flex; flex-direction: column; gap: 32px; margin-top: 15px;">
   <!-- Overview -->
   <div>
-    <strong>Overview</strong>
+    **Overview**
     <p style="margin: 8px 0 0 0; line-height: 1.6; color: var(--text-muted);">
       GitPrompt is a version control and interactive sandbox suite designed specifically for LLM prompt engineering. It bridges the gap between software development workflows and prompt optimization, allowing developers to draft, version, test, and share prompt templates using familiar version control patterns (commits, diffs, and forks).
     </p>
@@ -100,7 +100,7 @@ export         const allProjects = [
 
   <!-- Features -->
   <div>
-    <strong>Features</strong>
+    **Features**
     <div style="display: flex; flex-direction: column; gap: 16px; color: var(--text-muted); line-height: 1.6; margin-top: 10px;">
       <div style="padding-left: 12px; border-left: 2.5px solid var(--accent);">
         <strong style="color: var(--text); display: block; margin-bottom: 2px;">Prompt Editor & Templates</strong>
@@ -127,33 +127,12 @@ export         const allProjects = [
 
   <!-- Demo -->
   <div>
-    <strong>Demo</strong>
-    <p style="margin: 0 0 12px 0; line-height: 1.6; color: var(--text-muted);">
-      Interactive version control and side-by-side template diffing dashboard:
-    </p>
-    <div style="background: #141416; border: 1.5px solid var(--accent-muted); border-radius: 8px; font-family: var(--font-mono), monospace; font-size: 13px; color: #d4d4d4; overflow: hidden; margin: 10px 0; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);">
-      <div style="background: #1f1f23; padding: 10px 16px; border-bottom: 1.5px solid var(--accent-muted); display: flex; justify-content: space-between; align-items: center;">
-        <span style="font-weight: 600; color: var(--text);">gitprompt diff user_onboarding_v2.md</span>
-        <span style="color: var(--accent); font-size: 0.95em;">commit: 8a7c1f4</span>
-      </div>
-      <div style="display: flex; flex-direction: row; min-height: 140px;">
-        <div style="flex: 1; border-right: 1.5px solid var(--accent-muted); padding: 12px; background: rgba(255, 0, 0, 0.04);">
-          <div style="color: #ea5555; margin-bottom: 8px; font-size: 11px; font-weight: bold;">- COMMIT 3f9b2d1</div>
-          <div style="color: var(--text-muted); opacity: 0.7;">You are an onboarding assistant.</div>
-          <div style="background: rgba(234, 85, 85, 0.15); text-decoration: line-through; color: #ff9999; padding: 2px 4px; border-radius: 3px;">Introduce yourself to the user: {{username}}</div>
-        </div>
-        <div style="flex: 1; padding: 12px; background: rgba(0, 255, 0, 0.04);">
-          <div style="color: #50b050; margin-bottom: 8px; font-size: 11px; font-weight: bold;">+ COMMIT 8a7c1f4</div>
-          <div style="color: var(--text-muted);">You are an onboarding assistant.</div>
-          <div style="background: rgba(80, 176, 80, 0.15); color: #aaffaa; padding: 2px 4px; border-radius: 3px;">Welcome the developer {{username}} and prompt them to select their main stack: {{stack}}</div>
-        </div>
-      </div>
-    </div>
+    **Demo**
   </div>
 
   <!-- Tech Stack -->
   <div>
-    <strong>Tech Stack</strong>
+    **Tech Stack**
     <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 10px;">
       <div style="background: var(--card-bg); padding: 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.04);">
         <strong style="color: var(--accent); display: block; font-size: 0.95em; margin-bottom: 4px;">Frontend & CLI</strong>
@@ -168,28 +147,18 @@ export         const allProjects = [
 
   <!-- Architecture -->
   <div>
-    <strong>Architecture</strong>
-    <p style="margin: 0 0 12px 0; line-height: 1.6; color: var(--text-muted);">
-      Flow diagram showing prompt versioning, CLI access, and playground execution paths:
-    </p>
-    <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; margin: 10px 0; background: var(--card-bg); padding: 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.06);">
-      <div style="display: flex; gap: 15px; justify-content: center; width: 100%;">
-        <div style="border: 1.5px solid var(--accent-muted); padding: 6px 12px; border-radius: 6px; font-size: 0.9em; text-align: center; background: rgba(255,255,255,0.02); color: var(--text); font-weight: 600;">CLI (gitprompt-cli)</div>
-        <div style="border: 1.5px solid var(--accent-muted); padding: 6px 12px; border-radius: 6px; font-size: 0.9em; text-align: center; background: rgba(255,255,255,0.02); color: var(--text); font-weight: 600;">Developer Console (Next.js)</div>
-      </div>
-      <div style="color: var(--accent); font-weight: bold;">↓</div>
-      <div style="border: 1.5px solid var(--accent); padding: 8px 16px; border-radius: 6px; font-size: 0.95em; text-align: center; background: rgba(204,119,85,0.05); color: var(--text); font-weight: 600; width: 80%;">GitPrompt Versioning Control Engine (API Gateway)</div>
-      <div style="color: var(--accent); font-weight: bold;">↓</div>
-      <div style="display: flex; gap: 15px; justify-content: center; width: 100%;">
-        <div style="border: 1.5px solid var(--accent-muted); padding: 6px 12px; border-radius: 6px; font-size: 0.85em; text-align: center; background: rgba(255,255,255,0.01); color: var(--text-muted); flex: 1;">Supabase Metadata DB</div>
-        <div style="border: 1.5px solid var(--accent-muted); padding: 6px 12px; border-radius: 6px; font-size: 0.85em; text-align: center; background: rgba(255,255,255,0.01); color: var(--text-muted); flex: 1;">LLM APIs (OpenAI/Anthropic)</div>
-      </div>
+    **Architecture**
+    <div style="margin-top: 10px; margin-bottom: 15px;">
+      <img src="/gitprompt/architecture.png" alt="GitPrompt Architecture" style="width: 100%; height: auto; border-radius: 8px; border: 1.5px solid var(--accent-muted); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);" />
     </div>
   </div>
 
   <!-- User Journey -->
   <div>
-    <strong>User Journey</strong>
+    **User Journey**
+    <div style="margin-top: 10px; margin-bottom: 20px;">
+      <img src="/gitprompt/userjourney.png" alt="GitPrompt User Journey" style="width: 100%; height: auto; border-radius: 8px; border: 1.5px solid var(--accent-muted); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);" />
+    </div>
     <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 15px;">
       <div style="display: flex; gap: 16px; align-items: flex-start;">
         <div style="background: var(--accent); color: var(--bg); font-weight: bold; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">1</div>
@@ -224,35 +193,15 @@ export         const allProjects = [
 
   <!-- Database Schema Design -->
   <div>
-    <strong>Database Schema Design</strong>
-    <p style="margin: 0 0 10px 0; line-height: 1.6; color: var(--text-muted);">
-      Relational schema tracking version lineage, lineages, and parent-child forks:
-    </p>
-    <pre style="background: #141416; border: 1.5px solid var(--accent-muted); border-radius: 8px; padding: 14px; font-family: var(--font-mono), monospace; font-size: 12.5px; color: #a9b2c3; overflow-x: auto; margin: 10px 0; line-height: 1.5; box-shadow: inset 0 2px 8px rgba(0,0,0,0.8);">
-<span style="color: #cc7855;">CREATE TABLE</span> prompts (
-  id <span style="color: #6d96a5;">UUID</span> <span style="color: #cc7855;">PRIMARY KEY DEFAULT</span> gen_random_uuid(),
-  name <span style="color: #ce9178;">VARCHAR(255)</span> <span style="color: #cc7855;">NOT NULL</span>,
-  owner_id <span style="color: #6d96a5;">UUID</span> <span style="color: #cc7855;">NOT NULL</span>,
-  parent_id <span style="color: #6d96a5;">UUID</span> <span style="color: #cc7855;">REFERENCES</span> prompts(id), <span style="color: #557055;">-- Fork lineage tracking</span>
-  is_public <span style="color: #6d96a5;">BOOLEAN</span> <span style="color: #cc7855;">DEFAULT</span> <span style="color: #cc7855;">false</span>,
-  created_at <span style="color: #6d96a5;">TIMESTAMP WITH TIME ZONE DEFAULT</span> now()
-);
-
-<span style="color: #cc7855;">CREATE TABLE</span> commits (
-  id <span style="color: #6d96a5;">UUID</span> <span style="color: #cc7855;">PRIMARY KEY DEFAULT</span> gen_random_uuid(),
-  prompt_id <span style="color: #6d96a5;">UUID</span> <span style="color: #cc7855;">REFERENCES</span> prompts(id) <span style="color: #cc7855;">ON DELETE CASCADE</span>,
-  content <span style="color: #ce9178;">TEXT</span> <span style="color: #cc7855;">NOT NULL</span>,
-  message <span style="color: #ce9178;">TEXT</span> <span style="color: #cc7855;">NOT NULL</span>,
-  parameters <span style="color: #6d96a5;">JSONB</span> <span style="color: #cc7855;">NOT NULL</span>, <span style="color: #557055;">-- model config targets</span>
-  author_id <span style="color: #6d96a5;">UUID</span> <span style="color: #cc7855;">NOT NULL</span>,
-  created_at <span style="color: #6d96a5;">TIMESTAMP WITH TIME ZONE DEFAULT</span> now()
-);
-    </pre>
+    **Database Schema Design**
+    <div style="margin-top: 10px; margin-bottom: 15px;">
+      <img src="/gitprompt/dbschemadesign.png" alt="GitPrompt Database Schema Design" style="width: 100%; height: auto; border-radius: 8px; border: 1.5px solid var(--accent-muted); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);" />
+    </div>
   </div>
 
   <!-- Functional & Non-Functional Requirements -->
   <div>
-    <strong>Functional & Non-Functional Requirements</strong>
+    **Functional & Non-Functional Requirements**
     <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 10px;">
       <div>
         <strong style="color: var(--text); display: block; font-size: 0.95em; margin-bottom: 6px;">Functional</strong>
