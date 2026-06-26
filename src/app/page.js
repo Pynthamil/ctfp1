@@ -180,6 +180,9 @@ export default function TerminalPortfolio() {
     if (mainCommand.startsWith('/')) {
         mainCommand = mainCommand.substring(1);
     }
+    if (args[1] && args[1].startsWith('/')) {
+        args[1] = args[1].substring(1);
+    }
 
     let responseContent = '';
     let toolUse = null;
@@ -200,7 +203,7 @@ export default function TerminalPortfolio() {
               responseContent = `**NAME**\n    writeups - Read my security writeups\n\n**SYNOPSIS**\n    writeups [SUBCOMMAND]\n\n**DESCRIPTION**\n    Displays my most recent security writeups and blog posts.\n\n**SUBCOMMANDS**\n    **all**    Read all older posts instead of just recent ones`;
               break;
             case 'blog':
-              responseContent = `**NAME**\n    blog - Read my personal blog\n\n**SYNOPSIS**\n    blog [SUBCOMMAND]\n\n**DESCRIPTION**\n    Displays information about my blog and latest posts.\n\n**SUBCOMMANDS**\n    **latest**    Fetch and read the most recent blog post`;
+              responseContent = `**NAME**\n    blog - Read my personal blog\n\n**SYNOPSIS**\n    blog [SUBCOMMAND]\n\n**DESCRIPTION**\n    Displays information about my blog and latest posts.\n\n**SUBCOMMANDS**\n    **latest**    Fetch and read the most recent blog post\n    **all**       Browse all published blog posts`;
               break;
             case 'about':
               responseContent = `**NAME**\n    about - Learn more about my background and personality\n\n**SYNOPSIS**\n    about [SUBCOMMAND]\n\n**DESCRIPTION**\n    Displays detailed information about who I am, what I do, and my personal interests.\n\n**SUBCOMMANDS**\n    **whoami**     who am i and what do i do for a living?\n    **hobbies**    things i enjoy outside of screens\n    **funfacts**   fun facts about me\n    **blog**       about my blog\n    **learning**   what i am currently learning\n    **stats**      my github commit graph and stats\n    **music**      what i'm listening to`;
@@ -303,7 +306,7 @@ export default function TerminalPortfolio() {
         toolUse = { name: 'QueryDatabase', desc: `Fetch CTF history (${args[1] === 'all' ? 'all' : 'recent'})` };
         const ctfContent = `**Team / Player**: 3xpl01t\n\n**1. boroctf** (Jun 13, 2026 - Jun 16, 2026)\n   - **Rank**: 261st out of 831 teams\n   - **Score**: 5300 pts\n   - **Solved Challenges (45)**:\n     - <strong style="color: var(--accent);">OSINT</strong>: Boro Hero, Nature's Takeover, Hidden Meaning, Third Time's the Charm, Physical Access >>, Oops..., The Squad, Mansion, Minecraftsint, Fireman, Go Knicks!, Nutella\n     - <strong style="color: var(--accent);">WEB</strong>: Beyond the Homepage, Cracking the Vault, boro-senpai 1, dotdotslashflagtxt, Drone Dash, boro-senpai 2, boro-senpai 3\n     - <strong style="color: var(--accent);">CRYPTO</strong>: A basic start, Et Tu, Brute, Not the Flag, Flipper's Dilemma, So Many Layers, Flight, Disco\n     - <strong style="color: var(--accent);">MISC</strong>: AI Slop, Distortion, Nature's Delight, 64 is life, File File Crocodile\n     - <strong style="color: var(--accent);">REV</strong>: Hidden but definitely not, George Orwell, Not Your Time, Perfectly Destructive File\n     - <strong style="color: var(--accent);">GEOSINT</strong>: Geopro 1, Geopro 4, Geopro 5, Geopro 3\n     - <strong style="color: var(--accent);">FORENSICS</strong>: Grep'n it, Mark Zuckerburg, kitty kitty meow meow, File Me to the Moon\n     - <strong style="color: var(--accent);">PWN</strong>: Coming Together, Next Challenge\n\n*(More to come soon!)*`;
 
-        const isBoroTarget = args[1] === 'boroctf';
+        const isBoroTarget = args[1] === 'boroctf' || args[1] === 'stats';
         if (isBoroTarget) {
           responseContent = <BoroCtfStats />;
         } else if (args[1] && args[1] !== 'all') {
