@@ -12,7 +12,7 @@ import { ThinkingIndicator } from '../components/ThinkingIndicator';
 import { ClaudeLogo } from '../components/ClaudeLogo';
 import { allProjects } from '../data/projects';
 import { ABOUT_SECTIONS } from '../data/about';
-import { playStartupChime } from '../utils/audio';
+import { playStartupChime, resumeAudioContext } from '../utils/audio';
 import { VisualPortfolio } from '../components/VisualPortfolio';
 import { playSound, setSoundEnabled as setLibSoundEnabled } from 'react-sounds';
 
@@ -532,7 +532,16 @@ export default function TerminalPortfolio() {
   const isStarted = history.length > 0;
 
   if (viewMode === 'gui') {
-    return <VisualPortfolio onSwitchToTerminal={() => setViewMode('tui')} />;
+    return (
+      <VisualPortfolio 
+        onSwitchToTerminal={() => {
+          setViewMode('tui');
+          if (soundEnabled) {
+            resumeAudioContext();
+          }
+        }} 
+      />
+    );
   }
 
   return (

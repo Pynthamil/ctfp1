@@ -59,6 +59,17 @@ export const TerminalInput = ({ inputRef, input, setInput, handleKeyDown, isProc
     }
   }, [input]);
 
+  useEffect(() => {
+    if (inputRef && inputRef.current) {
+      const timer = setTimeout(() => {
+        if (inputRef.current) {
+          inputRef.current.focus();
+        }
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [inputRef]);
+
   const onKeyDown = (e) => {
     if (e.key === 'Enter') {
       if (soundEnabled) playEnterClick();

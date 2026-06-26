@@ -189,3 +189,10 @@ export const playEnterClick = () => {
   noiseNode.start(now);
   noiseNode.stop(now + 0.09);
 };
+
+export const resumeAudioContext = () => {
+  const ctx = getAudioContext();
+  if (ctx && ctx.state === 'suspended') {
+    ctx.resume();
+  }
+};
