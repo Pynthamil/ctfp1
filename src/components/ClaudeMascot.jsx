@@ -42,26 +42,27 @@ export const ClaudeMascot = ({ isProcessing, activeCommand = '', size = 160 }) =
 
   return (
     <div 
-      onClick={handleClick}
       style={{ 
         width: `${finalSize}px`, 
         height: `${finalSize}px`, 
         flexShrink: 0, 
         display: 'block',
-        cursor: 'pointer',
-        pointerEvents: 'auto'
+        pointerEvents: 'none'
       }}
     >
       <img
         src={imgSrc}
         alt="Claude Mascot"
+        onClick={handleClick}
         style={{
           width: '100%',
           height: '100%',
           objectFit: 'contain',
           display: 'block',
           imageRendering: 'pixelated',
-          transform: offsetTranslate ? `translateY(${offsetTranslate}px)` : 'none'
+          transform: offsetTranslate ? `translateY(${offsetTranslate}px)` : 'none',
+          cursor: 'pointer',
+          pointerEvents: 'auto'
         }}
       />
     </div>

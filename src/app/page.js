@@ -273,12 +273,12 @@ export default function TerminalPortfolio() {
               let linkStr = '';
               if (p.category === 'design' || p.category === 'social') {
                 if (p.link && p.link !== '#' && !p.link.includes('github.com')) {
-                  linkStr = `\n\n**Link:**\n[View Project](${p.link})`;
+                  linkStr = `\n\n**Link:** [View Project](${p.link})`;
                 } else if (p.live && p.live !== '#') {
-                  linkStr = `\n\n**Link:**\n[View Live Site](${p.live})`;
+                  linkStr = `\n\n**Link:** [View Live Site](${p.live})`;
                 }
               } else {
-                linkStr = p.link && p.link !== '#' ? `\n\n**Link${p.live && p.live !== '#' ? 's' : ''}:**\n[View on GitHub](${p.link})${p.live && p.live !== '#' ? `\n[View Live Site](${p.live})` : ''}` : (p.live && p.live !== '#' ? `\n\n**Link:**\n[View Live Site](${p.live})` : '');
+                linkStr = p.link && p.link !== '#' ? `\n\n**Link${p.live && p.live !== '#' ? 's' : ''}:** [View on GitHub](${p.link})${p.live && p.live !== '#' ? ` · [View Live Site](${p.live})` : ''}\n\n` : (p.live && p.live !== '#' ? `\n\n**Link:** [View Live Site](${p.live})\n\n` : '');
               }
               responseContent = `**${p.title}**\n*${p.desc}*\n\n${p.details}${techStr}${linkStr}`;
             }

@@ -87,7 +87,7 @@ export         const allProjects = [
             desc: "Git-like version control and playground for LLM prompt engineering",
             img: "/project-banners/gitprompt.svg",
             tech: ["Next.js", "TypeScript", "PostgreSQL", "Supabase", "OpenAI"],
-            link: "https://github.com/Pynthamil/gitprompt",
+            link: "https://github.com/Pynthamil/PromptGit",
             locked: false,
             details: `<div style="display: flex; flex-direction: column; gap: 32px; margin-top: 15px;">
   <!-- Overview -->
@@ -96,7 +96,7 @@ export         const allProjects = [
     <p style="margin: 8px 0 0 0; line-height: 1.6; color: var(--text-muted);">
       GitPrompt is a version control and interactive sandbox suite designed specifically for LLM prompt engineering. It bridges the gap between software development workflows and prompt optimization, allowing developers to draft, version, test, and share prompt templates using familiar version control patterns (commits, diffs, and forks).
     </p>
-    <video src="/gitprompt/demo/demo1.mp4" autoplay loop muted playsinline style="width: 100%; border-radius: 8px; margin-top: 16px; border: 1.5px solid var(--accent-muted); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);" />
+    <video src="/gitprompt/demo/demo1.mp4" autoplay loop muted playsinline style="width: 100%; border-radius: 8px; margin-top: 16px;" />
   </div>
 
   <!-- Features -->
@@ -114,6 +114,8 @@ export         const allProjects = [
   <!-- Demo -->
   <div>
     **Demo**
+    <video src="/gitprompt/demo/demo2.mp4" autoplay loop muted playsinline style="width: 100%; border-radius: 8px; margin-top: 16px;" />
+    <video src="/gitprompt/demo/demo3.mp4" autoplay loop muted playsinline style="width: 100%; border-radius: 8px; margin-top: 16px;" />
   </div>
 
 
@@ -122,14 +124,6 @@ export         const allProjects = [
     **Architecture**
     <div style="margin-top: 10px; margin-bottom: 15px;">
       <img src="/gitprompt/architecture.png" alt="GitPrompt Architecture" style="width: 100%; height: auto; border-radius: 8px; border: 1.5px solid var(--accent-muted); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);" />
-    </div>
-  </div>
-
-  <!-- User Journey -->
-  <div>
-    **User Journey**
-    <div style="margin-top: 10px; margin-bottom: 20px;">
-      <img src="/gitprompt/userjourney.png" alt="GitPrompt User Journey" style="width: 100%; height: auto; border-radius: 8px; border: 1.5px solid var(--accent-muted); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);" />
     </div>
   </div>
 
