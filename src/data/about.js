@@ -14,7 +14,7 @@ export const ABOUT_SECTIONS = {
 
 + I love reading books, watching movies, writing, and drawing
 + I'm very curious so I love to constantly explore new things
-+ I don't believe the saying "curiosity kills the cat" — haha`,
++ I don't believe the saying "curiosity kills the cat" (haha)`,
 
   funfacts: `**fun facts about me**
 *the lore drops*
@@ -24,7 +24,7 @@ export const ABOUT_SECTIONS = {
 + introvert... who also loves to yap when the topic is interesting
 + personality type: INTJ
 + I enjoy challenging myself just for the plot
-+ currently in my 3rd year of college, about to enter my final year — slightly terrifying & slightly exciting`,
++ currently in my 3rd year of college, about to enter my final year (slightly terrifying & slightly exciting)`,
 
   blog: `**about my blog**
 *my brain leaving sticky notes for itself*

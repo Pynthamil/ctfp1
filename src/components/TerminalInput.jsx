@@ -78,7 +78,7 @@ export const TerminalInput = ({ inputRef, input, setInput, handleKeyDown, isProc
         <ClaudeMascot isProcessing={isProcessing} activeCommand={activeCommand} size={160} />
       </div>
 
-      {/* Separator line — thin, dim orange like Claude Code */}
+      {/* Separator line - thin, dim orange like Claude Code */}
       <div style={{ height: '1px', backgroundColor: 'rgba(224, 108, 58, 0.35)', margin: '0' }} />
       <div
         style={{
@@ -144,7 +144,7 @@ export const TerminalInput = ({ inputRef, input, setInput, handleKeyDown, isProc
             autoComplete="off"
             spellCheck="false"
             placeholder={!isStarted && !input ? 'Try "/help" or "/about"...' : ''}
-            aria-label="Terminal command input — type a command and press Enter"
+            aria-label="Terminal command input - type a command and press Enter"
             aria-autocomplete="none"
           />
         </div>
