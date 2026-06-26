@@ -32,7 +32,7 @@ const projects = [
     title: 'Codédex Graphics',
     desc: 'Social media graphics designed for Codédex',
     img: codedexFiles[0],
-    details: createDetailsHtml('A series of promotional social media graphics for Codédex campaigns.', codedexFiles)
+    details: createDetailsHtml('these are the graphics i designed for my codedex monthly challenge of jan 2026', codedexFiles)
   },
   {
     category: 'social',
