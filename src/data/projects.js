@@ -96,6 +96,7 @@ export         const allProjects = [
     <p style="margin: 8px 0 0 0; line-height: 1.6; color: var(--text-muted);">
       GitPrompt is a version control and interactive sandbox suite designed specifically for LLM prompt engineering. It bridges the gap between software development workflows and prompt optimization, allowing developers to draft, version, test, and share prompt templates using familiar version control patterns (commits, diffs, and forks).
     </p>
+    <video src="/gitprompt/demo/demo1.mp4" autoplay loop muted playsinline style="width: 100%; border-radius: 8px; margin-top: 16px; border: 1.5px solid var(--accent-muted); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);" />
   </div>
 
   <!-- Features -->
