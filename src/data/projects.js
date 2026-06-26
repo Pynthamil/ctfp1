@@ -102,41 +102,11 @@ export         const allProjects = [
   <div>
     **Features**
     <div style="display: flex; flex-direction: column; gap: 16px; color: var(--text-muted); line-height: 1.7; margin-top: 10px;">
-      <div style="display: flex; gap: 8px; align-items: flex-start;">
-        <span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">★</span>
-        <div>
-          <span style="font-weight: bold; color: var(--accent);">Prompt Editor & Templates</span>: 
-          A rich editor supporting Markdown syntax, custom metadata, and inline variable declaration using standard <code>{{variable_name}}</code> syntax.
-        </div>
-      </div>
-      <div style="display: flex; gap: 8px; align-items: flex-start;">
-        <span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">★</span>
-        <div>
-          <span style="font-weight: bold; color: var(--accent);">Git-like Version Control</span>: 
-          Save explicit versions of prompts with descriptive commits, author metadata, and configuration parameters (model, temperature, top-p). Visually diff template lineages or fork them into new lines.
-        </div>
-      </div>
-      <div style="display: flex; gap: 8px; align-items: flex-start;">
-        <span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">★</span>
-        <div>
-          <span style="font-weight: bold; color: var(--accent);">Interactive Playground</span>: 
-          Auto-detects variables from templates to generate dynamic form inputs, allowing direct streaming execution against OpenAI and Anthropic API endpoints.
-        </div>
-      </div>
-      <div style="display: flex; gap: 8px; align-items: flex-start;">
-        <span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">★</span>
-        <div>
-          <span style="font-weight: bold; color: var(--accent);">Collections & Access Control</span>: 
-          Organize templates in hierarchical folders and control accessibility with Private (team-scoped) or Public (discoverable registry) visibility toggles.
-        </div>
-      </div>
-      <div style="display: flex; gap: 8px; align-items: flex-start;">
-        <span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">★</span>
-        <div>
-          <span style="font-weight: bold; color: var(--accent);">Developer API & SDK Snippets</span>: 
-          Instantly generates TypeScript, Python, and cURL snippets to query specific prompt versions dynamically from your codebases.
-        </div>
-      </div>
+      <div style="display: flex; gap: 8px; align-items: flex-start;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">★</span><div><span style="font-weight: bold; color: var(--accent);">Prompt Editor & Templates</span>: A rich editor supporting Markdown syntax, custom metadata, and inline variable declaration using standard <code>{{variable_name}}</code> syntax.</div></div>
+      <div style="display: flex; gap: 8px; align-items: flex-start;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">★</span><div><span style="font-weight: bold; color: var(--accent);">Git-like Version Control</span>: Save explicit versions of prompts with descriptive commits, author metadata, and configuration parameters (model, temperature, top-p). Visually diff template lineages or fork them into new lines.</div></div>
+      <div style="display: flex; gap: 8px; align-items: flex-start;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">★</span><div><span style="font-weight: bold; color: var(--accent);">Interactive Playground</span>: Auto-detects variables from templates to generate dynamic form inputs, allowing direct streaming execution against OpenAI and Anthropic API endpoints.</div></div>
+      <div style="display: flex; gap: 8px; align-items: flex-start;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">★</span><div><span style="font-weight: bold; color: var(--accent);">Collections & Access Control</span>: Organize templates in hierarchical folders and control accessibility with Private (team-scoped) or Public (discoverable registry) visibility toggles.</div></div>
+      <div style="display: flex; gap: 8px; align-items: flex-start;"><span style="color: var(--accent); flex-shrink: 0; margin-top: 2px;">★</span><div><span style="font-weight: bold; color: var(--accent);">Developer API & SDK Snippets</span>: Instantly generates TypeScript, Python, and cURL snippets to query specific prompt versions dynamically from your codebases.</div></div>
     </div>
   </div>
 
