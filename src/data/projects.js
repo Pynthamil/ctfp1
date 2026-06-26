@@ -133,16 +133,6 @@ export         const allProjects = [
   <!-- Tech Stack -->
   <div>
     **Tech Stack**
-    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 10px;">
-      <div style="background: var(--card-bg); padding: 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.04);">
-        <strong style="color: var(--accent); display: block; font-size: 0.95em; margin-bottom: 4px;">Frontend & CLI</strong>
-        <p style="margin: 0; font-size: 0.9em; color: var(--text-muted);">Next.js, React, Monaco Editor (syntax rendering), and Commander.js for CLI interface.</p>
-      </div>
-      <div style="background: var(--card-bg); padding: 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.04);">
-        <strong style="color: var(--accent); display: block; font-size: 0.95em; margin-bottom: 4px;">Database & Storage</strong>
-        <p style="margin: 0; font-size: 0.9em; color: var(--text-muted);">PostgreSQL & Supabase (row-level security, realtime subscriptions, and version tracking).</p>
-      </div>
-    </div>
   </div>
 
   <!-- Architecture -->
