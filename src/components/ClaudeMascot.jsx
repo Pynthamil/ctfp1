@@ -61,8 +61,7 @@ export const ClaudeMascot = ({ isProcessing, activeCommand = '', size = 160 }) =
           display: 'block',
           imageRendering: 'pixelated',
           transform: offsetTranslate ? `translateY(${offsetTranslate}px)` : 'none',
-          cursor: 'pointer',
-          pointerEvents: 'auto'
+          cursor: 'pointer'
         }}
       />
     </div>

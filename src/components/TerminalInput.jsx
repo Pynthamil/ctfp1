@@ -253,7 +253,7 @@ export const TerminalInput = ({ inputRef, input, setInput, handleKeyDown, onExec
           to   { opacity: 1; transform: translateY(0); }
         }
       `}</style>
-      <div style={{ position: 'relative', marginTop: '180px' }}>
+      <div style={{ position: 'relative', marginTop: '68px' }}>
         {/* Mascot */}
         <div style={{ position: 'absolute', bottom: 'calc(100% - 20px)', left: 0, pointerEvents: 'none' }}>
           <ClaudeMascot isProcessing={isProcessing} activeCommand={activeCommand} size={160} />
