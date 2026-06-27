@@ -7,7 +7,7 @@ import { InteractivePrompt } from '../components/InteractivePrompt';
 import { processCommand } from '../utils/commandHandler';
 import { ThinkingIndicator } from '../components/ThinkingIndicator';
 import { ClaudeLogo } from '../components/ClaudeLogo';
-import { playStartupChime, resumeAudioContext } from '../utils/audio';
+import { playStartupChime, resumeAudioContext, playErrorSound, playPowerUp, playSuccessBlip, playPopup, playPowerDown } from '../utils/audio';
 import { VisualPortfolio } from '../components/VisualPortfolio';
 
 export default function TerminalPortfolio() {
@@ -57,13 +57,13 @@ export default function TerminalPortfolio() {
     const lastItem = history[history.length - 1];
     if (lastItem.type === 'agent') {
       if (lastItem.content && lastItem.content.toString().includes('Command not found')) {
-        playSound('notification/error', { volume: 0.3 });
+        playErrorSound();
       } else {
         if (!hasExecutedCommand) {
-          playSound('arcade/power_up', { volume: 0.4 });
+          playPowerUp();
           setHasExecutedCommand(true);
         } else {
-          playSound('ui/success_blip', { volume: 0.2 });
+          playSuccessBlip();
         }
       }
     }
@@ -72,7 +72,7 @@ export default function TerminalPortfolio() {
   // Play pop-up sound when an interactive prompt appears
   useEffect(() => {
     if (interactivePrompt) {
-      playSound('notification/popup', { volume: 0.3 });
+      playPopup();
     }
   }, [interactivePrompt]);
 
@@ -158,7 +158,7 @@ export default function TerminalPortfolio() {
     setHistoryIndex(-1);
 
     if (trimmed.toLowerCase() === 'clear' || trimmed.toLowerCase() === '/clear') {
-      playSound('arcade/power_down', { volume: 0.45 });
+      playPowerDown();
       setHistory([]);
       setInput('');
       setActiveCommand('');
