@@ -335,108 +335,110 @@ export default function ProjectPage() {
           </p>
 
           {/* Links and tech footer */}
-          <div style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '16px',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            borderTop: '1px solid rgba(255,255,255,0.08)',
-            borderBottom: '1px solid rgba(255,255,255,0.08)',
-            padding: '16px 0',
-            marginTop: '24px'
-          }}>
-            {project.tech && project.tech.length > 0 && (
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-                {project.tech.map(t => (
-                  <span
-                    key={t}
+          {(project.tech?.length > 0 || (project.link && project.link !== '#') || (project.live && project.live !== '#')) && (
+            <div style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '16px',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              borderTop: '1px solid rgba(255,255,255,0.08)',
+              borderBottom: '1px solid rgba(255,255,255,0.08)',
+              padding: '16px 0',
+              marginTop: '24px'
+            }}>
+              {project.tech && project.tech.length > 0 && (
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                  {project.tech.map(t => (
+                    <span
+                      key={t}
+                      style={{
+                        fontSize: '11px',
+                        background: 'var(--card-bg)',
+                        border: '1px solid rgba(255,255,255,0.06)',
+                        color: 'var(--text-muted)',
+                        padding: '3px 10px',
+                        borderRadius: '6px',
+                        fontWeight: '500'
+                      }}
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                {project.link && project.link !== '#' && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="View on GitHub"
                     style={{
-                      fontSize: '11px',
-                      background: 'var(--card-bg)',
-                      border: '1px solid rgba(255,255,255,0.06)',
-                      color: 'var(--text-muted)',
-                      padding: '3px 10px',
-                      borderRadius: '6px',
-                      fontWeight: '500'
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: '40px',
+                      height: '40px',
+                      borderRadius: '50%',
+                      border: '1px solid rgba(255,255,255,0.2)',
+                      backgroundColor: 'transparent',
+                      color: 'var(--text)',
+                      textDecoration: 'none',
+                      transition: 'all 0.15s ease'
+                    }}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)';
+                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)';
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)';
                     }}
                   >
-                    {t}
-                  </span>
-                ))}
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.699-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.379.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"></path>
+                    </svg>
+                  </a>
+                )}
+                {project.live && project.live !== '#' && (
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="View Live Site"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: '40px',
+                      height: '40px',
+                      borderRadius: '50%',
+                      border: '1px solid rgba(255,255,255,0.2)',
+                      backgroundColor: 'transparent',
+                      color: 'var(--text)',
+                      textDecoration: 'none',
+                      transition: 'all 0.15s ease'
+                    }}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)';
+                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)';
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)';
+                    }}
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="7" y1="17" x2="17" y2="7"></line>
+                      <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                  </a>
+                )}
               </div>
-            )}
-
-            <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-              {project.link && project.link !== '#' && (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="View on GitHub"
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '50%',
-                    border: '1px solid rgba(255,255,255,0.2)',
-                    backgroundColor: 'transparent',
-                    color: 'var(--text)',
-                    textDecoration: 'none',
-                    transition: 'all 0.15s ease'
-                  }}
-                  onMouseEnter={e => {
-                    e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)';
-                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)';
-                  }}
-                  onMouseLeave={e => {
-                    e.currentTarget.style.backgroundColor = 'transparent';
-                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)';
-                  }}
-                >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.699-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.379.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"></path>
-                  </svg>
-                </a>
-              )}
-              {project.live && project.live !== '#' && (
-                <a
-                  href={project.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="View Live Site"
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '50%',
-                    border: '1px solid rgba(255,255,255,0.2)',
-                    backgroundColor: 'transparent',
-                    color: 'var(--text)',
-                    textDecoration: 'none',
-                    transition: 'all 0.15s ease'
-                  }}
-                  onMouseEnter={e => {
-                    e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)';
-                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)';
-                  }}
-                  onMouseLeave={e => {
-                    e.currentTarget.style.backgroundColor = 'transparent';
-                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)';
-                  }}
-                >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="7" y1="17" x2="17" y2="7"></line>
-                    <polyline points="7 7 17 7 17 17"></polyline>
-                  </svg>
-                </a>
-              )}
             </div>
-          </div>
+          )}
         </div>
 
         {/* Dynamic Project Body */}
