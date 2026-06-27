@@ -469,6 +469,13 @@ export default function ProjectPage() {
           ) : <div />}
         </div>
       </main>
+
+      {/* --- Right Spacer for Centering --- */}
+      <div className="hidden lg:block" style={{
+        width: '250px',
+        flexShrink: 0,
+        padding: '0 16px'
+      }} />
     </div>
 
     {/* Footer */}
