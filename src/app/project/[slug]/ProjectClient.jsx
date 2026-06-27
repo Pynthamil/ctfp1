@@ -63,24 +63,40 @@ export default function ProjectPage() {
     setSections(detected);
   }, [project]);
 
-  // Setup intersection observer to highlight current scroll position
+  // Highlight current scroll position based on scroll offset
   useEffect(() => {
     if (sections.length === 0) return;
     
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    }, { rootMargin: '-10% 0px -70% 0px' });
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollPosition = window.scrollY + 120; // offset for padding
+          let currentSection = sections[0]?.id || 'overview';
 
-    sections.forEach(sec => {
-      const el = document.getElementById(sec.id);
-      if (el) observer.observe(el);
-    });
+          for (const section of sections) {
+            const element = document.getElementById(section.id);
+            if (element) {
+              const topPos = element.getBoundingClientRect().top + window.scrollY;
+              if (topPos <= scrollPosition) {
+                currentSection = section.id;
+              }
+            }
+          }
 
-    return () => observer.disconnect();
+          if (currentSection) {
+            setActiveSection(currentSection);
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Trigger once on mount
+
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [sections]);
 
   if (!project) {
@@ -125,19 +141,21 @@ export default function ProjectPage() {
     // Add ids to strong tags
     html = html.replace(/<strong([^>]*)>([^<]+)<\/strong>/g, (match, attrs, content) => {
       const id = content.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
-      return `<span id="${id}" style="display: block; position: relative; top: -100px; visibility: hidden;"></span><strong${attrs}>${content}</strong>`;
+      if (attrs.includes('id=')) return match;
+      return `<strong id="${id}"${attrs}>${content}</strong>`;
     });
 
     // Add ids to markdown bold headings
     html = html.replace(/\*\*([^*]+)\*\*/g, (match, content) => {
       const id = content.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
-      return `<span id="${id}" style="display: block; position: relative; top: -100px; visibility: hidden;"></span><strong style="display: block; margin-top: 32px; margin-bottom: 12px; color: var(--accent); font-size: 1.2em; font-family: var(--font-geist), sans-serif;">${content}</strong>`;
+      return `<strong id="${id}" style="display: block; margin-top: 32px; margin-bottom: 12px; color: var(--accent); font-size: 1.2em; font-family: var(--font-geist), sans-serif;">${content}</strong>`;
     });
 
     // Add ids to bold divs
-    html = html.replace(/(font-weight:\s*bold;[^>]*>)([^<]+)(<\/div>)/g, (match, prefix, content, suffix) => {
+    html = html.replace(/<div([^>]*font-weight:\s*bold;[^>]*)>([^<]+)<\/div>/g, (match, attrs, content) => {
       const id = content.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
-      return `<span id="${id}" style="display: block; position: relative; top: -100px; visibility: hidden;"></span>${prefix}${content}${suffix}`;
+      if (attrs.includes('id=')) return match;
+      return `<div id="${id}"${attrs}>${content}</div>`;
     });
     
     return html;
@@ -161,6 +179,11 @@ export default function ProjectPage() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: 'var(--bg)' }}>
+      <style>{`
+        .md-content [id] {
+          scroll-margin-top: 120px;
+        }
+      `}</style>
       <div style={{
         flex: 1,
         color: 'var(--text)',
@@ -350,23 +373,32 @@ export default function ProjectPage() {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
+                  title="View on GitHub"
                   style={{
-                    backgroundColor: '#dbd8c8',
-                    color: '#111111',
-                    textDecoration: 'none',
-                    padding: '8px 18px',
-                    borderRadius: '8px',
-                    fontSize: '14px',
-                    fontWeight: '800',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '8px',
+                    justifyContent: 'center',
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    border: '1px solid rgba(255,255,255,0.2)',
+                    backgroundColor: 'transparent',
+                    color: 'var(--text)',
+                    textDecoration: 'none',
                     transition: 'all 0.15s ease'
                   }}
-                  onMouseEnter={e => e.currentTarget.style.opacity = '0.85'}
-                  onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)';
+                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)';
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)';
+                  }}
                 >
-                  {project.link.includes('github.com') ? 'View on GitHub 💻' : 'View Code 💻'}
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.699-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.379.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"></path>
+                  </svg>
                 </a>
               )}
               {project.live && project.live !== '#' && (
