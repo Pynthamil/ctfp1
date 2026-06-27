@@ -5,6 +5,8 @@ import { WelcomeBox } from '../components/WelcomeBox';
 import { TerminalInput } from '../components/TerminalInput';
 import { InteractivePrompt } from '../components/InteractivePrompt';
 import { processCommand } from '../utils/commandHandler';
+import { ThinkingIndicator } from '../components/ThinkingIndicator';
+import { ClaudeLogo } from '../components/ClaudeLogo';
 import { playStartupChime, resumeAudioContext } from '../utils/audio';
 import { VisualPortfolio } from '../components/VisualPortfolio';
 import { playSound, setSoundEnabled as setLibSoundEnabled } from 'react-sounds';
