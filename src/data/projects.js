@@ -75,7 +75,7 @@ export         const allProjects = [
     <div style="display: flex; flex-direction: column; gap: 12px; color: var(--text-muted); line-height: 1.6; margin-top: 10px;"><div><span style="color: var(--text); display: block; margin-bottom: 2px; font-weight: 600;">1. Application Overhead</span>Most job seekers apply to dozens of roles weekly and lose track of stages, leading to missed interviews. <span style="color: var(--accent);">Solution:</span> A unified, clean dashboard to store, organize, and monitor all active applications in one place.</div><div><span style="color: var(--text); display: block; margin-bottom: 2px; font-weight: 600;">2. Lack of Pipeline Analytics</span>Users do not know where their process is failing (resume screening vs. coding rounds). <span style="color: var(--accent);">Solution:</span> Interactive funnel charts showing conversion rates and stage drop-off percentages.</div></div>
   </div>
 
-  <blockquote style="margin: 30px 0 10px; font-style: italic; color: var(--text); line-height: 1.6; font-size: 1.1em; font-family: var(--font-geist), sans-serif; text-align: center; max-width: 90%; margin-left: auto; margin-right: auto;">
+  <blockquote style="border-left: 4px solid var(--accent); padding-left: 16px; margin: 30px 0 10px; font-style: italic; color: var(--text-muted); line-height: 1.6; font-size: 1.1em; font-family: var(--font-geist), sans-serif;">
     &ldquo;JobTrace focuses on transforming the chaotic nature of job hunting into a structured, developer-first pipeline. By replacing manual spreadsheets with clean dashboards and conversion analytics, the product helps engineers visualize their application funnel, identify bottlenecks, and approach the job search with data-driven confidence.&rdquo;
   </blockquote>
 </div>`
@@ -160,7 +160,7 @@ export         const allProjects = [
     </div>
   </div>
 
-  <blockquote style="border-left: 4px solid var(--accent); padding-left: 16px; margin: 20px 0 10px; font-style: italic; color: var(--text-muted); line-height: 1.6; font-size: 1.1em; font-family: var(--font-geist), sans-serif;">
+  <blockquote style="border-left: 4px solid var(--accent); padding-left: 16px; margin: 30px 0 10px; font-style: italic; color: var(--text-muted); line-height: 1.6; font-size: 1.1em; font-family: var(--font-geist), sans-serif;">
     &ldquo;GitPrompt treats prompts not as static configuration files, but as code assets: fully versioned, testable, collaborative, and auditable pipelines.&rdquo;
   </blockquote>
 </div>`
