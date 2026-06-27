@@ -5,6 +5,7 @@ import { ABOUT_SECTIONS } from '../data/about';
 import { AnalyticsDashboard } from './stats/AnalyticsDashboard';
 import { BoroCtfStats } from './stats/BoroCtfStats';
 import { SpotifyStats } from './stats/SpotifyStats';
+import { ErrorBoundary } from './ErrorBoundary';
 import { playSound } from 'react-sounds';
 import Image from 'next/image';
 
@@ -582,7 +583,11 @@ export const VisualPortfolio = ({ onSwitchToTerminal }) => {
                     <span style={{ fontSize: '12px', color: 'var(--accent)' }}>@3xpl01t // Cybersecurity & Software</span>
                   </div>
                 </div>
-                <SpotifyStats />
+                <div style={{ flex: '1 1 300px' }}>
+                  <ErrorBoundary>
+                    <SpotifyStats />
+                  </ErrorBoundary>
+                </div>
               </div>
 
               {/* Collapsible details */}
@@ -644,7 +649,7 @@ export const VisualPortfolio = ({ onSwitchToTerminal }) => {
             </div>
 
             {/* Commit calendar graph */}
-            <div style={{ marginTop: '16px' }}>
+            <div style={{ marginTop: '40px' }}>
               <h3 style={{ fontSize: '15px', fontWeight: 'bold', color: 'var(--accent)', marginBottom: '16px' }}>GitHub Contributions</h3>
               <div style={{
                 background: 'var(--card-bg)',
@@ -653,7 +658,9 @@ export const VisualPortfolio = ({ onSwitchToTerminal }) => {
                 padding: '20px',
                 overflowX: 'auto'
               }}>
-                <AnalyticsDashboard />
+                <ErrorBoundary>
+                  <AnalyticsDashboard />
+                </ErrorBoundary>
               </div>
             </div>
           </div>
@@ -682,7 +689,11 @@ export const VisualPortfolio = ({ onSwitchToTerminal }) => {
                 Competitive security achievements and statistics on boroctf.
               </p>
             </div>
-            <BoroCtfStats />
+            <div style={{ marginTop: '20px' }}>
+              <ErrorBoundary>
+                <BoroCtfStats />
+              </ErrorBoundary>
+            </div>
           </div>
         )}
 

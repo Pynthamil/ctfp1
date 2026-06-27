@@ -8,6 +8,7 @@ import { InteractivePrompt } from '../components/InteractivePrompt';
 import { AnalyticsDashboard } from '../components/stats/AnalyticsDashboard';
 import { BoroCtfStats } from '../components/stats/BoroCtfStats';
 import { SpotifyStats } from '../components/stats/SpotifyStats';
+import { ErrorBoundary } from '../components/ErrorBoundary';
 import { ThinkingIndicator } from '../components/ThinkingIndicator';
 import { ClaudeLogo } from '../components/ClaudeLogo';
 import { allProjects } from '../data/projects';
@@ -241,8 +242,8 @@ export default function TerminalPortfolio() {
         else if (args[1] === 'funfacts') responseContent = ABOUT_SECTIONS.funfacts;
         else if (args[1] === 'blog') responseContent = ABOUT_SECTIONS.blog;
         else if (args[1] === 'learning') responseContent = ABOUT_SECTIONS.learning;
-        else if (args[1] === 'stats') responseContent = <AnalyticsDashboard />;
-        else if (args[1] === 'music') responseContent = <SpotifyStats />;
+        else if (args[1] === 'stats') responseContent = <ErrorBoundary><AnalyticsDashboard /></ErrorBoundary>;
+        else if (args[1] === 'music') responseContent = <ErrorBoundary><SpotifyStats /></ErrorBoundary>;
         else responseContent = `Hi, I'm **Pynthamil Pavendan** (aka 3xpl01t), a passionate developer and cybersecurity enthusiast.\n\nAppend a sub-command to learn more about me:\n**/about whoami**   : who am i and what do i do for a living?\n**/about hobbies**  : things i enjoy outside of screens\n**/about funfacts** : fun facts about me\n**/about blog**     : about my blog\n**/about learning** : what i am currently learning\n**/about stats**    : my github commit graph\n**/about music**    : what i'm listening to\n\n*(Try typing: **/about stats**)*`;
         break;
       case 'skills':
@@ -308,7 +309,7 @@ export default function TerminalPortfolio() {
 
         const isBoroTarget = args[1] === 'boroctf' || args[1] === 'stats';
         if (isBoroTarget) {
-          responseContent = <BoroCtfStats />;
+          responseContent = <ErrorBoundary><BoroCtfStats /></ErrorBoundary>;
         } else if (args[1] && args[1] !== 'all') {
             responseContent = `No stats available for **${args[1]}**. Try **ctf boroctf**`;
         } else if (args[1] === 'all') {
