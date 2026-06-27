@@ -105,6 +105,7 @@ const Autocomplete = ({ input, suggestions, onSelect, activeIndex, setActiveInde
   return (
     <div
       ref={listRef}
+      id="autocomplete-list"
       role="listbox"
       aria-label="Command suggestions"
       style={{
@@ -323,7 +324,8 @@ export const TerminalInput = ({ inputRef, input, setInput, handleKeyDown, onExec
               spellCheck="false"
               placeholder={!isStarted && !input ? 'Try "/help" or "/about"...' : ''}
               aria-label="Terminal command input - type a command and press Enter"
-              aria-autocomplete="none"
+              aria-autocomplete="list"
+        aria-controls={menuOpen ? "autocomplete-list" : undefined}
             />
           </div>
 

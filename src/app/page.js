@@ -33,6 +33,18 @@ export default function TerminalPortfolio() {
   const [viewMode, setViewMode] = useState('tui'); // 'tui' | 'gui'
   const scrollRef = useRef(null);
   const inputRef = useRef(null);
+  const abortRef = useRef(false);
+
+  // Global Escape handler to interrupt processing
+  useEffect(() => {
+    const handleGlobalKeyDown = (e) => {
+      if (e.key === 'Escape' && isProcessing) {
+        abortRef.current = true;
+      }
+    };
+    window.addEventListener('keydown', handleGlobalKeyDown);
+    return () => window.removeEventListener('keydown', handleGlobalKeyDown);
+  }, [isProcessing]);
 
   // Synchronize initial sound settings from LocalStorage
   useEffect(() => {
@@ -173,8 +185,15 @@ export default function TerminalPortfolio() {
     setInput('');
     setActiveCommand(trimmed);
     setIsProcessing(true);
+    abortRef.current = false;
 
     await new Promise(resolve => setTimeout(resolve, 500 + Math.random() * 300));
+    
+    if (abortRef.current) {
+      setIsProcessing(false);
+      setHistory(prev => [...prev, { type: 'agent', content: '*(Process interrupted)*' }]);
+      return;
+    }
 
     const args = trimmed.split(' ').filter(Boolean);
     let mainCommand = args[0].toLowerCase();
