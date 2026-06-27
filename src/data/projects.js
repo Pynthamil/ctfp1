@@ -29,7 +29,7 @@ export         const allProjects = [
   </div>
 
   <!-- Demo Videos -->
-  <video src="/job/demo/home.mp4" autoplay loop muted playsinline style="width: 100%; border-radius: 8px; margin-top: -10px; margin-bottom: 10px;" />
+  <video src="/job/demo/home.mp4" autoplay loop muted playsinline style="width: 100%; border-radius: 8px; margin-top: -10px; margin-bottom: 10px;"></video>
 
   <!-- Core Features Mockup -->
   <div>
@@ -61,7 +61,7 @@ export         const allProjects = [
     <div style="margin-top: 10px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 15px;">
       <img loading="lazy" src="/job/homescreen.svg" alt="JobTrace Homescreen" style="width: 100%; height: auto; border-radius: 8px; border: 1.5px solid var(--accent-muted); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);" />
       <div style="display: flex; gap: 15px; margin-top: 15px;"><div style="flex: 1;"><img loading="lazy" src="/job/appl.svg" alt="Applications Screen" style="width: 100%; height: auto; border-radius: 8px;" /></div><div style="flex: 1;"><img loading="lazy" src="/job/anlyt.svg" alt="Analytics Screen" style="width: 100%; height: auto; border-radius: 8px;" /></div></div>
-      <video src="/job/demo/addAppl.mp4" autoplay loop muted playsinline style="width: 100%; border-radius: 8px; margin-top: 15px;" />
+      <video src="/job/demo/addAppl.mp4" autoplay loop muted playsinline style="width: 100%; border-radius: 8px; margin-top: 15px;"></video>
       <div style="display: flex; gap: 15px; margin-top: 15px;"><div style="flex: 1;"><img loading="lazy" src="/job/cal1.svg" alt="Calendar View 1" style="width: 100%; height: auto; border-radius: 8px;" /></div><div style="flex: 1;"><img loading="lazy" src="/job/cal2.svg" alt="Calendar View 2" style="width: 100%; height: auto; border-radius: 8px;" /></div></div>
     </div>
   </div>
@@ -96,7 +96,7 @@ export         const allProjects = [
     <p style="margin: 8px 0 0 0; line-height: 1.6; color: var(--text-muted);">
       GitPrompt is a version control and interactive sandbox suite designed specifically for LLM prompt engineering. It bridges the gap between software development workflows and prompt optimization, allowing developers to draft, version, test, and share prompt templates using familiar version control patterns (commits, diffs, and forks).
     </p>
-    <video src="/gitprompt/demo/demo1.mp4" autoplay loop muted playsinline style="width: 100%; border-radius: 8px; margin-top: 16px;" />
+    <video src="/gitprompt/demo/demo1.mp4" autoplay loop muted playsinline style="width: 100%; border-radius: 8px; margin-top: 16px;"></video>
   </div>
 
   <!-- Features -->
@@ -114,8 +114,8 @@ export         const allProjects = [
   <!-- Demo -->
   <div>
     **Demo**
-    <video src="/gitprompt/demo/demo2.mp4" autoplay loop muted playsinline style="width: 100%; border-radius: 8px; margin-top: 16px;" />
-    <video src="/gitprompt/demo/demo3.mp4" autoplay loop muted playsinline style="width: 100%; border-radius: 8px; margin-top: 16px;" />
+    <video src="/gitprompt/demo/demo2.mp4" autoplay loop muted playsinline style="width: 100%; border-radius: 8px; margin-top: 16px;"></video>
+    <video src="/gitprompt/demo/demo3.mp4" autoplay loop muted playsinline style="width: 100%; border-radius: 8px; margin-top: 16px;"></video>
   </div>
 
 

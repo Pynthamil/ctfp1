@@ -344,26 +344,29 @@ export default function ProjectPage() {
               </div>
             )}
 
-            <div style={{ display: 'flex', gap: '12px' }}>
+            <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
               {project.link && project.link !== '#' && (
                 <a
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
-                    background: 'var(--text)',
-                    color: 'var(--bg)',
+                    backgroundColor: '#dbd8c8',
+                    color: '#111111',
                     textDecoration: 'none',
-                    padding: '8px 16px',
-                    borderRadius: '6px',
-                    fontSize: '13px',
-                    fontWeight: 'bold',
+                    padding: '8px 18px',
+                    borderRadius: '8px',
+                    fontSize: '14px',
+                    fontWeight: '800',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
                     transition: 'all 0.15s ease'
                   }}
-                  onMouseEnter={e => e.currentTarget.style.opacity = '0.9'}
+                  onMouseEnter={e => e.currentTarget.style.opacity = '0.85'}
                   onMouseLeave={e => e.currentTarget.style.opacity = '1'}
                 >
-                  {project.link.includes('github.com') ? 'View on GitHub 💻' : 'View Code 🔗'}
+                  {project.link.includes('github.com') ? 'View on GitHub 💻' : 'View Code 💻'}
                 </a>
               )}
               {project.live && project.live !== '#' && (
@@ -371,21 +374,33 @@ export default function ProjectPage() {
                   href={project.live}
                   target="_blank"
                   rel="noopener noreferrer"
+                  title="View Live Site"
                   style={{
-                    background: 'transparent',
-                    color: 'var(--accent)',
-                    border: '1px solid var(--accent)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    border: '1px solid rgba(255,255,255,0.2)',
+                    backgroundColor: 'transparent',
+                    color: 'var(--text)',
                     textDecoration: 'none',
-                    padding: '8px 16px',
-                    borderRadius: '6px',
-                    fontSize: '13px',
-                    fontWeight: 'bold',
                     transition: 'all 0.15s ease'
                   }}
-                  onMouseEnter={e => e.currentTarget.style.background = 'rgba(204,119,85,0.06)'}
-                  onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)';
+                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)';
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)';
+                  }}
                 >
-                  View Live Site 🚀
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>
                 </a>
               )}
             </div>
