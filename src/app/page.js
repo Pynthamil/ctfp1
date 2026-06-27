@@ -272,7 +272,7 @@ export default function TerminalPortfolio() {
   }
 
   return (
-    <main className="w-full max-w-[900px] h-full flex flex-col mx-auto" aria-label="Pynthamil Pavendan's portfolio terminal">
+    <main className="w-full max-w-[900px] flex-1 flex flex-col mx-auto" aria-label="Pynthamil Pavendan's portfolio terminal">
       <div
         className="flex-1 overflow-y-auto pt-5 pb-5 flex flex-col"
         ref={scrollRef}
