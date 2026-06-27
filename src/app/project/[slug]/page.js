@@ -9,8 +9,9 @@ export function generateStaticParams() {
 }
 
 // Generate SEO metadata for each project page
-export function generateMetadata({ params }) {
-  const project = allProjects.find((p) => p.slug === params.slug);
+export async function generateMetadata({ params }) {
+  const resolvedParams = await params;
+  const project = allProjects.find((p) => p.slug === resolvedParams.slug);
   
   if (!project) {
     return {
