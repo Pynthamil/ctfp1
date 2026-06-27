@@ -11,7 +11,10 @@ export default function ProjectPage() {
   const [activeSection, setActiveSection] = useState('overview');
   const [sections, setSections] = useState([]);
   
-  const project = allProjects.find(p => p.slug === slug);
+  const currentIndex = allProjects.findIndex(p => p.slug === slug);
+  const project = currentIndex >= 0 ? allProjects[currentIndex] : null;
+  const prevProject = currentIndex > 0 ? allProjects[currentIndex - 1] : null;
+  const nextProject = currentIndex >= 0 && currentIndex < allProjects.length - 1 ? allProjects[currentIndex + 1] : null;
   const detailsRef = useRef(null);
 
   // Play portal opening sound when the project page is loaded
@@ -157,18 +160,18 @@ export default function ProjectPage() {
   };
 
   return (
-    <div style={{
-      backgroundColor: 'var(--bg)',
-      color: 'var(--text)',
-      minHeight: '100vh',
-      width: '100%',
-      paddingBottom: '80px',
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'center',
-      gap: '20px',
-      paddingTop: '60px'
-    }}>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: 'var(--bg)' }}>
+      <div style={{
+        flex: 1,
+        color: 'var(--text)',
+        width: '100%',
+        paddingBottom: '80px',
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        gap: '20px',
+        paddingTop: '60px'
+      }}>
       {/* --- Sidebar Navigation --- */}
       <aside style={{
         position: 'sticky',
@@ -261,8 +264,8 @@ export default function ProjectPage() {
 
       {/* --- Main Case Study Layout --- */}
       <main style={{
-        flex: '1 1 500px',
-        maxWidth: '800px',
+        flex: '0 1 800px',
+        width: '100%',
         padding: '0 24px',
         fontFamily: 'var(--font-geist), system-ui, -apple-system, sans-serif'
       }}>
@@ -398,7 +401,96 @@ export default function ProjectPage() {
           }}
           dangerouslySetInnerHTML={{ __html: getProcessedDetails() }}
         />
+        {/* Next/Prev Buttons */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          marginTop: '80px',
+          paddingTop: '40px',
+          borderTop: '1px solid rgba(255,255,255,0.08)'
+        }}>
+          {prevProject ? (
+            <button
+              onClick={() => router.push(`/project/${prevProject.slug}`)}
+              style={{
+                background: 'transparent',
+                border: '1px solid rgba(255,255,255,0.2)',
+                color: 'var(--text)',
+                padding: '10px 20px',
+                borderRadius: '100px',
+                cursor: 'pointer',
+                fontSize: '14px',
+                fontWeight: '600',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = 'var(--text)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)';
+              }}
+            >
+              <span>←</span> Previous project
+            </button>
+          ) : <div />}
+          
+          {nextProject ? (
+            <button
+              onClick={() => router.push(`/project/${nextProject.slug}`)}
+              style={{
+                background: 'transparent',
+                border: '1px solid rgba(255,255,255,0.2)',
+                color: 'var(--text)',
+                padding: '10px 20px',
+                borderRadius: '100px',
+                cursor: 'pointer',
+                fontSize: '14px',
+                fontWeight: '600',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = 'var(--text)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)';
+              }}
+            >
+              Next project <span>→</span>
+            </button>
+          ) : <div />}
+        </div>
       </main>
     </div>
+
+    {/* Footer */}
+    <footer style={{
+      width: '100%',
+      padding: '30px 40px',
+      borderTop: '1px solid rgba(255,255,255,0.08)',
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      gap: '20px',
+      fontSize: '12px',
+      color: 'var(--text-muted)'
+    }}>
+      <div>
+        Copyright © 2026 Pynthamil Pavendan. All rights reserved.
+      </div>
+      <div style={{ display: 'flex', gap: '20px' }}>
+        <a href="https://github.com/Pynthamil" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }} onMouseEnter={e => e.currentTarget.style.color = 'var(--text)'} onMouseLeave={e => e.currentTarget.style.color = 'var(--text-muted)'}>GitHub</a>
+        <a href="https://linkedin.com/in/pynthamil" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }} onMouseEnter={e => e.currentTarget.style.color = 'var(--text)'} onMouseLeave={e => e.currentTarget.style.color = 'var(--text-muted)'}>LinkedIn</a>
+        <button onClick={() => router.push('/?cmd=resume')} style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: 0 }} onMouseEnter={e => e.currentTarget.style.color = 'var(--text)'} onMouseLeave={e => e.currentTarget.style.color = 'var(--text-muted)'}>Resume</button>
+        <button onClick={() => router.push('/?cmd=contact')} style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', padding: 0 }} onMouseEnter={e => e.currentTarget.style.color = 'var(--text)'} onMouseLeave={e => e.currentTarget.style.color = 'var(--text-muted)'}>Contact</button>
+      </div>
+    </footer>
+  </div>
   );
 }
