@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { allProjects } from '../../../data/projects';
-import { playSoftButton } from '../../../utils/audio';
+import { playSoftButton, playPortalOpening, playPortalClosing } from '../../../utils/audio';
 
 export default function ProjectPage() {
   const { slug } = useParams();
@@ -16,7 +16,7 @@ export default function ProjectPage() {
 
   // Play portal opening sound when the project page is loaded
   useEffect(() => {
-    playSound('game/portal_opening', { volume: 0.45 });
+    playPortalOpening();
   }, []);
 
   // Parse sections/headings dynamically from details content
@@ -141,7 +141,7 @@ export default function ProjectPage() {
   };
 
   const handleBack = () => {
-    playSound('game/portal_closing', { volume: 0.45 });
+    playPortalClosing();
     // Navigate back to visual portfolio after a brief delay to let the sound start
     setTimeout(() => {
       router.push('/?mode=visual');
