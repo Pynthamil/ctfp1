@@ -6,6 +6,7 @@ import { AnalyticsDashboard } from './stats/AnalyticsDashboard';
 import { BoroCtfStats } from './stats/BoroCtfStats';
 import { SpotifyStats } from './stats/SpotifyStats';
 import { playSound } from 'react-sounds';
+import Image from 'next/image';
 
 export const VisualPortfolio = ({ onSwitchToTerminal }) => {
   const router = useRouter();
@@ -518,14 +519,14 @@ export const VisualPortfolio = ({ onSwitchToTerminal }) => {
                     backgroundColor: 'rgba(0,0,0,0.2)',
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    position: 'relative'
                   }}>
-                    <img
+                    <Image
                       src={project.img}
                       alt={project.title}
+                      fill
                       style={{
-                        width: '100%',
-                        height: '100%',
                         objectFit: 'contain',
                         filter: 'none'
                       }}
@@ -568,10 +569,12 @@ export const VisualPortfolio = ({ onSwitchToTerminal }) => {
                     style={{ position: 'relative', cursor: 'pointer' }}
                     onClick={() => playSound('arcade/coin', { volume: 0.45 })}
                   >
-                    <img
+                    <Image
                       src="/claude-assets/normal.png"
                       alt="mascot"
-                      style={{ width: '90px', imageRendering: 'pixelated', display: 'block' }}
+                      width={90}
+                      height={90}
+                      style={{ imageRendering: 'pixelated', display: 'block' }}
                     />
                   </div>
                   <div>
@@ -774,14 +777,14 @@ export const VisualPortfolio = ({ onSwitchToTerminal }) => {
                     aspectRatio: '16/9',
                     borderRadius: '10px',
                     overflow: 'hidden',
-                    flexShrink: 0
+                    flexShrink: 0,
+                    position: 'relative'
                   }}>
-                    <img
+                    <Image
                       src={post.banner}
                       alt={post.title}
+                      fill
                       style={{
-                        width: '100%',
-                        height: '100%',
                         objectFit: 'cover'
                       }}
                     />
