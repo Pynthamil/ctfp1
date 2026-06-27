@@ -179,7 +179,7 @@ export const processCommand = (mainCommand, args, context) => {
       break;
     case 'resume':
       toolUse = { name: 'FetchResume', desc: 'Retrieve resume document' };
-      responseContent = `You can view or download my resume here:\n        \n**[📄 Click to view Resume](https://drive.google.com/file/d/1UG_8apujjGO0uE6IiS-yg7QQfLVzhcl5/view?usp=sharing)**`;
+      responseContent = `You can view or download my resume here:\n        \n**[📄 Click to view Resume](https://drive.google.com/file/d/1UG_8apujjGO0uE6IiS-yg7QQfLVzhcl5/view?usp=sharing)**\n\n`;
       break;
     case 'sudo':
       responseContent = `visitor is not in the sudoers file. This incident will be reported.`;
