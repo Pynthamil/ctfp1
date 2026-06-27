@@ -189,31 +189,34 @@ export default function ProjectPage() {
         {/* Back Button */}
         <button
           onClick={handleBack}
+          title="Back to Portfolio"
           style={{
             background: 'transparent',
-            border: '1px solid rgba(255,255,255,0.08)',
+            border: '1px solid rgba(255,255,255,0.1)',
             color: 'var(--text)',
-            padding: '8px 14px',
-            borderRadius: '8px',
+            width: '36px',
+            height: '36px',
+            borderRadius: '50%',
             cursor: 'pointer',
-            fontSize: '13px',
-            fontWeight: '600',
-            fontFamily: 'var(--font-geist), system-ui, sans-serif',
             display: 'flex',
             alignItems: 'center',
-            gap: '8px',
-            marginBottom: '16px',
-            transition: 'all 0.15s ease',
-            backgroundColor: 'var(--card-bg)'
+            justifyContent: 'center',
+            marginBottom: '24px',
+            transition: 'all 0.15s ease'
           }}
           onMouseEnter={e => {
             e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)';
+            e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)';
           }}
           onMouseLeave={e => {
-            e.currentTarget.style.backgroundColor = 'var(--card-bg)';
+            e.currentTarget.style.backgroundColor = 'transparent';
+            e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)';
           }}
         >
-          <span>←</span> Back to Portfolio
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
         </button>
         
         <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 'bold', color: 'var(--text-muted)', marginBottom: '8px', paddingLeft: '8px', marginTop: '8px' }}>
