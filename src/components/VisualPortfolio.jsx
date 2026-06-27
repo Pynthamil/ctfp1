@@ -454,14 +454,19 @@ export const VisualPortfolio = ({ onSwitchToTerminal }) => {
             {/* Grid */}
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr)',
+              gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
               gap: '24px'
             }}>
               {filteredProjects.map(project => (
                 <div
                   key={project.slug}
+                  role="button"
+                  tabIndex={project.locked ? -1 : 0}
                   onClick={() => {
-                    if (!project.locked) {
+                    if (!project.locked) router.push(`/project/${project.slug}`);
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && !project.locked) {
                       router.push(`/project/${project.slug}`);
                     }
                   }}

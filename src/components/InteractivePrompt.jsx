@@ -58,10 +58,13 @@ export const InteractivePrompt = ({ prompt, onCancel }) => {
             return (
               <div 
                 key={opt.value}
+                onClick={() => onSelect(opt.value)}
+                onMouseEnter={() => setSelectedIndex(i)}
                 style={{ 
                   color: isSelected ? 'var(--accent)' : 'var(--text-muted)',
                   display: 'flex',
-                  alignItems: 'center'
+                  alignItems: 'center',
+                  cursor: 'pointer'
                 }}
               >
                 <span style={{ width: '20px', display: 'inline-block' }}>
