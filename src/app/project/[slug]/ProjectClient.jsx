@@ -162,110 +162,102 @@ export default function ProjectPage() {
       color: 'var(--text)',
       minHeight: '100vh',
       width: '100%',
-      paddingBottom: '80px'
+      paddingBottom: '80px',
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+      gap: '20px',
+      paddingTop: '60px'
     }}>
-      {/* --- Sticky Navigation Bar --- */}
-      <div style={{
+      {/* --- Sidebar Navigation --- */}
+      <aside style={{
         position: 'sticky',
-        top: '20px',
-        left: 0,
-        right: 0,
-        zIndex: 1000,
+        top: '40px',
+        width: '250px',
+        maxHeight: 'calc(100vh - 80px)',
+        overflowY: 'auto',
         display: 'flex',
-        justifyContent: 'center',
-        padding: '0 20px',
-        pointerEvents: 'none'
+        flexDirection: 'column',
+        gap: '4px',
+        padding: '0 16px',
+        alignSelf: 'flex-start',
+        scrollbarWidth: 'none'
       }}>
-        <div style={{
-          background: 'var(--bg)',
-          border: '3px solid var(--accent-muted)',
-          borderRadius: '14px',
-          padding: '6px 8px',
-          display: 'flex',
-          gap: '4px',
-          alignItems: 'center',
-          boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
-          maxWidth: '100%',
-          overflowX: 'auto',
-          pointerEvents: 'auto',
-          scrollbarWidth: 'none'
-        }}>
-          {/* Back Button */}
-          <button
-            onClick={handleBack}
-            style={{
-              background: 'transparent',
-              border: 'none',
-              color: 'var(--text-muted)',
-              padding: '6px 14px',
-              borderRadius: '8px',
-              cursor: 'pointer',
-              fontSize: '13px',
-              fontWeight: '500',
-              fontFamily: 'var(--font-geist), system-ui, sans-serif',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              transition: 'all 0.15s ease'
-            }}
-            onMouseEnter={e => e.currentTarget.style.color = 'var(--text)'}
-            onMouseLeave={e => e.currentTarget.style.color = 'var(--text-muted)'}
-          >
-            <span>←</span> Back
-          </button>
-          
-          <div style={{ width: '1px', height: '16px', backgroundColor: 'var(--accent-muted)', margin: '0 8px' }} />
-
-          {/* Dynamic Section Anchors */}
-          {sections.map(sec => {
-            const isActive = activeSection === sec.id;
-            return (
-              <button
-                key={sec.id}
-                onClick={() => scrollToSection(sec.id)}
-                style={{
-                  background: isActive ? 'var(--text)' : 'transparent',
-                  border: 'none',
-                  color: isActive ? 'var(--bg)' : 'var(--text-muted)',
-                  padding: '6px 16px',
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                  fontSize: '13px',
-                  fontWeight: '600',
-                  fontFamily: 'var(--font-geist), system-ui, sans-serif',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '5px',
-                  whiteSpace: 'nowrap',
-                  transition: 'all 0.15s ease'
-                }}
-                onMouseEnter={e => {
-                  if (!isActive) e.currentTarget.style.color = 'var(--text)';
-                }}
-                onMouseLeave={e => {
-                  if (!isActive) e.currentTarget.style.color = 'var(--text-muted)';
-                }}
-              >
-                {isActive && (
-                  <span style={{
-                    width: '6px',
-                    height: '6px',
-                    borderRadius: '50%',
-                    backgroundColor: 'var(--accent)',
-                    display: 'inline-block'
-                  }} />
-                )}
-                {sec.title}
-              </button>
-            );
-          })}
+        {/* Back Button */}
+        <button
+          onClick={handleBack}
+          style={{
+            background: 'transparent',
+            border: '1px solid rgba(255,255,255,0.08)',
+            color: 'var(--text)',
+            padding: '8px 14px',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            fontSize: '13px',
+            fontWeight: '600',
+            fontFamily: 'var(--font-geist), system-ui, sans-serif',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            marginBottom: '16px',
+            transition: 'all 0.15s ease',
+            backgroundColor: 'var(--card-bg)'
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)';
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.backgroundColor = 'var(--card-bg)';
+          }}
+        >
+          <span>←</span> Back to Portfolio
+        </button>
+        
+        <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 'bold', color: 'var(--text-muted)', marginBottom: '8px', paddingLeft: '8px', marginTop: '8px' }}>
+          On This Page
         </div>
-      </div>
+
+        {/* Dynamic Section Anchors */}
+        {sections.map(sec => {
+          const isActive = activeSection === sec.id;
+          return (
+            <button
+              key={sec.id}
+              onClick={() => scrollToSection(sec.id)}
+              style={{
+                background: isActive ? 'rgba(255,255,255,0.05)' : 'transparent',
+                border: 'none',
+                color: isActive ? 'var(--text)' : 'var(--text-muted)',
+                padding: '8px 12px',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                fontSize: '13px',
+                fontWeight: isActive ? '600' : '400',
+                fontFamily: 'var(--font-geist), system-ui, sans-serif',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                textAlign: 'left',
+                transition: 'all 0.15s ease',
+                borderLeft: isActive ? '2px solid var(--accent)' : '2px solid transparent'
+              }}
+              onMouseEnter={e => {
+                if (!isActive) e.currentTarget.style.color = 'var(--text)';
+              }}
+              onMouseLeave={e => {
+                if (!isActive) e.currentTarget.style.color = 'var(--text-muted)';
+              }}
+            >
+              {sec.title}
+            </button>
+          );
+        })}
+      </aside>
 
       {/* --- Main Case Study Layout --- */}
-      <div style={{
-        maxWidth: '850px',
-        margin: '60px auto 0',
+      <main style={{
+        flex: '1 1 500px',
+        maxWidth: '800px',
         padding: '0 24px',
         fontFamily: 'var(--font-geist), system-ui, -apple-system, sans-serif'
       }}>
@@ -401,7 +393,7 @@ export default function ProjectPage() {
           }}
           dangerouslySetInnerHTML={{ __html: getProcessedDetails() }}
         />
-      </div>
+      </main>
     </div>
   );
 }
