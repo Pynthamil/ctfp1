@@ -21,10 +21,10 @@ const SoundMutedIcon = ({ size = 16 }) => (
 
 const BASE_COMMANDS = [
   '/about', '/skills', '/project', '/ctf', '/writeups', 
-  '/blog', '/resume', '/contact', '/theme', '/sound', '/codedex', '/clear', '/help', '/man', '/idea', '/dark', '/light', '/visual',
+  '/blog', '/resume', '/contact', '/theme', '/sound', '/codedex', '/clear', '/help', '/man', '/idea', '/dark', '/light',
   '/ls', '/ls -la', '/pwd', '/sudo', '/cat', '/cat .secret_passwords.txt', '/cat .bashrc', '/cat .profile', '/cat .bash_logout', '/cat profile.md', '/cat resume.pdf',
   'about', 'skills', 'project', 'ctf', 'writeups', 
-  'blog', 'resume', 'contact', 'theme', 'sound', 'codedex', 'clear', 'help', 'man', 'idea', 'dark', 'light', 'visual',
+  'blog', 'resume', 'contact', 'theme', 'sound', 'codedex', 'clear', 'help', 'man', 'idea', 'dark', 'light',
   'ls', 'ls -la', 'pwd', 'sudo', 'cat', 'cat .secret_passwords.txt', 'cat .bashrc', 'cat .profile', 'cat .bash_logout', 'cat profile.md', 'cat resume.pdf',
   '/project dev', '/project design', '/project social',
   '/ctf all', '/ctf stats', '/ctf boroctf',

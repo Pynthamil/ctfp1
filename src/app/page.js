@@ -8,7 +8,7 @@ import { processCommand } from '../utils/commandHandler';
 import { ThinkingIndicator } from '../components/ThinkingIndicator';
 import { ClaudeLogo } from '../components/ClaudeLogo';
 import { playStartupChime, resumeAudioContext, playErrorSound, playPowerUp, playSuccessBlip, playPopup, playPowerDown } from '../utils/audio';
-import { VisualPortfolio } from '../components/VisualPortfolio';
+
 
 export default function TerminalPortfolio() {
   const [history, setHistory] = useState([]);
@@ -21,7 +21,7 @@ export default function TerminalPortfolio() {
   const [activeCommand, setActiveCommand] = useState('');
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [hasExecutedCommand, setHasExecutedCommand] = useState(false);
-  const [viewMode, setViewMode] = useState('tui'); // 'tui' | 'gui'
+
   const scrollRef = useRef(null);
   const inputRef = useRef(null);
   const abortRef = useRef(false);
@@ -86,24 +86,7 @@ export default function TerminalPortfolio() {
     }
   }, [theme]);
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const modeParam = params.get('mode');
-    if (modeParam === 'gui' || modeParam === 'visual') {
-      setViewMode('gui');
-    } else {
-      const savedMode = localStorage.getItem('portfolio-view-mode');
-      if (savedMode) {
-        setViewMode(savedMode);
-      }
-    }
-  }, []);
 
-  useEffect(() => {
-    if (viewMode) {
-      localStorage.setItem('portfolio-view-mode', viewMode);
-    }
-  }, [viewMode]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -203,8 +186,7 @@ export default function TerminalPortfolio() {
       setInteractivePrompt,
       setIsProcessing,
       handleCommand,
-      playStartupChime,
-      setViewMode
+      playStartupChime
     };
 
     const result = processCommand(mainCommand, args, context);
@@ -258,21 +240,10 @@ export default function TerminalPortfolio() {
 
   const isStarted = history.length > 0;
 
-  if (viewMode === 'gui') {
-    return (
-      <VisualPortfolio 
-        onSwitchToTerminal={() => {
-          setViewMode('tui');
-          if (soundEnabled) {
-            resumeAudioContext();
-          }
-        }} 
-      />
-    );
-  }
+
 
   return (
-    <main className="w-full max-w-[900px] min-h-[calc(100vh-40px)] flex flex-col mx-auto" aria-label="Pynthamil Pavendan's portfolio terminal">
+    <main className="w-full max-w-[900px] flex-1 flex flex-col mx-auto overflow-hidden" aria-label="Pynthamil Pavendan's portfolio terminal">
       <div
         className="flex-1 overflow-y-auto pt-5 pb-5 flex flex-col"
         ref={scrollRef}

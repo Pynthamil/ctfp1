@@ -1,0 +1,104 @@
+    <div style={{
+      backgroundColor: 'var(--bg)',
+      color: 'var(--text)',
+      minHeight: '100vh',
+      width: '100%',
+      paddingBottom: '80px',
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+      gap: '20px',
+      paddingTop: '60px'
+    }}>
+      {/* --- Sidebar Navigation --- */}
+      <aside style={{
+        position: 'sticky',
+        top: '40px',
+        width: '250px',
+        maxHeight: 'calc(100vh - 80px)',
+        overflowY: 'auto',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '4px',
+        padding: '0 16px',
+        alignSelf: 'flex-start',
+        scrollbarWidth: 'none'
+      }}>
+        {/* Back Button */}
+        <button
+          onClick={handleBack}
+          style={{
+            background: 'transparent',
+            border: '1px solid rgba(255,255,255,0.08)',
+            color: 'var(--text)',
+            padding: '8px 14px',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            fontSize: '13px',
+            fontWeight: '600',
+            fontFamily: 'var(--font-geist), system-ui, sans-serif',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            marginBottom: '16px',
+            transition: 'all 0.15s ease',
+            backgroundColor: 'var(--card-bg)'
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)';
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.backgroundColor = 'var(--card-bg)';
+          }}
+        >
+          <span>←</span> Back to Portfolio
+        </button>
+        
+        <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 'bold', color: 'var(--text-muted)', marginBottom: '8px', paddingLeft: '8px', marginTop: '8px' }}>
+          On This Page
+        </div>
+
+        {/* Dynamic Section Anchors */}
+        {sections.map(sec => {
+          const isActive = activeSection === sec.id;
+          return (
+            <button
+              key={sec.id}
+              onClick={() => scrollToSection(sec.id)}
+              style={{
+                background: isActive ? 'rgba(255,255,255,0.05)' : 'transparent',
+                border: 'none',
+                color: isActive ? 'var(--text)' : 'var(--text-muted)',
+                padding: '8px 12px',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                fontSize: '13px',
+                fontWeight: isActive ? '600' : '400',
+                fontFamily: 'var(--font-geist), system-ui, sans-serif',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                textAlign: 'left',
+                transition: 'all 0.15s ease',
+                borderLeft: isActive ? '2px solid var(--accent)' : '2px solid transparent'
+              }}
+              onMouseEnter={e => {
+                if (!isActive) e.currentTarget.style.color = 'var(--text)';
+              }}
+              onMouseLeave={e => {
+                if (!isActive) e.currentTarget.style.color = 'var(--text-muted)';
+              }}
+            >
+              {sec.title}
+            </button>
+          );
+        })}
+      </aside>
+
+      {/* --- Main Case Study Layout --- */}
+      <main style={{
+        flex: '1 1 500px',
+        maxWidth: '800px',
+        padding: '0 24px',
+        fontFamily: 'var(--font-geist), system-ui, -apple-system, sans-serif'
+      }}>

@@ -55,16 +55,12 @@ export const processCommand = (mainCommand, args, context) => {
           case 'codedex':
             responseContent = `**NAME**\n    codedex - Print the custom retro mascot ASCII art\n\n**SYNOPSIS**\n    codedex\n\n**DESCRIPTION**\n    Outputs a gorgeous custom pixel-art rendition of the Codédex logo/mascot.`;
             break;
-          case 'visual':
-          case 'lazy':
-          case 'gui':
-            responseContent = `**NAME**\n    visual - Switch from Terminal Mode to Website UI Mode\n\n**SYNOPSIS**\n    visual\n\n**DESCRIPTION**\n    Toggles the portfolio from CLI terminal interface (TUI) to an interactive, fully clickable visual website layout (GUI).`;
-            break;
+
           default:
             responseContent = `No manual entry for **${args[1]}**. Command not found.`;
         }
       } else {
-        responseContent = `Here are the available commands:\n**/about**    : Learn more about my background\n**/skills**   : View my technical expertise\n**/project**  : Browse my recent work (try **/project dev**)\n**/ctf**      : View Capture The Flag history\n**/writeups** : Read my security writeups\n**/blog**     : View my blog posts (try **/blog latest**)\n**/resume**   : Download or view my resume\n**/contact**  : Get my contact information\n**/theme**    : Toggle dark/light mode (or use **/light** / **/dark**)\n**/sound**    : Toggle audio clicks/chimes (or use **/sound on** / **/sound off**)\n**/codedex**  : Print the custom retro mascot ASCII art\n**/visual**   : Switch to the interactive Website UI (Lazy Mode)\n**/clear**    : Clear the terminal output\n**/help**     : Show this help message\n\n*(Tip: Type **/man <command>** for detailed usage, e.g., **/man project**)*`;
+        responseContent = `Here are the available commands:\n**/about**    : Learn more about my background\n**/skills**   : View my technical expertise\n**/project**  : Browse my recent work (try **/project dev**)\n**/ctf**      : View Capture The Flag history\n**/writeups** : Read my security writeups\n**/blog**     : View my blog posts (try **/blog latest**)\n**/resume**   : Download or view my resume\n**/contact**  : Get my contact information\n**/theme**    : Toggle dark/light mode (or use **/light** / **/dark**)\n**/sound**    : Toggle audio clicks/chimes (or use **/sound on** / **/sound off**)\n**/codedex**  : Print the custom retro mascot ASCII art\n**/clear**    : Clear the terminal output\n**/help**     : Show this help message\n\n*(Tip: Type **/man <command>** for detailed usage, e.g., **/man project**)*`;
       }
       break;
     case 'about':
@@ -305,14 +301,7 @@ export const processCommand = (mainCommand, args, context) => {
         </div>
       );
       break;
-    case 'visual':
-    case 'lazy':
-    case 'gui':
-      if (context.setViewMode) {
-        context.setViewMode('gui');
-      }
-      responseContent = `Switching to Visual Mode... Welcome to the Web Portfolio UI! ✨`;
-      break;
+
     case 'idea':
       responseContent = `💡 **Idea Dump & Future Brainstorms**\n- **Personalized LLM Agent**: A self-hosted CLI assistant tailored to my coding style and directory structure.\n- **Cybersecurity CTF Platform**: An open-source, lightweight training ground for local students to learn basic exploitation.\n- **Interactive TUI Resume**: A retro terminal-based interactive resume running over SSH.`;
       break;
