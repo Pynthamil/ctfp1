@@ -172,7 +172,7 @@ const Autocomplete = ({ input, suggestions, onSelect, activeIndex, setActiveInde
   );
 };
 
-export const TerminalInput = ({ inputRef, input, setInput, handleKeyDown, isProcessing, activeCommand, isStarted, soundEnabled, setSoundEnabled }) => {
+export const TerminalInput = ({ inputRef, input, setInput, handleKeyDown, onExecute, isProcessing, activeCommand, isStarted, soundEnabled, setSoundEnabled }) => {
   const [suggestion, setSuggestion] = useState('');
   const [menuIndex, setMenuIndex] = useState(0);
 
@@ -221,6 +221,14 @@ export const TerminalInput = ({ inputRef, input, setInput, handleKeyDown, isProc
       if (e.key === 'Tab') {
         e.preventDefault();
         handleSelect(suggestions[menuIndex].value);
+        return;
+      }
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const selected = suggestions[menuIndex].value;
+        setInput(selected);
+        if (soundEnabled) playEnterClick();
+        if (onExecute) onExecute(selected);
         return;
       }
     }

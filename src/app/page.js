@@ -347,7 +347,7 @@ export default function TerminalPortfolio() {
         break;
       case 'resume':
         toolUse = { name: 'FetchResume', desc: 'Retrieve resume document' };
-        responseContent = `You can view or download my resume here:\n        \n**[📄 Click to view Resume](https://drive.google.com/file/d/1G6zblvbtjU_PLjBROUNJ6L2ZJoWw8_03/view?usp=sharing)**`;
+        responseContent = `You can view or download my resume here:\n        \n**[📄 Click to view Resume](https://drive.google.com/file/d/1UG_8apujjGO0uE6IiS-yg7QQfLVzhcl5/view?usp=sharing)**`;
         break;
       case 'sudo':
         responseContent = `visitor is not in the sudoers file. This incident will be reported.`;
@@ -625,6 +625,7 @@ export default function TerminalPortfolio() {
           input={input}
           setInput={setInput}
           handleKeyDown={handleKeyDown}
+          onExecute={handleCommand}
           isProcessing={isProcessing}
           activeCommand={activeCommand}
           isStarted={isStarted}
