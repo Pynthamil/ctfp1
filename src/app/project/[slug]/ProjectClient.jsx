@@ -191,7 +191,7 @@ export default function ProjectPage() {
           onClick={handleBack}
           title="Back to Portfolio"
           style={{
-            background: 'transparent',
+            backgroundColor: 'transparent',
             border: '1px solid rgba(255,255,255,0.1)',
             color: 'var(--text)',
             width: '36px',
