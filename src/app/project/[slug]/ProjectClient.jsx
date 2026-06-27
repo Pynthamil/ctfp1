@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { allProjects } from '../../../data/projects';
-import { playSound } from 'react-sounds';
+import { playSoftButton } from '../../../utils/audio';
 
 export default function ProjectPage() {
   const { slug } = useParams();

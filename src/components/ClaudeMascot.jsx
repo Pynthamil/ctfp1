@@ -1,5 +1,5 @@
 import React from 'react';
-import { playSound } from 'react-sounds';
+import { playCoinSound } from '../utils/audio';
 
 export const ClaudeMascot = ({ isProcessing, activeCommand = '', size = 160 }) => {
   let imgSrc = "/claude-assets/clawd.gif";
@@ -37,7 +37,7 @@ export const ClaudeMascot = ({ isProcessing, activeCommand = '', size = 160 }) =
   const offsetTranslate = isEngineer ? (finalSize - size) / 8 : 0;
 
   const handleClick = () => {
-    playSound('arcade/coin', { volume: 0.45 });
+    playCoinSound();
   };
 
   return (

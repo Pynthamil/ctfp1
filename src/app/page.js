@@ -9,7 +9,6 @@ import { ThinkingIndicator } from '../components/ThinkingIndicator';
 import { ClaudeLogo } from '../components/ClaudeLogo';
 import { playStartupChime, resumeAudioContext } from '../utils/audio';
 import { VisualPortfolio } from '../components/VisualPortfolio';
-import { playSound, setSoundEnabled as setLibSoundEnabled } from 'react-sounds';
 
 export default function TerminalPortfolio() {
   const [history, setHistory] = useState([]);
@@ -44,14 +43,12 @@ export default function TerminalPortfolio() {
     if (savedSound !== null) {
       const isEnabled = savedSound === 'true';
       setSoundEnabled(isEnabled);
-      setLibSoundEnabled(isEnabled);
     }
   }, []);
 
   // Sync state changes to react-sounds and LocalStorage
   useEffect(() => {
     localStorage.setItem('portfolio-sound-enabled', soundEnabled ? 'true' : 'false');
-    setLibSoundEnabled(soundEnabled);
   }, [soundEnabled]);
 
   // Play success/error/powerup sounds on command completion

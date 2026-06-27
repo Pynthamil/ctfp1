@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { playSound } from 'react-sounds';
+import { playNotification } from '../utils/audio';
 
 export const WelcomeBox = ({ input }) => {
   useEffect(() => {
-    playSound('notification/message', { volume: 0.35 });
+    playNotification();
   }, []);
 
   const isProjectCommand = input && input.trim().toLowerCase().startsWith('project');

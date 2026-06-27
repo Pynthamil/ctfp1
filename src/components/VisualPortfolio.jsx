@@ -6,7 +6,7 @@ import { AnalyticsDashboard } from './stats/AnalyticsDashboard';
 import { BoroCtfStats } from './stats/BoroCtfStats';
 import { SpotifyStats } from './stats/SpotifyStats';
 import { ErrorBoundary } from './ErrorBoundary';
-import { playSound } from 'react-sounds';
+import { playCoinSound } from '../utils/audio';
 import Image from 'next/image';
 
 export const VisualPortfolio = ({ onSwitchToTerminal }) => {
@@ -568,7 +568,7 @@ export const VisualPortfolio = ({ onSwitchToTerminal }) => {
                 }}>
                   <div 
                     style={{ position: 'relative', cursor: 'pointer' }}
-                    onClick={() => playSound('arcade/coin', { volume: 0.45 })}
+                    onClick={() => playCoinSound()}
                   >
                     <Image
                       src="/claude-assets/normal.png"

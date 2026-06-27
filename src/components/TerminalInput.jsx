@@ -3,7 +3,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { allProjects } from '../data/projects';
 import { ClaudeMascot } from './ClaudeMascot';
 import { playKeyClick, playEnterClick, playStartupChime } from '../utils/audio';
-import { playSound } from 'react-sounds';
 
 const SoundOnIcon = ({ size = 16 }) => (
   <svg width={size} height={size} viewBox="0 0 16 16" fill="currentColor" style={{ shapeRendering: 'crispEdges' }}>
