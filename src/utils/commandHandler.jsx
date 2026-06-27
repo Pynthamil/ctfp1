@@ -254,7 +254,7 @@ export const processCommand = (mainCommand, args, context) => {
     case 'codedex':
       responseContent = (
         <div style={{ fontFamily: 'monospace', whiteSpace: 'pre', color: 'var(--accent)', fontSize: '11px', lineHeight: '1.15', overflowX: 'auto', padding: '10px 0' }}>
-{\`                                                     @@@@@@@@@@@@@%                                 
+{`                                                     @@@@@@@@@@@@@%                                 
                                     @@@@@@@@@@@@@@@@@@:::::::::...+@@@@*                            
                                %@@@@+:::::::::::::::::::::::..-@@@#::::=%@@@%                       
                            *%%%-:::::::::::::::::::::::::::+@@#::::::::::-::-%%%#                   
@@ -301,7 +301,7 @@ export const processCommand = (mainCommand, args, context) => {
                                @@@#========---------#@@#                                            
                                 ##*@@@+====--:::*@@@###                                             
                                       %@@#=-:%@@+%                                                  
-                                         *@@@=\`}
+                                         *@@@=`}
         </div>
       );
       break;
