@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef, useEffect } from 'react';
-import { FoxLogo } from '../components/FoxLogo';
 import { WelcomeBox } from '../components/WelcomeBox';
 import { TerminalInput } from '../components/TerminalInput';
 import { InteractivePrompt } from '../components/InteractivePrompt';
@@ -24,9 +23,7 @@ export default function TerminalPortfolio() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [commandHistory, setCommandHistory] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
-  const [pose, setPose] = useState('default');
   const [theme, setTheme] = useState('dark');
-  const [mascot, setMascot] = useState('normal');
   const [activeCommand, setActiveCommand] = useState('');
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [hasExecutedCommand, setHasExecutedCommand] = useState(false);
@@ -270,7 +267,6 @@ export default function TerminalPortfolio() {
         responseContent = `**Languages**: Python, Java, C++, JavaScript, TypeScript, C, HTML/CSS\n**Frameworks**: React.js, Next.js, Express.js, Flask, React-Native, Textual\n**Developer Tools**: Git, GitHub, Google Cloud Platform, AWS, Vercel, Figma, Bash, Unix/Linux\n**Technologies**: RESTful APIs, OAuth, JSON/CSV processing, MongoDB, Supabase\n**Security**: Nmap, CTFs, Web Security`;
         break;
       case 'project':
-        setMascot('laptop');
         toolUse = { name: 'FetchProjects', desc: `Retrieve portfolio items (${args[1] || 'all'})` };
         if (args[1] === 'dev' || args[1] === 'design' || args[1] === 'social') {
           const category = args[1];
