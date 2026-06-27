@@ -225,11 +225,10 @@ export default function ProjectPage() {
               key={sec.id}
               onClick={() => scrollToSection(sec.id)}
               style={{
-                background: isActive ? 'rgba(255,255,255,0.05)' : 'transparent',
+                background: 'transparent',
                 border: 'none',
                 color: isActive ? 'var(--text)' : 'var(--text-muted)',
                 padding: '8px 12px',
-                borderRadius: '8px',
                 cursor: 'pointer',
                 fontSize: '13px',
                 fontWeight: isActive ? '600' : '400',
@@ -238,8 +237,7 @@ export default function ProjectPage() {
                 alignItems: 'center',
                 gap: '8px',
                 textAlign: 'left',
-                transition: 'all 0.15s ease',
-                borderLeft: isActive ? '2px solid var(--accent)' : '2px solid transparent'
+                transition: 'all 0.15s ease'
               }}
               onMouseEnter={e => {
                 if (!isActive) e.currentTarget.style.color = 'var(--text)';
@@ -248,6 +246,13 @@ export default function ProjectPage() {
                 if (!isActive) e.currentTarget.style.color = 'var(--text-muted)';
               }}
             >
+              <span style={{
+                width: '4px',
+                height: '4px',
+                borderRadius: '50%',
+                backgroundColor: isActive ? 'var(--accent)' : 'transparent',
+                transition: 'background-color 0.2s ease'
+              }} />
               {sec.title}
             </button>
           );
