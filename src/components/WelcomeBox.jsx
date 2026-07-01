@@ -1,9 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { playNotification } from '../utils/audio';
 
 export const WelcomeBox = ({ input }) => {
+  const [location, setLocation] = useState(null);
+
   useEffect(() => {
     playNotification();
+    
+    fetch('/api/location')
+      .then(res => res.json())
+      .then(data => {
+        if (data.city && data.city !== 'Unknown City') {
+          setLocation(`${data.city}, ${data.country}`);
+        }
+      })
+      .catch(err => console.error('Error fetching location:', err));
   }, []);
 
   const isProjectCommand = input && input.trim().toLowerCase().startsWith('project');
@@ -75,6 +86,11 @@ export const WelcomeBox = ({ input }) => {
         <div style={{ color: MUTED, lineHeight: '1.6', fontSize: FS }}>
           Sonnet 4.6 · Claude Pro<br />
           /Users/visitor/portfolio
+          {location && (
+            <div style={{ marginTop: '8px', color: ORANGE, fontSize: '13px' }}>
+              📍 Visiting from:<br/>{location}
+            </div>
+          )}
         </div>
       </div>
 
