@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { CSPostHogProvider } from './providers';
 
 const geist = Geist({
   variable: "--font-geist",
@@ -70,7 +71,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${geist.variable} ${geistMono.variable}`}>
-      <body>{children}</body>
+      <body>
+        <CSPostHogProvider>
+          {children}
+        </CSPostHogProvider>
+      </body>
     </html>
   );
 }
