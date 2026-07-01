@@ -1,6 +1,7 @@
 import { AnalyticsDashboard } from '../components/stats/AnalyticsDashboard';
 import { BoroCtfStats } from '../components/stats/BoroCtfStats';
 import { SpotifyStats } from '../components/stats/SpotifyStats';
+import { ViewCounterStats } from '../components/stats/ViewCounterStats';
 import { ErrorBoundary } from '../components/ErrorBoundary';
 import { allProjects } from '../data/projects';
 import { ABOUT_SECTIONS } from '../data/about';
@@ -60,8 +61,12 @@ export const processCommand = (mainCommand, args, context) => {
             responseContent = `No manual entry for **${args[1]}**. Command not found.`;
         }
       } else {
-        responseContent = `Here are the available commands:\n**/about**    : Learn more about my background\n**/skills**   : View my technical expertise\n**/project**  : Browse my recent work (try **/project dev**)\n**/ctf**      : View Capture The Flag history\n**/writeups** : Read my security writeups\n**/blog**     : View my blog posts (try **/blog latest**)\n**/resume**   : Download or view my resume\n**/contact**  : Get my contact information\n**/theme**    : Toggle dark/light mode (or use **/light** / **/dark**)\n**/sound**    : Toggle audio clicks/chimes (or use **/sound on** / **/sound off**)\n**/codedex**  : Print the custom retro mascot ASCII art\n**/clear**    : Clear the terminal output\n**/help**     : Show this help message\n\n*(Tip: Type **/man <command>** for detailed usage, e.g., **/man project**)*`;
+        responseContent = `Here are the available commands:\n**/about**    : Learn more about my background\n**/skills**   : View my technical expertise\n**/project**  : Browse my recent work (try **/project dev**)\n**/ctf**      : View Capture The Flag history\n**/writeups** : Read my security writeups\n**/blog**     : View my blog posts (try **/blog latest**)\n**/resume**   : Download or view my resume\n**/contact**  : Get my contact information\n**/theme**    : Toggle dark/light mode (or use **/light** / **/dark**)\n**/sound**    : Toggle audio clicks/chimes (or use **/sound on** / **/sound off**)\n**/views**    : Show terminal portfolio views\n**/codedex**  : Print the custom retro mascot ASCII art\n**/clear**    : Clear the terminal output\n**/help**     : Show this help message\n\n*(Tip: Type **/man <command>** for detailed usage, e.g., **/man project**)*`;
       }
+      break;
+    case 'views':
+      toolUse = { name: 'QueryDatabase', desc: 'Fetch view statistics' };
+      responseContent = <ErrorBoundary><ViewCounterStats /></ErrorBoundary>;
       break;
     case 'about':
       toolUse = { name: 'ReadFile', desc: `Read profile.md (${args[1] || 'summary'})` };
