@@ -58,6 +58,26 @@ export const BlogPosts = ({ view }) => {
     );
   }
 
+  if (view === 'featured') {
+    // Pick the "readme, but make it aesthetic" post if it exists, otherwise fallback to the second latest post
+    const featuredPost = posts.find(p => p.title.toLowerCase().includes("readme")) || posts[1] || posts[0];
+    return (
+      <div>
+        <strong>⭐ Featured Blog Post:</strong><br/>
+        <div style={{ display: 'flex', gap: '20px', marginTop: '15px' }}>
+          <a href={featuredPost.url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit', maxWidth: '400px' }}>
+            <div style={{ background: 'var(--card-bg)', padding: '15px', borderRadius: '8px', border: '1px solid var(--accent)', transition: 'all 0.3s ease', display: 'flex', flexDirection: 'column', cursor: 'pointer', boxShadow: '0 0 10px rgba(163, 190, 140, 0.2)' }}>
+              <img loading="lazy" src={featuredPost.img} style={{ width: '100%', height: 'auto', borderRadius: '6px', marginBottom: '15px', border: '1px solid var(--accent-muted)' }} alt={featuredPost.title} />
+              <h3 style={{ margin: '0 0 10px 0', fontSize: '1.2em', color: 'var(--text)' }}>{featuredPost.title}</h3>
+              <p style={{ margin: '0 0 10px 0', fontSize: '0.95em', color: 'var(--text-muted)' }}>{featuredPost.desc}</p>
+              <div style={{ fontSize: '0.85em', color: 'var(--accent)', marginTop: '5px' }}>{featuredPost.date} • 3 min read</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div>
       <strong>All Published Blog Posts:</strong><br/>

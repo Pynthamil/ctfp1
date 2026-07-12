@@ -38,7 +38,7 @@ export const processCommand = (mainCommand, args, context) => {
             responseContent = `**NAME**\n    writeups - Read my security writeups\n\n**SYNOPSIS**\n    writeups [SUBCOMMAND]\n\n**DESCRIPTION**\n    Displays my most recent security writeups and blog posts.\n\n**SUBCOMMANDS**\n    **all**    Read all older posts instead of just recent ones`;
             break;
           case 'blog':
-            responseContent = `**NAME**\n    blog - Read my personal blog\n\n**SYNOPSIS**\n    blog [SUBCOMMAND]\n\n**DESCRIPTION**\n    Displays information about my blog and latest posts.\n\n**SUBCOMMANDS**\n    **latest**    Fetch and read the most recent blog post\n    **all**       Browse all published blog posts`;
+            responseContent = `**NAME**\n    blog - Read my personal blog\n\n**SYNOPSIS**\n    blog [SUBCOMMAND]\n\n**DESCRIPTION**\n    Displays information about my blog and latest posts.\n\n**SUBCOMMANDS**\n    **latest**    Fetch and read the most recent blog post\n    **featured**  View my featured blog post\n    **all**       Browse all published blog posts`;
             break;
           case 'about':
             responseContent = `**NAME**\n    about - Learn more about my background and personality\n\n**SYNOPSIS**\n    about [SUBCOMMAND]\n\n**DESCRIPTION**\n    Displays detailed information about who I am, what I do, and my personal interests.\n\n**SUBCOMMANDS**\n    **whoami**     who am i and what do i do for a living?\n    **hobbies**    things i enjoy outside of screens\n    **funfacts**   fun facts about me\n    **blog**       about my blog\n    **learning**   what i am currently learning\n    **stats**      my github commit graph and stats\n    **music**      what i'm listening to`;
@@ -158,6 +158,8 @@ export const processCommand = (mainCommand, args, context) => {
     case 'blog':
       if (args[1] === 'latest') {
         responseContent = <ErrorBoundary><BlogPosts view="latest" /></ErrorBoundary>;
+      } else if (args[1] === 'featured') {
+        responseContent = <ErrorBoundary><BlogPosts view="featured" /></ErrorBoundary>;
       } else if (args[1] === 'all') {
         responseContent = <ErrorBoundary><BlogPosts view="all" /></ErrorBoundary>;
       } else {
@@ -165,6 +167,7 @@ export const processCommand = (mainCommand, args, context) => {
           message: 'Which blog view would you like to access?',
           options: [
             { label: 'Read Latest Post', value: 'latest' },
+            { label: 'View Featured Post', value: 'featured' },
             { label: 'Browse All Posts', value: 'all' }
           ],
           onSelect: (value, label) => {
