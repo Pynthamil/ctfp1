@@ -39,7 +39,7 @@ const BASE_COMMANDS = [
   '/sound on', '/sound off', 'sound on', 'sound off'
 ];
 
-const PROJECT_COMMANDS = allProjects.flatMap(p => [`project ${p.slug}`, `/project ${p.slug}`]);
+const PROJECT_COMMANDS = allProjects.flatMap(p => [`${p.slug}`, `/${p.slug}`]);
 const MAN_SUBCOMMANDS = ['about', 'skills', 'project', 'ctf', 'writeups', 'blog', 'resume', 'contact', 'theme', 'sound', 'codedex', 'clear', 'help', 'idea', 'views'];
 const MAN_COMMANDS = MAN_SUBCOMMANDS.flatMap(cmd => [`man ${cmd}`, `/man ${cmd}`]);
 const COMMANDS = [...BASE_COMMANDS, ...PROJECT_COMMANDS, ...MAN_COMMANDS];
@@ -48,7 +48,7 @@ const COMMANDS = [...BASE_COMMANDS, ...PROJECT_COMMANDS, ...MAN_COMMANDS];
 const PROJECT_META = allProjects.map(p => ({
   title: p.title,
   slug: p.slug,
-  cmd: `/project ${p.slug}`,
+  cmd: `/${p.slug}`,
 }));
 
 // Build ranked autocomplete suggestions (Google-style)
@@ -69,7 +69,7 @@ const buildSuggestions = (input) => {
   // 1. Commands that start with the query (prefix match — strongest)
   slashCmds.filter(c => c.startsWith(q)).forEach(c => add(c));
 
-  // 2. Project title/slug prefix matches → /project <slug>
+  // 2. Project title/slug prefix matches → /<slug>
   PROJECT_META
     .filter(p => p.title.toLowerCase().startsWith(q) || p.slug.startsWith(q))
     .forEach(p => add(p.cmd, p.title));

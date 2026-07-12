@@ -1,5 +1,6 @@
 import React from 'react';
 import { playCoinSound } from '../utils/audio';
+import { allProjects } from '../data/projects';
 
 export const ClaudeMascot = ({ isProcessing, activeCommand = '', size = 160 }) => {
   let imgSrc = "/claude-assets/clawd.gif";
@@ -18,7 +19,8 @@ export const ClaudeMascot = ({ isProcessing, activeCommand = '', size = 160 }) =
     // 2. Creative / Idea assets
     else if (
       cmd.startsWith('project') || cmd.startsWith('/project') ||
-      cmd.startsWith('idea') || cmd.startsWith('/idea')
+      cmd.startsWith('idea') || cmd.startsWith('/idea') ||
+      allProjects.some(p => cmd.startsWith(p.slug) || cmd.startsWith('/' + p.slug))
     ) {
       imgSrc = "/claude-assets/idea.jpeg";
     }

@@ -18,6 +18,12 @@ export const processCommand = (mainCommand, args, context) => {
     playStartupChime
   } = context;
 
+  const projectMatch = allProjects.find(p => p.slug === mainCommand.toLowerCase());
+  if (projectMatch) {
+    args[1] = mainCommand.toLowerCase();
+    mainCommand = 'project';
+  }
+
   let responseContent = '';
   let toolUse = null;
   let earlyReturn = false;
@@ -90,7 +96,7 @@ export const processCommand = (mainCommand, args, context) => {
         const category = args[1];
         const filteredHtml = allProjects.map((p, i) => {
           if (p.category === category) {
-            const statusText = p.locked ? `<span style="color: #ff5555; font-size: 0.9em; display: inline-block; margin-top: 5px; font-weight: bold;">Coming soon! 🔒</span>` : `<span style="color: var(--accent); font-size: 0.9em; display: inline-block; margin-top: 5px;">Type <strong>project ${p.slug}</strong> for details</span>`;
+            const statusText = p.locked ? `<span style="color: #ff5555; font-size: 0.9em; display: inline-block; margin-top: 5px; font-weight: bold;">Coming soon! 🔒</span>` : `<span style="color: var(--accent); font-size: 0.9em; display: inline-block; margin-top: 5px;">Type <strong>/${p.slug}</strong> for details</span>`;
             return `<div style="flex: 0 0 350px; background: var(--card-bg); padding: 15px; border-radius: 8px; ${p.locked ? 'opacity: 0.6;' : ''}"><strong>${p.title}</strong><br/>${statusText}<img loading="lazy" src="${p.img}" style="width: 100%; height: auto; border-radius: 6px; margin-top: 10px; ${p.locked ? 'filter: grayscale(100%); opacity: 0.7;' : ''}" /></div>`;
           }
           return '';
