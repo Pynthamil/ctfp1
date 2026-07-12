@@ -5,35 +5,21 @@ export const BlogPosts = ({ view }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('https://my-blog-tan-tau.vercel.app/rss.xml')
-      .then(res => res.text())
-      .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+    fetch('/api/blog')
+      .then(res => {
+        if (!res.ok) throw new Error("API route returned an error");
+        return res.json();
+      })
       .then(data => {
-        const items = data.querySelectorAll("item");
-        const parsedPosts = Array.from(items).map((el, i) => {
-          const title = el.querySelector("title")?.textContent || "Untitled";
-          const link = el.querySelector("link")?.textContent || "#";
-          
-          const pubDateStr = el.querySelector("pubDate")?.textContent;
-          const date = pubDateStr ? new Date(pubDateStr).toISOString().split('T')[0] : "Unknown Date";
-          
-          const desc = el.querySelector("description")?.textContent || "";
-          
-          // Reverse index to match image naming pattern: postN.svg
-          // oldest is 1, newest is items.length
-          const index = items.length - i;
-          let img = `https://my-blog-tan-tau.vercel.app/banners/post${index}.svg`;
-          if (index === 1) {
-             img = `https://my-blog-tan-tau.vercel.app/banners/Post1.svg`;
-          }
-          
-          return { title, url: link, date, desc, img };
-        });
-        setPosts(parsedPosts);
+        if (data.posts) {
+          setPosts(data.posts);
+        } else {
+          throw new Error("No posts found in response");
+        }
         setLoading(false);
       })
       .catch(err => {
-        console.error('Failed to fetch blog posts:', err);
+        console.error('Failed to fetch blog posts from API:', err);
         setLoading(false);
       });
   }, []);
