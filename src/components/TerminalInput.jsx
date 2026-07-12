@@ -29,12 +29,12 @@ const BASE_COMMANDS = [
   '/project dev', '/project design', '/project social',
   '/ctf all', '/ctf stats', '/ctf boroctf',
   '/writeups all',
-  '/blog latest', '/blog all',
+  '/blog latest', '/blog featured', '/blog all',
   '/about whoami', '/about hobbies', '/about funfacts', '/about blog', '/about learning', '/about stats', '/about music',
   'project dev', 'project design', 'project social',
   'ctf all', 'ctf stats', 'ctf boroctf',
   'writeups all',
-  'blog latest', 'blog all',
+  'blog latest', 'blog featured', 'blog all',
   'about whoami', 'about hobbies', 'about funfacts', 'about blog', 'about learning', 'about stats', 'about music',
   '/sound on', '/sound off', 'sound on', 'sound off'
 ];
