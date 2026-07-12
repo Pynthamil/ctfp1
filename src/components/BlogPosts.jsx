@@ -36,10 +36,17 @@ export const BlogPosts = ({ view }) => {
     const p = posts[0];
     return (
       <div>
-        <strong>Latest Blog Post:</strong><br/><br/>
-        <strong>{p.title}</strong><br/>
-        <em>{p.desc}</em><br/><br/>
-        <a href={p.url} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>Read it on My Blog</a> 🚀
+        <strong>Latest Blog Post:</strong><br/>
+        <div style={{ display: 'flex', gap: '20px', marginTop: '15px' }}>
+          <a href={p.url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit', maxWidth: '400px' }}>
+            <div style={{ background: 'var(--card-bg)', padding: '15px', borderRadius: '8px', border: '1px solid var(--accent-muted)', transition: 'all 0.3s ease', display: 'flex', flexDirection: 'column', cursor: 'pointer' }}>
+              <img loading="lazy" src={p.img} style={{ width: '100%', height: 'auto', borderRadius: '6px', marginBottom: '15px', border: '1px solid var(--accent-muted)' }} alt={p.title} />
+              <h3 style={{ margin: '0 0 10px 0', fontSize: '1.2em', color: 'var(--text)' }}>{p.title}</h3>
+              <p style={{ margin: '0 0 10px 0', fontSize: '0.95em', color: 'var(--text-muted)' }}>{p.desc}</p>
+              <div style={{ fontSize: '0.85em', color: 'var(--accent)', marginTop: '5px' }}>{p.date} • 3 min read</div>
+            </div>
+          </a>
+        </div>
       </div>
     );
   }
