@@ -189,8 +189,23 @@ export const processCommand = (mainCommand, args, context) => {
       responseContent = `You can reach me at:\n**Email**: [pavendanpynthamil@gmail.com](mailto:pavendanpynthamil@gmail.com)\n**GitHub**: [Pynthamil](https://github.com/Pynthamil)\n**LinkedIn**: [pynthamil-pavendan](https://www.linkedin.com/in/pynthamil-pavendan-55795228a/)\n**LeetCode**: [HashKnight](https://leetcode.com/u/HashKnight/)`;
       break;
     case 'resume':
-      toolUse = { name: 'FetchResume', desc: 'Retrieve resume document' };
-      responseContent = `You can view or download my resume here:\n        \n**[📄 Click to view Resume](https://drive.google.com/file/d/1UG_8apujjGO0uE6IiS-yg7QQfLVzhcl5/view?usp=sharing)**\n\n`;
+      if (args[1] === 'hireme') {
+        toolUse = { name: 'FetchResume', desc: 'Retrieve resume document' };
+        responseContent = `Access Granted.\n\nYou can view or download my resume here:\n        \n**[📄 Click to view Resume](https://drive.google.com/file/d/1UG_8apujjGO0uE6IiS-yg7QQfLVzhcl5/view?usp=sharing)**\n\n`;
+      } else if (args[1]) {
+        responseContent = `Access Denied: Incorrect password.`;
+      } else {
+        setInteractivePrompt({
+          type: 'password',
+          message: 'Enter password to view resume:',
+          onSubmit: (pwd) => {
+            setInteractivePrompt(null);
+            handleCommand(`resume ${pwd}`, true, `? Enter password to view resume: » ${'*'.repeat(pwd.length)}`);
+          }
+        });
+        setIsProcessing(false);
+        earlyReturn = true;
+      }
       break;
     case 'sudo':
       responseContent = `visitor is not in the sudoers file. This incident will be reported.`;
