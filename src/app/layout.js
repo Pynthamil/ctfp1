@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { CSPostHogProvider } from './providers';
+import { Analytics } from "@vercel/analytics/react";
 
 const geist = Geist({
   variable: "--font-geist",
@@ -74,6 +75,7 @@ export default function RootLayout({ children }) {
         <CSPostHogProvider>
           {children}
         </CSPostHogProvider>
+        <Analytics />
       </body>
     </html>
   );
